@@ -32,7 +32,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <div class="container">
         <header>
-            <h1>Welcome, <?php echo $user['username']; ?></h1>
+            <h1>Welcome Home, <?php echo $user['username']; ?></h1>
             <a href="profil.php">My Profile</a>
             <a href="../logout.php">Logout</a>
         </header>
