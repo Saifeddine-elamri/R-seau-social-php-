@@ -1,0 +1,103 @@
+/* Reset des marges et paddings */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Style du corps de la page */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+}
+
+/* Conteneur principal */
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* En-tête */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+header h1 {
+    font-size: 1.5rem;
+}
+
+header a {
+    color: #007bff;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+header a:hover {
+    text-decoration: underline;
+}
+
+/* Informations du profil */
+.profile-info {
+    margin-bottom: 2rem;
+}
+
+.profile-info h2 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.profile-info p {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+/* Liste des publications */
+.posts .post {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+}
+
+.posts .post small {
+    color: #777;
+    font-size: 0.9rem;
+}
+
+/* Liens et boutons de modification et suppression */
+.post a {
+    color: #3498db;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.post a:hover {
+    text-decoration: underline;
+}
+
+.post form button {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.post form button:hover {
+    background-color: #c0392b;
+}
+
+.post form {
+    display: inline-block;
+    margin-left: 10px;
+}
