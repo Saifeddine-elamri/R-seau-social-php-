@@ -31,11 +31,12 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Welcome Home, <?php echo $user['username']; ?></h1>
-            <a href="profil.php">My Profile</a>
-            <a href="../logout.php">Logout</a>
-        </header>
+    <header>
+    <h1>Welcome Home, <?php echo $user['username']; ?></h1>
+    <a href="profil.php">My Profile</a>
+    <a href="../logout.php">Logout</a>
+    </header>
+
 
         <section class="post-form">
             <h2>Create a Post</h2>

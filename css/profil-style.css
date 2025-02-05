@@ -24,97 +24,684 @@ body {
 }
 
 /* En-tête */
+/* Style du header */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #2c3e50; /* Fond sombre pour un contraste élégant */
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile pour l'effet 3D */
     margin-bottom: 2rem;
 }
 
+/* Style du titre du header */
 header h1 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    color: #ecf0f1; /* Couleur claire pour le titre */
+    margin: 0;
+    font-weight: 600;
+    text-transform: capitalize; /* Pour rendre le texte plus fluide et naturel */
 }
 
+/* Style des liens dans le header */
 header a {
-    color: #007bff;
+    color: #ecf0f1; /* Liens en blanc pour une meilleure lisibilité */
     text-decoration: none;
-    margin-left: 1rem;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
+/* Effet au survol des liens */
 header a:hover {
     text-decoration: underline;
+    background-color: #3498db; /* Couleur de fond bleu claire lors du survol */
+    color: #fff;
+    transform: translateY(-2px); /* Légère animation de mouvement pour un effet dynamique */
+}
+
+/* Ajout de marges entre les liens */
+header a + a {
+    margin-left: 1.5rem;
+}
+
+/* Responsiveness pour les petits écrans */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
+    }
+
+    header a {
+        margin-left: 0;
+        padding: 0.5rem;
+    }
 }
 
 /* Informations du profil */
 .profile-info {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem; /* Plus d'espace sous la section */
+    background-color: #fff; /* Fond blanc pour un contraste propre */
+    padding: 2rem; /* Ajout d'un peu de padding pour espacer le contenu */
+    border-radius: 10px; /* Coins arrondis pour un look moderne */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Ombre légère pour donner du relief */
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transition fluide au survol */
 }
 
+.profile-info:hover {
+    transform: translateY(-5px); /* Élève légèrement la section au survol */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); /* Ombre plus marquée au survol */
+}
+
+/* Titre du profil */
 .profile-info h2 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+    font-size: 2rem; /* Taille plus grande pour le titre */
+    font-weight: 700; /* Poids plus important pour un impact visuel */
+    margin-bottom: 1rem; /* Espacement plus grand sous le titre */
+    color: #333; /* Couleur plus foncée pour une meilleure lisibilité */
+    text-align: center; /* Centrer le titre pour une présentation plus élégante */
 }
 
+/* Paragraphe des informations du profil */
 .profile-info p {
-    margin-bottom: 0.5rem;
-    color: #555;
+    margin-bottom: 1rem; /* Espacement accru pour aérer la section */
+    color: #666; /* Couleur gris clair pour plus de subtilité */
+    font-size: 1.1rem; /* Augmenter légèrement la taille du texte pour plus de lisibilité */
+    line-height: 1.6; /* Amélioration de l'espacement des lignes pour une meilleure lecture */
+    text-align: center; /* Centrer les informations pour un look plus moderne */
+}
+
+/* Infos supplémentaires */
+.profile-info p span {
+    font-weight: bold; /* Mise en valeur des informations comme l'email et la date d'inscription */
+    color: #3498db; /* Utilisation d'un bleu pour les informations importantes */
+}
+
+/* Ajouter un bouton d'action (si nécessaire, par exemple modifier le profil) */
+.profile-info .action-btn {
+    display: block;
+    margin-top: 2rem; /* Espacement en haut du bouton */
+    padding: 10px 20px;
+    background-color: #3498db; /* Couleur du bouton */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%; /* Bouton large pour plus d'impact */
+    transition: background-color 0.3s ease, transform 0.3s ease-in-out; /* Transition au survol */
+}
+
+.profile-info .action-btn:hover {
+    background-color: #2980b9; /* Couleur plus foncée au survol */
+    transform: translateY(-2px); /* Légère élévation au survol */
 }
 
 /* Liste des publications */
+
+h2
+{
+    margin-bottom: 20px;
+}
 .posts .post {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+    background-color: #ffffff; /* Fond blanc pour un look plus propre */
+    padding: 1.5rem; /* Plus d'espace intérieur */
+    border-radius: 10px; /* Coins plus arrondis */
+    margin-bottom: 1.5rem; /* Espacement entre les publications */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile pour un effet de profondeur */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation fluide au survol */
+    border: 1px solid #e0e0e0; /* Bordure légère pour la séparation */
 }
 
+.posts .post:hover {
+    transform: translateY(-3px); /* Légère élévation au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+}
+
+/* Métadonnées de la publication (auteur, date, etc.) */
 .posts .post small {
-    color: #777;
-    font-size: 0.9rem;
+    color: #777; /* Couleur discrète pour les métadonnées */
+    font-size: 0.85rem; /* Taille de police légèrement réduite */
+    display: block; /* Assure que les métadonnées sont sur une nouvelle ligne */
+    margin-bottom: 0.5rem; /* Espacement sous les métadonnées */
 }
 
-/* Liens et boutons de modification et suppression */
+/* Titre ou contenu de la publication */
+.posts .post .content {
+    font-size: 1.1rem; /* Taille de police légèrement augmentée */
+    line-height: 1.6; /* Meilleure hauteur de ligne pour la lisibilité */
+    color: #333; /* Couleur de texte plus foncée */
+    margin-bottom: 1rem; /* Espacement sous le contenu */
+}
+
+/* Liens de modification et suppression */
 .post a {
-    color: #3498db;
-    text-decoration: none;
-    font-weight: bold;
+    color: #3498db; /* Couleur bleue pour les liens */
+    text-decoration: none; /* Pas de soulignement par défaut */
+    font-weight: 600; /* Texte en gras */
+    margin-right: 10px; /* Espacement entre les liens */
+    transition: color 0.2s ease; /* Transition fluide pour la couleur */
 }
 
 .post a:hover {
-    text-decoration: underline;
+    color: #2980b9; /* Couleur plus foncée au survol */
+    text-decoration: underline; /* Soulignement au survol */
 }
 
+/* Boutons de suppression */
 .post form button {
-    background-color: #e74c3c;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
+    background-color: #e74c3c; /* Couleur rouge pour le bouton de suppression */
+    color: white; /* Texte blanc */
+    border: none; /* Pas de bordure */
+    padding: 8px 16px; /* Padding plus généreux */
+    cursor: pointer; /* Curseur pointer */
+    border-radius: 6px; /* Coins arrondis */
+    font-weight: 600; /* Texte en gras */
+    transition: background-color 0.2s ease; /* Transition fluide pour la couleur de fond */
 }
 
 .post form button:hover {
-    background-color: #c0392b;
+    background-color: #c0392b; /* Couleur plus foncée au survol */
 }
 
+/* Formulaire de suppression */
 .post form {
+    display: inline-block; /* Alignement en ligne */
+    margin-left: 10px; /* Espacement à gauche */
+}
+
+/* Ajout d'une icône pour les boutons (optionnel) */
+.post form button::before {
+    content: "🗑️"; /* Icône de poubelle */
+    margin-right: 5px; /* Espacement entre l'icône et le texte */
+}
+
+/* Style pour les publications importantes ou mises en avant (optionnel) */
+.posts .post.highlighted {
+    background-color: #fff3e0; /* Fond légèrement orangé */
+    border-left: 4px solid #ff9800; /* Bordure gauche accentuée */
+}
+
+/* Animation pour les nouvelles publications */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.posts .post {
+    animation: fadeIn 0.3s ease; /* Animation d'apparition */
+}
+
+/* Liste des amis */
+/* Section des amis */
+.amis {
+    padding: 2rem;
+    background-color: #f5f5f5; /* Fond léger pour la section */
+    border-radius: 12px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+}
+
+.amis h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+/* Liste des amis */
+.amis-liste {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Grille responsive */
+    gap: 1.5rem; /* Espacement entre les cartes */
+}
+
+/* Carte d'ami */
+.ami {
+    background-color: #ffffff; /* Fond blanc */
+    border-radius: 10px; /* Coins arrondis */
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre subtile */
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* Animation fluide */
+    text-align: center;
+}
+
+.ami:hover {
+    transform: translateY(-5px); /* Légère élévation au survol */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Ombre plus prononcée au survol */
+}
+
+/* Image de profil de l'ami */
+.ami-image {
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem; /* Centrage et espacement */
+    border-radius: 50%; /* Image ronde */
+    overflow: hidden; /* Cache les bords de l'image */
+    border: 3px solid #3498db; /* Bordure colorée */
+}
+
+.ami-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ajuste l'image pour couvrir le conteneur */
+}
+
+/* Nom de l'ami */
+.ami h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+/* Email de l'ami */
+.ami-email {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 1rem;
+}
+
+/* Bouton pour envoyer un message */
+.ami-bouton {
     display: inline-block;
-    margin-left: 10px;
+    padding: 0.5rem 1rem;
+    background-color: #3498db; /* Couleur bleue */
+    color: white;
+    text-decoration: none;
+    border-radius: 6px;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.ami-bouton:hover {
+    background-color: #2980b9; /* Couleur plus foncée au survol */
+}
+
+/* L'envoi des messages */
+
+
+/* Style de la section Send a Message */
+.send-message {
+    background-color: #f8f9fa;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    margin: 30px auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    
+}
+
+.send-message h2 {
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+}
+
+/* Style pour le formulaire */
+.message-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.message-form label {
+    font-size: 1rem;
+    color: #555;
+    margin-bottom: 0.5rem;
+}
+
+.message-form select,
+.message-form textarea {
+    padding: 0.75rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    color: #333;
+    background-color: #fff;
+}
+
+.message-form select:focus,
+.message-form textarea:focus {
+    border-color: #3498db;
+    outline: none;
+}
+
+.message-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.message-form button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.message-form button:hover {
+    background-color: #2980b9;
+}
+
+.message-form button:focus {
+    outline: none;
 }
 
 
+/* Les Messages */
+.messages
+{
+    margin-top: 30px;
+}
+h2 {
+    font-size: 2rem;
+    color: #333;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+/* Conteneur des messages */
+.message {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Messages envoyés */
 .message.sent {
-    background-color: #e0ffe0; /* Vert clair pour les messages envoyés */
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #90ee90;
-    border-radius: 5px;
+    background-color: #e0f7fa; /* Bleu clair pour les messages envoyés */
+    border-left: 5px solid #0097a7; /* Bordure bleue à gauche */
 }
 
+.message.sent .message-header {
+    font-size: 1rem;
+    color: #00796b;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message.sent .message-time {
+    font-size: 0.85rem;
+    color: #00796b;
+}
+
+/* Messages reçus */
 .message.received {
-    background-color: #f0f8ff; /* Bleu clair pour les messages reçus */
-    padding: 10px;
-    margin: 5px 0;
-    border: 1px solid #add8e6;
+    background-color: #fff3e0; /* Jaune pâle pour les messages reçus */
+    border-left: 5px solid #f57c00; /* Bordure orange à gauche */
+}
+
+.message.received .message-header {
+    font-size: 1rem;
+    color: #d32f2f;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.message.received .message-time {
+    font-size: 0.85rem;
+    color: #d32f2f;
+}
+
+/* Style pour le contenu des messages */
+.message p {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Petit style pour la date et l'heure */
+.message-time {
+    font-size: 0.85rem;
+    color: #777;
+}
+
+/* Responsive Design : S'assurer que tout est bien affiché sur mobile */
+@media (max-width: 768px) {
+    .message {
+        padding: 0.75rem;
+    }
+
+    .message-header {
+        font-size: 0.9rem;
+    }
+
+    .message p {
+        font-size: 0.95rem;
+    }
+}
+
+
+/* Section des utilisateurs */
+.all-users {
+    margin-bottom: 40px;
+}
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}
+
+.user {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+.user h3 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.user p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.user button {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.user button:hover {
+    background-color: #2980b9;
+}
+
+.user button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Section des demandes d'amis */
+.friend-requests {
+    margin-bottom: 40px;
+}
+
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.request {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.request h3 {
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.request p {
+    font-size: 0.9rem;
+    color: #777;
+    margin-bottom: 10px;
+}
+
+.request button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.request button:hover {
+    background-color: #45a049;
+}
+
+.request button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Style global de la section des demandes d'amis */
+.friend-requests {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.friend-requests h2 {
+    text-align: center;
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.friend-requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.no-requests {
+    text-align: center;
+    color: #777;
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+/* Style des cartes de demande d'ami */
+.friend-request-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.friend-info {
+    flex: 1;
+}
+
+.friend-name {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.friend-email {
+    font-size: 16px;
+    color: #555;
+}
+
+/* Style des boutons d'actions */
+.friend-request-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.action-form {
+    display: inline;
+}
+
+.btn-accept,
+.btn-delete {
+    padding: 8px 15px;
+    border: none;
     border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Bouton "Accepter" */
+.btn-accept {
+    background-color: #28a745;
+    color: white;
+}
+
+.btn-accept:hover {
+    background-color: #218838;
+}
+
+/* Bouton "Supprimer" */
+.btn-delete {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #c82333;
+}
+
+/* Effet de survol sur les cartes de demandes d'amis */
+.friend-request-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }

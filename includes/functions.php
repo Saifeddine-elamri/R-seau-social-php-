@@ -73,12 +73,19 @@ function getFriends($userId) {
 
     $friends = $stmt->fetchAll(PDO::FETCH_ASSOC);
     $friendIds = [];
+
+    // Récupérer les ID des amis
     foreach ($friends as $friend) {
         if ($friend['user_id'] != $userId) {
             $friendIds[] = $friend['user_id'];
         } else {
             $friendIds[] = $friend['friend_id'];
         }
+    }
+
+    // Si aucun ami n'est trouvé, on retourne un tableau vide
+    if (empty($friendIds)) {
+        return [];
     }
 
     // Obtenir les informations des amis
