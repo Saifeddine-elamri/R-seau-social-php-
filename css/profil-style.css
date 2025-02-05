@@ -23,6 +23,50 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
+
+/* Style global pour la navigation */
+.tabs-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;  /* Espace entre les boutons */
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Pour que les boutons s'ajustent si l'écran est petit */
+}
+
+/* Style des boutons */
+.tab-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #f5f5f5;
+    border: 2px solid #ccc;
+    border-radius: 25px;
+    color: #333;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* Effet au survol */
+.tab-button:hover {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Style de l'onglet actif */
+.tab-button.active {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+    font-weight: bold;  /* Pour marquer l'onglet actif */
+}
+
+/* Effet focus */
+.tab-button:focus {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.6);
+}
+
+
 /* En-tête */
 /* Style du header */
 header {
@@ -704,4 +748,11 @@ h2 {
 .friend-request-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.section-content {
+    display: none; /* Masquer toutes les sections par défaut */
+}
+.section-content.active {
+    display: block; /* Afficher la section active */
 }

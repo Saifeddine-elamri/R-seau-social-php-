@@ -30,16 +30,25 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <a href="home.php">Home</a>
             <a href="../logout.php">Logout</a>
         </header>
+        <nav class="tabs-nav">
+        <button class="tab-button" onclick="showSection('profile-info')">Profile Info</button>
+        <button class="tab-button" onclick="showSection('posts')">My Posts</button>
+        <button class="tab-button" onclick="showSection('amis')">Friends</button>
+        <button class="tab-button" onclick="showSection('send-message')">Send Message</button>
+        <button class="tab-button" onclick="showSection('messages')">Messages</button>
+        <button class="tab-button" onclick="showSection('all-users')">All Users</button>
+        <button class="tab-button" onclick="showSection('friend-requests')">Friend Requests</button>
+        </nav>
 
-        <section class="profile-info">
+        <section class="section-content" id="profile-info">
             <h2><?php echo $user['username']; ?></h2>
             <p>Email: <?php echo $user['email']; ?></p>
             <p>Member since: <?php echo date('F j, Y', strtotime($user['created_at'])); ?></p>
         </section>
 
-        <section class="posts">
-    <h2>My Posts</h2>
-    <?php foreach ($posts as $post): ?>
+        <section class="section-content" id="posts">
+        <h2>My Posts</h2>
+        <?php foreach ($posts as $post): ?>
         <div class="post">
             <p><?php echo htmlspecialchars($post['content']); ?></p>
             <small><?php echo $post['created_at']; ?></small>
@@ -55,7 +64,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endforeach; ?>
 </section>
-<section class="amis">
+<section class="section-content" id="amis">
     <h2>Your Friends</h2>
     <div class="amis-liste">
         <?php
@@ -87,7 +96,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </section>
 
-<section class="send-message">
+<section class="section-content" id="send-message">
     <h2>Send a Message</h2>
 
     <form method="POST" action="sendMessage.php" class="message-form">
@@ -108,7 +117,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </form>
 </section>
 
-<section class="messages">
+<section class="section-content" id="messages">
     <h2>Messages</h2>
 
     <?php
@@ -148,7 +157,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     ?>
 </section>
 
-<section class="all-users">
+<section class="section-content" id="all-users">
     <h2>All Users</h2>
     <div class="user-list">
         <?php
@@ -188,7 +197,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
     </div>
 </section>
-<section class="friend-requests">
+<section class="section-content" id="friend-requests">
     <h2>Friend Requests</h2>
     <div class="friend-requests-list">
         <?php
@@ -234,6 +243,8 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </section>
 
+
+<script src="../js/profil.js"></script> <!-- Mettez à jour le chemin selon votre structure de fichiers -->
 
 </body>
 </html>
