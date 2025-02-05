@@ -101,3 +101,20 @@ header a:hover {
     display: inline-block;
     margin-left: 10px;
 }
+
+
+.message.sent {
+    background-color: #e0ffe0; /* Vert clair pour les messages envoyés */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #90ee90;
+    border-radius: 5px;
+}
+
+.message.received {
+    background-color: #f0f8ff; /* Bleu clair pour les messages reçus */
+    padding: 10px;
+    margin: 5px 0;
+    border: 1px solid #add8e6;
+    border-radius: 5px;
+}

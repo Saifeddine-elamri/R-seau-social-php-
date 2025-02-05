@@ -64,6 +64,66 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
          echo "<p>" . htmlspecialchars($friend['username']) . "</p>";
          }
     ?>
-    </div>
+<h2>Send a Message</h2>
+
+<form method="POST" action="sendMessage.php">
+    <label for="friend_id">Select a Friend:</label>
+    <select name="friend_id" required>
+        <?php
+        // Afficher la liste des amis (les amis sont déjà récupérés dans $friends)
+        foreach ($friends as $friend) {
+            echo "<option value='" . $friend['id'] . "'>" . htmlspecialchars($friend['username']) . "</option>";
+        }
+        ?>
+    </select>
+
+    <label for="message">Your Message:</label>
+    <textarea name="message" rows="4" required></textarea>
+
+    <button type="submit">Send Message</button>
+</form>
+
+<h2>Messages</h2>
+<?php
+// Récupérer les messages de l'utilisateur
+
+// Récupérer tous les messages envoyés et reçus par l'utilisateur
+$stmt = $pdo->prepare("SELECT m.*, 
+                              u.username AS sender_username,
+                              r.username AS receiver_username
+                       FROM messages m
+                       LEFT JOIN users u ON m.sender_id = u.id
+                       LEFT JOIN users r ON m.receiver_id = r.id
+                       WHERE m.sender_id = ? OR m.receiver_id = ?
+                       ORDER BY m.created_at DESC");
+$stmt->execute([$_SESSION['user_id'], $_SESSION['user_id']]);
+$messages = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($messages as $message) {
+    if ($message['sender_id'] == $_SESSION['user_id']) {
+        // Afficher un message envoyé
+        echo "<div class='message sent'>";
+        echo "<p><strong>To: </strong>" . htmlspecialchars($message['receiver_username']) . "</p>";
+        echo "<p>" . htmlspecialchars($message['message']) . "</p>";
+        echo "<small>Sent on: " . $message['created_at'] . "</small>";
+        echo "</div>";
+    } else {
+        // Afficher un message reçu
+        echo "<div class='message received'>";
+        echo "<p><strong>From: </strong>" . htmlspecialchars($message['sender_username']) . "</p>";
+        echo "<p>" . htmlspecialchars($message['message']) . "</p>";
+        echo "<small>Received on: " . $message['created_at'] . "</small>";
+        echo "</div>";
+    }
+}
+?>
+
+
+
+
+</div>
+
+
+
 </body>
 </html>
