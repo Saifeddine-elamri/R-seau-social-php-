@@ -40,6 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['friend_id'])) {
     $_SESSION['message'] = "Invalid request.";
 }
 
-header("Location: all-users.php");
+header("Location: users");
 exit();
 ?>

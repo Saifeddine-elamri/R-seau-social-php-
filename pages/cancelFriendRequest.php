@@ -30,6 +30,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['friend_id'])) {
     }
 }
 
-header("Location: all-users.php");
+header("Location: users");
 exit();
 ?>

@@ -27,6 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['friend_id'])) {
 }
 
 // Redirection vers la page des demandes d'amis
-header("Location: friend-requests.php");
+header("Location: requests");
 exit();
 ?>

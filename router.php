@@ -16,6 +16,13 @@ $routes = [
     '/logout' => 'logout.php',
     '/login' => 'login.php',
     '/register' => 'register.php',
+    '/delete-friend' => 'pages/remove_friend.php',
+    '/add-friend' => 'pages/sendFriendRequest.php',
+    '/cancel-request' => 'pages/cancelFriendRequest.php',
+    '/accept-request' => 'pages/acceptFriendRequest.php',
+    '/delete-request' => 'pages/deleteFriendRequest.php'
+
+
 
 
 ];

@@ -29,6 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['friend_id'])) {
 }
 
 // Redirection vers la liste d'amis
-header("Location: friends.php");
+header("Location: friends");
 exit();
 ?>

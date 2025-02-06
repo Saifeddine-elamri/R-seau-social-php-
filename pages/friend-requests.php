@@ -41,12 +41,12 @@ $requests = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                     
                     <div class="request-actions">
-                        <form method="POST" action="acceptFriendRequest.php">
+                        <form method="POST" action="accept-request">
                             <input type="hidden" name="friend_id" value="<?php echo $request['user_id']; ?>">
                             <button type="submit" class="button accept">✔ Accept</button>
                         </form>
 
-                        <form method="POST" action="deleteFriendRequest.php">
+                        <form method="POST" action="delete-request">
                             <input type="hidden" name="friend_id" value="<?php echo $request['user_id']; ?>">
                             <button type="submit" class="button reject">✖ Reject</button>
                         </form>

@@ -34,7 +34,7 @@ $friends = getFriends($_SESSION['user_id']);
                     <p>Email: <?php echo htmlspecialchars($friend['email']); ?></p>
                     
                     <!-- Formulaire pour supprimer un ami -->
-                    <form action="remove_friend.php" method="POST">
+                    <form action="/delete-friend" method="POST">
                         <input type="hidden" name="friend_id" value="<?php echo $friend['id']; ?>">
                         <button type="submit" class="remove-button">❌ Remove</button>
                     </form>

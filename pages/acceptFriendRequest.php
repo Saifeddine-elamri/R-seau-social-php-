@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $stmt->execute([$_SESSION['user_id'], $friendId]);
 
         echo "Friend request accepted!";
-        header("Location: profil.php");
+        header("Location: /");
     } else {
         echo "No pending request found.";
     }

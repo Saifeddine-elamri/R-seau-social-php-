@@ -34,10 +34,6 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <div class="container">
     <h1>👥 All Users</h1>
 
-    <?php if (isset($_SESSION['message'])): ?>
-        <p class="message"><?php echo $_SESSION['message']; unset($_SESSION['message']); ?></p>
-    <?php endif; ?>
-
     <div class="users-list">
         <?php foreach ($users as $user): ?>
             <div class="user-card">
@@ -52,12 +48,12 @@ $users = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php if (in_array($user['id'], $friend_ids)): ?>
                         <button class="button friend">✅ Friend</button>
                         <?php elseif (in_array($user['id'], $pendingRequests)): ?>
-                            <form method="POST" action="cancelFriendRequest.php">
+                            <form method="POST" action="cancel-request">
                                 <input type="hidden" name="friend_id" value="<?php echo $user['id']; ?>">
                                 <button type="submit" class="button pending">⏳ Pending (Cancel)</button>
                             </form>
                     <?php else: ?>
-                        <form method="POST" action="sendFriendRequest.php">
+                        <form method="POST" action="add-friend">
                             <input type="hidden" name="friend_id" value="<?php echo $user['id']; ?>">
                             <button type="submit" class="button add-friend">➕ Add Friend</button>
                         </form>
