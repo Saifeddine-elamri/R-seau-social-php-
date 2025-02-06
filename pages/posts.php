@@ -1,7 +1,5 @@
 <?php
-session_start();
-include '../includes/db.php';
-include '../includes/functions.php';
+
 
 if (!isLoggedIn()) {
     header("Location: login.php");
@@ -43,7 +41,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php endforeach; ?>
     <?php endif; ?>
 
-    <a href="profil.php" class="button">Back to Profile</a>
+    <a href="profil" class="button">Back to Profile</a>
 </div>
 
 </body>

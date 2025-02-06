@@ -1,11 +1,10 @@
 <?php
-session_start();
-include 'includes/db.php';
+
 
 // Vérifiez si l'utilisateur est déjà connecté
 if (isset($_SESSION['user_id'])) {
     // Si l'utilisateur est connecté, redirigez-le vers la page d'accueil
-    header("Location: index.php");
+    header("Location: /");
     exit();
 }
 
@@ -19,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if ($user && password_verify($password, $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
-        header("Location: index.php"); // Redirection vers la page principale après la connexion
+        header("Location: /"); // Redirection vers la page principale après la connexion
         exit();
     } else {
         $error_message = "Invalid email or password.";
@@ -44,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <input type="password" name="password" placeholder="Password" required>
             <button type="submit">Login</button>
         </form>
-        <p class="register-link">You don't have an account? <a href="register.php">Register</a></p>
+        <p class="register-link">You don't have an account? <a href="register">Register</a></p>
     </div>
 </body>
 </html>

@@ -1,6 +1,5 @@
 <?php
-session_start();
-include 'includes/db.php';
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $_POST['username'];
@@ -47,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </form>
 
-        <p>Already have an account? <a href="login.php">Login</a></p>
+        <p>Already have an account? <a href="login">Login</a></p>
     </div>
 
 </body>

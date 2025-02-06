@@ -1,7 +1,4 @@
 <?php
-session_start();
-include '../includes/db.php';
-include '../includes/functions.php';
 
 // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
 if (!isLoggedIn()) {
@@ -36,13 +33,13 @@ $user = getUserById($_SESSION['user_id']);
         </div>
 
         <nav class="nav-header">
-            <a href="profil.php">🏠 Home</a>
-            <a href="posts.php">📝 My Posts</a>
-            <a href="friends.php">👫 Friends</a>
-            <a href="messages.php">💬 Messages</a>
-            <a href="all-users.php">🌎 All Users</a>
-            <a href="friend-requests.php">🔔 Friend Requests</a>
-            <a href="../logout.php" class="logout">🚪 Logout</a>
+            <a href="profil">🏠 Home</a>
+            <a href="posts">📝 My Posts</a>
+            <a href="friends">👫 Friends</a>
+            <a href="contact">💬 Messages</a>
+            <a href="users">🌎 All Users</a>
+            <a href="requests">🔔 Friend Requests</a>
+            <a href="logout" class="logout">🚪 Logout</a>
         </nav>
     </header>
 
