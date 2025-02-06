@@ -3,28 +3,41 @@ session_start();
 include '../includes/db.php';
 include '../includes/functions.php';
 
-// Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
+// Vérifie si l'utilisateur est connecté
 if (!isLoggedIn()) {
     header("Location: login.php");
     exit();
 }
 
-// Vérifier que les données du formulaire sont envoyées
-if (isset($_POST['friend_id']) && isset($_POST['message'])) {
+// Vérifie si les données du formulaire sont envoyées
+if (isset($_POST['receiver_id']) && isset($_POST['message'])) {
     $sender_id = $_SESSION['user_id'];
-    $receiver_id = $_POST['friend_id'];
-    $message = $_POST['message'];
+    $receiver_id = $_POST['receiver_id'];
+    $message = trim($_POST['message']); // Supprime les espaces inutiles
 
-    // Insérer le message dans la base de données
-    $stmt = $pdo->prepare("INSERT INTO messages (sender_id, receiver_id, message) VALUES (?, ?, ?)");
-    $stmt->execute([$sender_id, $receiver_id, $message]);
+    // Vérifie que le message n'est pas vide
+    if (!empty($message)) {
+        try {
+            // Insère le message dans la base de données
+            $stmt = $pdo->prepare("INSERT INTO messages (sender_id, receiver_id, message, created_at) VALUES (?, ?, ?, NOW())");
+            $stmt->execute([$sender_id, $receiver_id, $message]);
 
-    // Rediriger vers la page de profil ou une page de confirmation
-    header("Location: profil.php?message=Message sent!");
-    exit();
+            // Redirige vers la conversation après l'envoi du message
+            header("Location: messages.php?contact_id=" . $receiver_id);
+            exit();
+        } catch (PDOException $e) {
+            // En cas d'erreur SQL, redirige avec un message d'erreur
+            header("Location: messages.php?contact_id=" . $receiver_id . "&error=Database%20error.");
+            exit();
+        }
+    } else {
+        // Redirige si le message est vide
+        header("Location: messages.php?contact_id=" . $receiver_id . "&error=Please%20enter%20a%20message.");
+        exit();
+    }
 } else {
-    // Si les données ne sont pas présentes, rediriger ou afficher un message d'erreur
-    header("Location: profil.php?error=Please fill in all fields.");
+    // Redirige si la requête est invalide
+    header("Location: messages.php?error=Invalid%20request.");
     exit();
 }
 ?>
