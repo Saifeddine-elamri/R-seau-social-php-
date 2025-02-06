@@ -18,6 +18,60 @@ body {
     text-align: center;
 }
 
+
+/* Conteneur de la photo de profil */
+.profile-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* Style de l'image de profil */
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid #007bff;
+    object-fit: cover;
+    background-color: #000; /* Cercle noir si pas d'image */
+}
+
+/* Bouton d'édition du profil */
+.profile-actions {
+    margin-top: 10px;
+}
+
+.profile-actions .button {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.profile-actions .button:hover {
+    background-color: #0056b3;
+}
+/* Conteneur de la photo de profil dans le header */
+.header-profile {
+    display: flex;
+    align-items: center;
+    margin-left: 15px;
+}
+
+/* Style de l'image de profil dans le header */
+.header-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid white;
+    object-fit: cover;
+    background-color: #000; /* Cercle noir si pas d'image */
+}
+
+
 /* Header */
 header {
     display: flex;

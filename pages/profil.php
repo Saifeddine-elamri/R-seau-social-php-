@@ -10,11 +10,6 @@ if (!isLoggedIn()) {
 }
 
 $user = getUserById($_SESSION['user_id']);
-
-// Récupérer les posts de l'utilisateur
-$stmt = $pdo->prepare("SELECT * FROM posts WHERE user_id = ? ORDER BY created_at DESC");
-$stmt->execute([$_SESSION['user_id']]);
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -26,9 +21,21 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
 
 <div class="container">
+
+
     <header>
         <h1>My Profile</h1>
+        <?php
+// Vérifier si l'utilisateur a une photo de profil
+$profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchars($user['profile_image']) : '../uploads/default.png';
+?>
+
+<div class="header-profile">
+    <img src="<?php echo $profileImage; ?>" alt="Profile Picture" class="header-profile-pic">
+</div>
+
         <nav class="nav-header">
+
             <a href="home.php">🏠 Home</a>
             <a href="../logout.php" class="logout">🚪 Logout</a>
         </nav>

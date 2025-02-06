@@ -30,6 +30,12 @@ $friends = getFriends($_SESSION['user_id']);
                 <div class="friend-card">
                     <h3><?php echo htmlspecialchars($friend['username']); ?></h3>
                     <p>Email: <?php echo htmlspecialchars($friend['email']); ?></p>
+                    
+                    <!-- Formulaire pour supprimer un ami -->
+                    <form action="remove_friend.php" method="POST">
+                        <input type="hidden" name="friend_id" value="<?php echo $friend['id']; ?>">
+                        <button type="submit" class="remove-button">Remove Friend</button>
+                    </form>
                 </div>
             <?php endforeach; ?>
         </div>

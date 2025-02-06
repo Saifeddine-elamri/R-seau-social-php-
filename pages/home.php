@@ -56,11 +56,20 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </form>
         </section>
 
+
+
+
         <section class="posts">
     <h2>Recent Posts</h2>
-    <?php foreach ($posts as $post): ?>
+    <?php foreach ($posts as $post): 
+        $postUser = getUserById($post['user_id']);
+        $profileImage = !empty($postUser['profile_image']) ? '../uploads/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
+    ?>
         <div class="post">
-            <strong><?php echo getUserById($post['user_id'])['username']; ?></strong>
+            <div class="post-header">
+                <img src="<?php echo $profileImage; ?>" alt="Profile Picture" class="post-profile-pic">
+                <strong><?php echo $postUser['username']; ?></strong>
+            </div>
             <p><?php echo $post['content']; ?></p>
             <small><?php echo $post['created_at']; ?></small>
 
@@ -92,9 +101,13 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $comments = $stmt->fetchAll(PDO::FETCH_ASSOC);
             ?>
             <div class="comments">
-                <?php foreach ($comments as $comment): ?>
+                <?php foreach ($comments as $comment): 
+                    $commentUser = getUserById($comment['user_id']);
+                    $commentProfileImage = !empty($commentUser['profile_image']) ? '../uploads/' . htmlspecialchars($commentUser['profile_image']) : '../uploads/default.png';
+                ?>
                     <div class="comment">
-                        <strong><?php echo getUserById($comment['user_id'])['username']; ?></strong>
+                        <img src="<?php echo $commentProfileImage; ?>" alt="Profile Picture" class="comment-profile-pic">
+                        <strong><?php echo $commentUser['username']; ?></strong>
                         <p><?php echo $comment['content']; ?></p>
                         <small><?php echo $comment['created_at']; ?></small>
                     </div>
@@ -103,6 +116,7 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
     <?php endforeach; ?>
 </section>
+
     </div>
 </body>
 </html>

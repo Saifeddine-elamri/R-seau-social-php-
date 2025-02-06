@@ -154,3 +154,51 @@ header a + a {
     padding: 5px;
     margin-top: 5px;
 }
+
+/* Conteneur du post */
+.post {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+}
+
+/* Header du post avec photo de profil */
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Style des images de profil dans les posts */
+.post-profile-pic, .comment-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+    margin-right: 10px;
+    background-color: #000; /* Cercle noir si pas d'image */
+}
+
+/* Commentaires */
+.comment {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    background: #f8f9fa;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.comment p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.comment small {
+    display: block;
+    color: gray;
+    font-size: 12px;
+}

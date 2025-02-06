@@ -95,4 +95,16 @@ function getFriends($userId) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+
+
+function removeFriend($user_id, $friend_id) {
+    global $conn;
+    
+    $query = "DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)";
+    $stmt = $conn->prepare($query);
+    $stmt->bind_param("iiii", $user_id, $friend_id, $friend_id, $user_id);
+    
+    return $stmt->execute();
+}
+
 ?>

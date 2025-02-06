@@ -54,3 +54,89 @@ body {
 .button:hover {
     opacity: 0.8;
 }
+
+
+
+.profile-card {
+    text-align: center;
+}
+
+.profile-pic {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    margin-bottom: 10px;
+}
+
+input[type="file"] {
+    display: block;
+    margin: 10px auto;
+}
+
+.button {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+.profile-pic-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.profile-pic {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ccc;
+}
+
+.default-pic {
+    background-color: black; /* Cercle noir si pas d'image */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+}
+
+/* Style du bouton personnalisé pour le choix du fichier */
+.custom-file-upload {
+    display: inline-block;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.custom-file-upload:hover {
+    background-color: #0056b3;
+}
+
+/* Cacher l’input file natif */
+#fileInput {
+    display: none;
+}
+
+/* Style du texte affichant le nom du fichier sélectionné */
+#fileName {
+    margin-left: 10px;
+    font-style: italic;
+    color: #555;
+}

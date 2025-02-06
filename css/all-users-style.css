@@ -76,3 +76,13 @@ h1 {
 .button.back:hover {
     background: #5a6268;
 }
+
+.button.pending {
+    background: #ff9800;
+    color: white;
+    cursor: pointer;
+}
+
+.button.pending:hover {
+    background: #e68900;
+}
