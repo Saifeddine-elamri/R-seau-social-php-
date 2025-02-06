@@ -80,7 +80,7 @@ if ($selected_contact) {
         <form method="POST" action="sendMessage.php">
             <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
             <textarea name="message" placeholder="Type a message..." required></textarea>
-            <button type="submit">Send</button>
+            <button type="submit"><span class="send-icon">➤</span></button>
         </form>
     <?php endif; ?>
 
