@@ -20,7 +20,11 @@ $routes = [
     '/add-friend' => 'pages/sendFriendRequest.php',
     '/cancel-request' => 'pages/cancelFriendRequest.php',
     '/accept-request' => 'pages/acceptFriendRequest.php',
-    '/delete-request' => 'pages/deleteFriendRequest.php'
+    '/delete-request' => 'pages/deleteFriendRequest.php',
+    '/send' => 'pages/sendMessage.php',
+    '/messages' => 'pages/messages.php'
+
+
 
 
 

@@ -2,7 +2,7 @@
 
 
 if (!isLoggedIn()) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
@@ -61,7 +61,7 @@ if ($selected_contact) {
         <?php else: ?>
             <?php foreach ($contacts as $contact): ?>
                 <a href="?contact_id=<?php echo $contact['id']; ?>" class="contact-card">
-                    <img src="<?php echo !empty($contact['profile_image']) ? '../uploads/' . $contact['profile_image'] : '../uploads/default.png'; ?>" class="contact-pic">
+                    <img src="<?php echo !empty($contact['profile_image']) ? 'uploads/' . $contact['profile_image'] : 'uploads/default.png'; ?>" class="contact-pic">
                     <span><?php echo htmlspecialchars($contact['username']); ?></span>
                 </a>
             <?php endforeach; ?>
@@ -89,7 +89,7 @@ if ($selected_contact) {
             <?php if (!empty($messages)): ?>
             <?php foreach ($messages as $message): ?>
                 <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
-                    <img src="<?php echo !empty($message['sender_image']) ? '../uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
+                    <img src="<?php echo !empty($message['sender_image']) ? 'uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
                     <div class="message-content">
                         <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
                         <?php if (!empty($message['image'])): ?>
@@ -107,7 +107,7 @@ if ($selected_contact) {
 
 
         <!-- Formulaire d'envoi de message -->
-        <form method="POST" action="sendMessage.php" enctype="multipart/form-data">
+        <form method="POST" action="send" enctype="multipart/form-data">
        <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
       <textarea name="message" placeholder="Type a message..."></textarea>
 

@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['content'])) {
     $video_path = null;
 
     // Dossier d'upload
-    $upload_dir = '../uploads/';
+    $upload_dir = 'uploads/';
 
     // Gestion de l'upload d'image
     if (!empty($_FILES['post_image']['name'])) {
@@ -151,26 +151,38 @@ $posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <section class="post-form">
     <h2>Create a Post</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <textarea name="content" placeholder="What's on your mind?" required></textarea>
+            <form method="POST" enctype="multipart/form-data">
+            <textarea name="content" placeholder="What's on your mind?" required></textarea>
 
-        <?php 
-        $fileTypes = [
-            "image" => ["📷 Choisir une image", "image/*"],
-            "video" => ["🎥 Choisir une vidéo", "video/*"]
-        ];
-        foreach ($fileTypes as $type => $details): 
-        ?>
-            <div class="file-upload">
-                <label for="file-<?php echo $type; ?>" class="file-upload-label">
-                    <?php echo $details[0]; ?>
-                </label>
-                <input type="file" id="file-<?php echo $type; ?>" name="post_<?php echo $type; ?>" accept="<?php echo $details[1]; ?>">
-            </div>
-        <?php endforeach; ?>
+            <?php 
+            $fileTypes = [
+                "image" => ["📷", "image/*"],
+            ];
+            foreach ($fileTypes as $type => $details): 
+            ?>
+                <div class="file-upload">
+                    <label for="file-<?php echo $type; ?>" class="file-upload-label">
+                        <?php echo $details[0]; ?>
+                    </label>
+                    <input type="file" id="file-<?php echo $type; ?>" name="post_<?php echo $type; ?>" accept="<?php echo $details[1]; ?>" style="display: none;">
+                    
+                    <!-- Zone d'affichage du nom du fichier -->
+                    <span id="file-name-<?php echo $type; ?>"></span>
+                </div>
+            <?php endforeach; ?>
 
-        <button type="submit">Post</button>
-    </form>
+            <button type="submit">Post</button>
+        </form>
+
+        <script>
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function() {
+                let fileName = this.files.length > 0 ? this.files[0].name : "Aucun fichier choisi";
+                document.getElementById('file-name-' + this.id.split('-')[1]).textContent = fileName;
+            });
+        });
+        </script>
+
 </section>
 
 

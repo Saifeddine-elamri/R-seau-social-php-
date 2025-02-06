@@ -1,7 +1,5 @@
 <?php
-session_start();
-include '../includes/db.php';
-include '../includes/functions.php';
+
 
 if (!isLoggedIn()) {
     header("Location: login.php");
@@ -15,7 +13,7 @@ $image_name = null;
 
 // Gérer l'upload de l'image
 if (!empty($_FILES['image']['name'])) {
-    $target_dir = "../uploads/";
+    $target_dir = "uploads/";
     $image_name = time() . "_" . basename($_FILES["image"]["name"]);
     $target_file = $target_dir . $image_name;
     
@@ -37,6 +35,6 @@ if (!empty($_FILES['image']['name'])) {
 $stmt = $pdo->prepare("INSERT INTO messages (sender_id, receiver_id, message, image, created_at) VALUES (?, ?, ?, ?, NOW())");
 $stmt->execute([$user_id, $receiver_id, $message, $image_name]);
 
-header("Location: messages.php?contact_id=" . $receiver_id);
+header("Location: messages?contact_id=" . $receiver_id);
 exit();
 ?>
