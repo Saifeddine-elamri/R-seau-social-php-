@@ -89,15 +89,19 @@ if ($selected_contact) {
             </h2>
             <div class="messages">
             <?php if (!empty($messages)): ?>
-                <?php foreach ($messages as $message): ?>
-                    <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
-                        <img src="<?php echo !empty($message['sender_image']) ? '../uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
-                        <div class="message-content">
-                            <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
-                            <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
-                        </div>
+            <?php foreach ($messages as $message): ?>
+                <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
+                    <img src="<?php echo !empty($message['sender_image']) ? '../uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
+                    <div class="message-content">
+                        <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
+                        <?php if (!empty($message['image'])): ?>
+                            <img src="../uploads/<?php echo htmlspecialchars($message['image']); ?>" class="message-image">
+                        <?php endif; ?>
+                        <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
                     </div>
-                <?php endforeach; ?>
+                </div>
+            <?php endforeach; ?>
+
             <?php else: ?>
                 <p class="no-messages">Aucun message pour le moment. Démarrez la conversation !</p>
             <?php endif; ?>
@@ -105,11 +109,34 @@ if ($selected_contact) {
 
 
         <!-- Formulaire d'envoi de message -->
-        <form method="POST" action="sendMessage.php">
-            <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
-            <textarea name="message" placeholder="Type a message..." required></textarea>
-            <button type="submit"><span class="send-icon">➤</span></button>
-        </form>
+        <form method="POST" action="sendMessage.php" enctype="multipart/form-data">
+       <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
+      <textarea name="message" placeholder="Type a message..."></textarea>
+
+    <!-- Bouton d'upload avec icône -->
+    <div class="file-upload">
+        <label for="file-input" class="custom-file-upload">
+            <div class="file-icon">
+                📎 <!-- Icône d'attachement -->
+            </div>
+        </label>
+        <input id="file-input" type="file" name="image" accept="image/*" style="display: none;">
+        <span id="file-name"></span> <!-- Nom du fichier affiché ici -->
+    </div>
+
+
+
+<script>
+    document.getElementById("file-input").addEventListener("change", function() {
+        var fileName = this.files[0] ? this.files[0].name : "Aucun fichier sélectionné";
+        document.getElementById("file-name").textContent = fileName;
+    });
+</script>
+
+
+       <button type="submit"><span class="send-icon">➤</span></button>
+       </form>
+
     <?php endif; ?>
 
     <a href="profil.php" class="button">Back to Profile</a>

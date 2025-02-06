@@ -3,41 +3,40 @@ session_start();
 include '../includes/db.php';
 include '../includes/functions.php';
 
-// Vérifie si l'utilisateur est connecté
 if (!isLoggedIn()) {
     header("Location: login.php");
     exit();
 }
 
-// Vérifie si les données du formulaire sont envoyées
-if (isset($_POST['receiver_id']) && isset($_POST['message'])) {
-    $sender_id = $_SESSION['user_id'];
-    $receiver_id = $_POST['receiver_id'];
-    $message = trim($_POST['message']); // Supprime les espaces inutiles
+$user_id = $_SESSION['user_id'];
+$receiver_id = $_POST['receiver_id'];
+$message = !empty($_POST['message']) ? trim($_POST['message']) : null;
+$image_name = null;
 
-    // Vérifie que le message n'est pas vide
-    if (!empty($message)) {
-        try {
-            // Insère le message dans la base de données
-            $stmt = $pdo->prepare("INSERT INTO messages (sender_id, receiver_id, message, created_at) VALUES (?, ?, ?, NOW())");
-            $stmt->execute([$sender_id, $receiver_id, $message]);
+// Gérer l'upload de l'image
+if (!empty($_FILES['image']['name'])) {
+    $target_dir = "../uploads/";
+    $image_name = time() . "_" . basename($_FILES["image"]["name"]);
+    $target_file = $target_dir . $image_name;
+    
+    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+    $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
 
-            // Redirige vers la conversation après l'envoi du message
-            header("Location: messages.php?contact_id=" . $receiver_id);
-            exit();
-        } catch (PDOException $e) {
-            // En cas d'erreur SQL, redirige avec un message d'erreur
-            header("Location: messages.php?contact_id=" . $receiver_id . "&error=Database%20error.");
-            exit();
+    if (in_array($imageFileType, $allowed_types)) {
+        if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+            // Image uploadée avec succès
+        } else {
+            $image_name = null;
         }
     } else {
-        // Redirige si le message est vide
-        header("Location: messages.php?contact_id=" . $receiver_id . "&error=Please%20enter%20a%20message.");
-        exit();
+        $image_name = null;
     }
-} else {
-    // Redirige si la requête est invalide
-    header("Location: messages.php?error=Invalid%20request.");
-    exit();
 }
+
+// Insérer dans la base de données
+$stmt = $pdo->prepare("INSERT INTO messages (sender_id, receiver_id, message, image, created_at) VALUES (?, ?, ?, ?, NOW())");
+$stmt->execute([$user_id, $receiver_id, $message, $image_name]);
+
+header("Location: messages.php?contact_id=" . $receiver_id);
+exit();
 ?>

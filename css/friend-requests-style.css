@@ -10,24 +10,61 @@ body {
 /* Container */
 .container {
     width: 95%;
-    max-width: 1500px;
+    max-width: 900px;
     margin: 30px auto;
     background: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Requests List */
+.requests-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
 }
 
 /* Friend Request Card */
 .friend-request {
     background: #fff;
     padding: 15px;
-    margin: 10px 0;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
-    flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #007bff;
+}
+
+/* Request Info */
+.request-info {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.request-info h3 {
+    margin: 5px 0;
+    color: #333;
+}
+
+.request-info p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Request Actions */
+.request-actions {
+    display: flex;
     gap: 10px;
 }
 
@@ -35,13 +72,14 @@ body {
 .button {
     background: #007bff;
     color: white;
-    padding: 10px;
+    padding: 10px 15px;
     border: none;
     cursor: pointer;
     font-size: 14px;
     border-radius: 5px;
     text-decoration: none;
     display: inline-block;
+    transition: 0.3s;
 }
 
 .button.accept {
@@ -59,12 +97,6 @@ body {
 
 .button:hover {
     opacity: 0.8;
-}
-
-/* Inline Form */
-.inline-form {
-    display: inline-block;
-    margin: 0 5px;
 }
 
 /* Messages */

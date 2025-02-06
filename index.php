@@ -12,6 +12,7 @@ if (!isLoggedIn()) {
 $user = getUserById($_SESSION['user_id']);
 ?>
 
+
 <!DOCTYPE html>
 <html>
 <head>

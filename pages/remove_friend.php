@@ -3,22 +3,32 @@ session_start();
 include '../includes/db.php';
 include '../includes/functions.php';
 
-if (!isLoggedIn()) {
+// Vérifier si l'utilisateur est connecté
+if (!isset($_SESSION['user_id']) || !isLoggedIn()) {
     header("Location: login.php");
     exit();
 }
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['friend_id'])) {
-    $friend_id = intval($_POST['friend_id']);
-    $user_id = $_SESSION['user_id'];
+$user_id = $_SESSION['user_id'];
 
-    if (removeFriend($user_id, $friend_id)) {
-        $_SESSION['message'] = "Friend removed successfully.";
+// Vérifier si la requête est POST et contient un ID valide
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['friend_id'])) {
+    $friend_id = filter_var($_POST['friend_id'], FILTER_VALIDATE_INT);
+
+    if ($friend_id && $friend_id !== $user_id) { // Vérification supplémentaire pour éviter la suppression de soi-même
+        if (removeFriend($user_id, $friend_id)) {
+            $_SESSION['message'] = "Ami supprimé avec succès.";
+        } else {
+            $_SESSION['message'] = "Erreur lors de la suppression de l'ami.";
+        }
     } else {
-        $_SESSION['message'] = "Error removing friend.";
+        $_SESSION['message'] = "ID d'ami invalide.";
     }
+} else {
+    $_SESSION['message'] = "Requête invalide.";
 }
 
+// Redirection vers la liste d'amis
 header("Location: friends.php");
 exit();
 ?>

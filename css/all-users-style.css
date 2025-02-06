@@ -1,7 +1,7 @@
 /* Global */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
     margin: 0;
     padding: 0;
     text-align: center;
@@ -9,12 +9,12 @@ body {
 
 /* Container */
 .container {
-    width: 95%;
-    max-width: 1500px;
+    width: 90%;
+    max-width: 1200px;
     margin: 30px auto;
     background: white;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -26,27 +26,57 @@ h1 {
 /* Users List */
 .users-list {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
 }
 
 /* User Card */
 .user-card {
     background: #fff;
     padding: 15px;
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    width: 280px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease-in-out;
 }
 
-.user-card h3 {
+.user-card:hover {
+    transform: scale(1.05);
+}
+
+/* Profile Picture */
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #007bff;
+    margin-bottom: 10px;
+}
+
+/* User Info */
+.user-info {
+    text-align: center;
+}
+
+.user-info h3 {
     margin: 5px 0;
     color: #007bff;
 }
 
-.user-card p {
+.user-info p {
     font-size: 14px;
     color: #555;
+}
+
+/* User Actions */
+.user-actions {
+    margin-top: 10px;
 }
 
 /* Buttons */
@@ -54,15 +84,48 @@ h1 {
     display: inline-block;
     background: #007bff;
     color: white;
-    padding: 10px;
+    padding: 8px 12px;
     border-radius: 5px;
     text-decoration: none;
     font-size: 14px;
-    margin-top: 10px;
-    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
 }
 
 .button:hover {
+    background: #0056b3;
+}
+
+/* Friend Button */
+.button.friend {
+    background: #28a745;
+    cursor: default;
+}
+
+.button.friend:hover {
+    background: #218838;
+}
+
+/* Pending Button */
+.button.pending {
+    background: #ff9800;
+}
+
+.button.pending:hover {
+    background: #e68900;
+}
+
+/* Add Friend Button */
+.button.add-friend {
+    background: #007bff;
+}
+
+.button.add-friend:hover {
     background: #0056b3;
 }
 
@@ -75,14 +138,4 @@ h1 {
 
 .button.back:hover {
     background: #5a6268;
-}
-
-.button.pending {
-    background: #ff9800;
-    color: white;
-    cursor: pointer;
-}
-
-.button.pending:hover {
-    background: #e68900;
 }

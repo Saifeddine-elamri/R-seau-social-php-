@@ -96,15 +96,20 @@ function getFriends($userId) {
 }
 
 
-
 function removeFriend($user_id, $friend_id) {
-    global $conn;
-    
-    $query = "DELETE FROM friends WHERE (user_id = ? AND friend_id = ?) OR (user_id = ? AND friend_id = ?)";
-    $stmt = $conn->prepare($query);
-    $stmt->bind_param("iiii", $user_id, $friend_id, $friend_id, $user_id);
-    
-    return $stmt->execute();
+    global $pdo; // Assure-toi que $pdo est bien défini et accessible
+
+    $query = "DELETE FROM friends WHERE (user_id = :user_id AND friend_id = :friend_id) 
+              OR (user_id = :friend_id AND friend_id = :user_id)";
+
+    $stmt = $pdo->prepare($query);
+    $stmt->execute([
+        ':user_id'   => $user_id,
+        ':friend_id' => $friend_id
+    ]);
+
+    return $stmt->rowCount() > 0; // Retourne vrai si au moins une ligne a été supprimée
 }
+
 
 ?>
