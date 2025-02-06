@@ -1,0 +1,112 @@
+/* Global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #eef2f7;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 500px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Headers */
+h1 {
+    color: #007bff;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+/* Form */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Labels */
+label {
+    font-weight: bold;
+    text-align: left;
+    font-size: 14px;
+    color: #333;
+}
+
+/* Inputs */
+select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+select {
+    cursor: pointer;
+    background: #f8f9fa;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+    background: #f8f9fa;
+}
+
+/* Focus effects */
+select:focus, textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.2);
+}
+
+/* Buttons */
+.button {
+    margin-top: 15px;
+    background: #007bff;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 6px;
+    transition: 0.3s;
+    font-weight: bold;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+/* Warning Message */
+.message.warning {
+    background: #ffeeba;
+    padding: 12px;
+    border-radius: 6px;
+    color: #856404;
+    font-weight: bold;
+    margin-bottom: 15px;
+    border: 1px solid #ffc107;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,78 @@
+/* Global */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    width: 60%;
+    max-width: 700px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Title */
+h1 {
+    color: #333;
+}
+
+/* Users List */
+.users-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* User Card */
+.user-card {
+    background: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.user-card h3 {
+    margin: 5px 0;
+    color: #007bff;
+}
+
+.user-card p {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.button:hover {
+    background: #0056b3;
+}
+
+/* Back Button */
+.button.back {
+    background: #6c757d;
+    display: block;
+    margin-top: 20px;
+}
+
+.button.back:hover {
+    background: #5a6268;
+}

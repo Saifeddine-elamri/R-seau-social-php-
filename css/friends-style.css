@@ -1,0 +1,63 @@
+/* Global */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+/* Container */
+.container {
+    width: 60%;
+    max-width: 800px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Friends List */
+.friends-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Friend Card */
+.friend-card {
+    background: #fff;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 250px;
+    text-align: center;
+}
+
+/* Messages */
+.message.warning {
+    background: #ffeb3b;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+/* Buttons */
+.button {
+    background: #007bff;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.button:hover {
+    background: #0056b3;
+}
