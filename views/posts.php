@@ -20,7 +20,7 @@ $profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchar
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
-    <link rel="stylesheet" type="text/css" href="../css/profil-style.css">
+    <link rel="stylesheet" type="text/css" href="views/static/css/profil-style.css">
 </head>
 <body>
 
