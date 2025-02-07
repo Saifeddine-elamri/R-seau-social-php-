@@ -334,7 +334,12 @@ form button:hover {
     position: relative;
     margin-top: 10px;
 }
-
+.like-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
 /* Nombre de likes */
 .like-count {
     font-size: 14px;
@@ -349,8 +354,6 @@ form button:hover {
     border: none;
     cursor: pointer;
     font-size: 16px;
-    display: flex;
-    align-items: center;
     padding: 5px 10px;
     color: #1877f2;
     font-weight: bold;
@@ -446,4 +449,113 @@ form button:hover {
     margin-left: 10px;
     font-style: italic;
     color: #666;
+}
+
+/* Aligner les boutons "Like" et "Comment" */
+.post-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Bouton Like & Comment */
+ .comment-toggle {
+    margin-top: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    color: #1877f2;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.like-btn:hover, .comment-toggle:hover {
+    background: rgba(24, 119, 242, 0.1);
+    border-radius: 20px;
+}
+
+
+
+
+/* Cacher le formulaire de commentaire par défaut */
+.comment-form {
+    display: none;
+    margin-top: 10px;
+}
+
+.comment-form textarea {
+    width: 80%;
+    border-radius: 10px;
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+.comment-form button {
+    margin-top: 5px;
+    margin-left: 10px;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1877f2;
+    color: white;
+    cursor: pointer;
+}
+
+.comment-form button:hover {
+    background-color: #145dbf;
+}
+
+/* Pour l'image de profil de l'utilisateur */
+.post-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.post-user-profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+/* Pour l'image de profil du commentaire */
+.comment-profile-pic {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+/* Footer */
+footer {
+    background-color: #007bff;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 0 0 10px 10px;
+    margin-top: 30px;
+}
+
+footer p {
+    margin: 0;
+    font-size: 16px;
+}
+
+footer nav {
+    margin-top: 10px;
+}
+
+footer nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    margin: 0 10px;
+    transition: 0.3s;
+}
+
+footer nav a:hover {
+    color: #f1f1f1;
 }

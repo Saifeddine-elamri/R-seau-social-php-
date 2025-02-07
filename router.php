@@ -1,41 +1,57 @@
 <?php
+require_once __DIR__ . '/controllers/PostController.php';
 
-// Récupérer l'URL demandée
-$request = $_SERVER['REQUEST_URI'];
-$request = strtok($request, '?'); // Supprime les paramètres GET
 
-// Définir les routes
+// Récupérer l'URL demandée sans paramètres GET
+$request = strtok($_SERVER['REQUEST_URI'], '?');
+
+// Définir les routes et les contrôleurs associés
 $routes = [
-    '/' => 'pages/profil.php',
-    '/profil' => 'pages/profil.php',
-    '/posts' => 'pages/posts.php',
-    '/friends' => 'pages/friends.php',
-    '/contact' => 'pages/messages.php',
-    '/users' => 'pages/all-users.php',
-    '/requests' => 'pages/friend-requests.php',
-    '/logout' => 'logout.php',
-    '/login' => 'login.php',
-    '/register' => 'register.php',
-    '/delete-friend' => 'pages/remove_friend.php',
-    '/add-friend' => 'pages/sendFriendRequest.php',
-    '/cancel-request' => 'pages/cancelFriendRequest.php',
-    '/accept-request' => 'pages/acceptFriendRequest.php',
-    '/delete-request' => 'pages/deleteFriendRequest.php',
-    '/send' => 'pages/sendMessage.php',
-    '/messages' => 'pages/messages.php'
+    '/' => ['controller' => 'UserController', 'method' => 'profile'],
+    '/profil' => ['controller' => 'UserController', 'method' => 'profile'],
+    '/posts' => ['controller' => 'PostController', 'method' => 'index'],
+    '/friends' => ['controller' => 'FriendController', 'method' => 'index'],
+    '/contact' => ['controller' => 'MessageController', 'method' => 'index'],
+    '/users' => ['controller' => 'UserController', 'method' => 'listUsers'],
+    '/requests' => ['controller' => 'FriendController', 'method' => 'friendRequests'],
+    '/logout' => ['controller' => 'UserController', 'method' => 'logout'],
+    '/login' => ['controller' => 'UserController', 'method' => 'login'],
+    '/register' => ['controller' => 'UserController', 'method' => 'register'],
+    '/delete-friend' => ['controller' => 'FriendController', 'method' => 'removeFriend'],
+    '/add-friend' => ['controller' => 'FriendController', 'method' => 'sendFriendRequest'],
+    '/cancel-request' => ['controller' => 'FriendController', 'method' => 'cancelFriendRequest'],
+    '/accept-request' => ['controller' => 'FriendController', 'method' => 'acceptFriendRequest'],
+    '/delete-request' => ['controller' => 'FriendController', 'method' => 'deleteFriendRequest'],
+    '/send' => ['controller' => 'MessageController', 'method' => 'sendMessage'],
+    '/messages' => ['controller' => 'MessageController', 'method' => 'index'],
+    '/like' => ['controller' => 'LikeController', 'method' => 'likePost'],
+    '/comment' => ['controller' => 'CommentController', 'method' => 'addComment'],
 
 
 
-
-
+    
 
 ];
 
 // Vérifier si la route existe
 if (array_key_exists($request, $routes)) {
-    require $routes[$request];
-} else {
-    http_response_code(404);
-    echo "Page not found";
+    $controllerName = $routes[$request]['controller'];
+    $method = $routes[$request]['method'];
+
+    $controllerPath = __DIR__ . "/controllers/$controllerName.php";
+    
+    if (file_exists($controllerPath)) {
+        require_once $controllerPath;
+        $controller = new $controllerName();
+        
+        if (method_exists($controller, $method)) {
+            $controller->$method();
+            exit();
+        }
+    }
 }
+
+// Si la route est inconnue, afficher une erreur 404
+http_response_code(404);
+echo "404 - Page Not Found";
 ?>

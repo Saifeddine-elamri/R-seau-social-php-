@@ -1,12 +1,15 @@
-function showSection(sectionId) {
-            // Masquer toutes les sections
-            document.querySelectorAll('.section-content').forEach(section => {
-                section.classList.remove('active');
-            });
-
-            // Afficher la section sélectionnée
-            document.getElementById(sectionId).classList.add('active');
-        }
-
-        // Afficher la première section par défaut
-showSection('profile-info');
+document.addEventListener("DOMContentLoaded", function() {
+    // Sélectionner tous les boutons "Comment"
+    document.querySelectorAll(".comment-toggle").forEach(button => {
+        button.addEventListener("click", function() {
+            let postId = this.getAttribute("data-post-id");
+            let commentForm = document.getElementById("comment-form-" + postId);
+            
+            if (commentForm.style.display === "flex") {
+                commentForm.style.display = "none";
+            } else {
+                commentForm.style.display = "flex";
+            }
+        });
+    });
+});

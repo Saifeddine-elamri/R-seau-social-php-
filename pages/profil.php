@@ -2,7 +2,7 @@
 
 // Rediriger vers la page de connexion si l'utilisateur n'est pas connecté
 if (!isLoggedIn()) {
-    header("Location: login.php");
+    header("Location: login");
     exit();
 }
 
