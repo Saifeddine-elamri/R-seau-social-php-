@@ -93,6 +93,42 @@ class User {
     }
 
 
+    // Fonction pour supprimer l'image de profil
+    public static function deleteProfileImage($userId)
+    {
+        global $pdo;
+
+        // Récupérer l'image de profil actuelle
+        $stmt = $pdo->prepare("SELECT profile_image FROM users WHERE id = ?");
+        $stmt->execute([$userId]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        if ($user && !empty($user['profile_image'])) {
+            $filePath = '../uploads/' . $user['profile_image'];
+            if (file_exists($filePath)) {
+                unlink($filePath); // Supprimer le fichier de l'image
+            }
+            // Supprimer l'image de profil dans la base de données
+            $stmt = $pdo->prepare("UPDATE users SET profile_image = NULL WHERE id = ?");
+            $stmt->execute([$userId]);
+            return true;
+        }
+
+        return false;
+    }
+
+    // Fonction pour mettre à jour l'image de profil
+    public static function updateProfileImage($userId, $fileName)
+    {
+        global $pdo;
+        
+        $stmt = $pdo->prepare("UPDATE users SET profile_image = ? WHERE id = ?");
+        return $stmt->execute([$fileName, $userId]);
+    }
+
+
+
+
 
 
 

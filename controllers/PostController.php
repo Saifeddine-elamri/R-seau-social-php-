@@ -20,7 +20,7 @@ class PostController {
 
             if (!empty($content)) {
                 Post::add($user_id, $content, $image, $video);
-                header("Location: index.php");
+                header("Location: posts");
                 exit();
             }
         }

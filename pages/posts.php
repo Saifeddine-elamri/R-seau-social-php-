@@ -1,48 +1,102 @@
 <?php
-
-
-if (!isLoggedIn()) {
-    header("Location: login.php");
+// Vérifie si l'utilisateur est connecté
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login");
     exit();
 }
 
-$stmt = $pdo->prepare("SELECT * FROM posts WHERE user_id = ? ORDER BY created_at DESC");
-$stmt->execute([$_SESSION['user_id']]);
-$posts = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-    <title>My Posts</title>
-    <link rel="stylesheet" href="../css/posts-style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil</title>
+    <link rel="stylesheet" type="text/css" href="views/static/css/profil-style.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>My Posts</h1>
+    <?php include 'templates/header.php'; ?>
 
-    <?php if (empty($posts)): ?>
-        <p class="message">You haven't posted anything yet.</p>
-    <?php else: ?>
-        <?php foreach ($posts as $post): ?>
-            <div class="post-card">
-                <p><?php echo htmlspecialchars($post['content']); ?></p>
-                <small><?php echo date('F j, Y, g:i a', strtotime($post['created_at'])); ?></small>
-                
-                <div class="actions">
-                    <a href="editPost.php?id=<?php echo $post['id']; ?>" class="button">Edit</a>
-                    <form method="POST" action="deletePost.php" class="inline-form">
+        <!-- Formulaire pour créer un post -->
+        <div class="new-post-form">
+        <h3>Nouvelle publication</h3>
+        <form method="POST" enctype="multipart/form-data">
+            <textarea name="content" placeholder="Écrivez quelque chose..." required></textarea>
+            <input type="file" name="post_image" accept="image/*">
+            <button type="submit">Publier</button>
+        </form>
+        </div>
+
+    <h2>Publications récentes</h2>
+
+
+
+    <!-- Affichage des publications -->
+    <?php foreach ($posts as $post): ?>
+        <?php
+        // Récupérer les informations de l'utilisateur qui a fait le post
+        $postUser = User::getById($post['user_id']);
+        $postUserProfileImage = !empty($postUser['profile_image']) ? '../uploads/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
+        ?>
+
+        <div class="post">
+            <!-- Affichage de l'image de profil de l'utilisateur qui a posté -->
+            <div class="post-user-info">
+                <img src="<?php echo $postUserProfileImage; ?>" alt="Image de Profil de l'auteur" class="post-user-profile-pic">
+                <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
+            </div>
+            <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+            <small><?php echo $post['created_at']; ?></small>
+
+            <?php if (!empty($post['image'])): ?>
+                <img src="../uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Image du post" class="post-image">
+            <?php endif; ?>
+
+            <!-- Like et commentaire -->
+            <div class="post-actions">
+                <div class="like-container">
+                    <div class="like-count">(<?php echo Like::countLikes($post['id']); ?>)</div>
+                    <form method="POST" action="like">
                         <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-                        <button type="submit" class="button-danger" onclick="return confirm('Are you sure?')">Delete</button>
+                        <button type="submit" class="like-btn">👍</button>
                     </form>
                 </div>
-            </div>
-        <?php endforeach; ?>
-    <?php endif; ?>
 
-    <a href="profil" class="button">Back to Profile</a>
+                <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 </button>
+            </div>
+
+            <!-- Formulaire de commentaire -->
+            <form method="POST" action="comment" class="comment-form" id="comment-form-<?php echo $post['id']; ?>" style="display:none;">
+                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                <textarea name="comment_content" placeholder="Écrire un commentaire..." required></textarea>
+                <button type="submit" name="comment_post">Commenter</button>
+            </form>
+
+            <div class="comments">
+                <?php
+                    $comments = Comment::getCommentsByPostId($post['id']);
+                ?>
+                <?php foreach ($comments as $comment): 
+                    $commentUser = User::getById($comment['user_id']);
+                    $commentProfileImage = !empty($commentUser['profile_image']) ? '../uploads/' . htmlspecialchars($commentUser['profile_image']) : '../uploads/default.png';
+                ?>
+                    <div class="comment">
+                        <img src="<?php echo $commentProfileImage; ?>" alt="Image de Profil Commentaire" class="comment-profile-pic">
+                        <strong><?php echo htmlspecialchars($commentUser['username']); ?></strong>
+                        <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
+                        <small><?php echo date("d M Y, H:i", strtotime($comment['created_at'])); ?></small>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    <?php endforeach; ?>
+
+    <?php include 'templates/footer.php'; ?>
 </div>
 
+<script src="../js/profil.js"></script>
 </body>
 </html>

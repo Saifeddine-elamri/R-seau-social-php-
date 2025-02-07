@@ -67,7 +67,7 @@ class FriendController {
     
             if ($result) {
                 // Rediriger vers la page des demandes d'amis après avoir accepté
-                header("Location: /friend-requests");
+                header("Location: /requests");
             } else {
                 // Gérer l'erreur (par exemple, la demande n'existe pas ou elle est déjà acceptée)
                 echo "Error accepting friend request.";
@@ -89,7 +89,7 @@ class FriendController {
     
             if ($result) {
                 // Rediriger vers la page des demandes d'amis après avoir rejeté
-                header("Location: /friend-requests");
+                header("Location: /requests");
             } else {
                 // Gérer l'erreur (par exemple, la demande n'existe pas)
                 echo "Error rejecting friend request.";

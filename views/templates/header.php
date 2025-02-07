@@ -165,7 +165,7 @@ header h1 {
 <header>
     <div class="header-profile">
         <!-- 🔗 Rendre l'image de profil cliquable -->
-        <a href="profil-info.php">
+        <a href="profil-info">
             <img src="<?php echo $profileImage; ?>" alt="Image de Profil" class="header-profile-pic">
         </a>
     </div>

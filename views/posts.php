@@ -1,17 +1,10 @@
 <?php
-
 // Vérifie si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header("Location: login");
     exit();
 }
 
-// Récupérer les informations de l'utilisateur connecté
-$userId = $_SESSION['user_id'];
-$user = User::getById($userId); 
-
-// Vérifier si l'utilisateur a une photo de profil
-$profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchars($user['profile_image']) : '../uploads/default.png';
 ?>
 
 <!DOCTYPE html>
@@ -24,10 +17,27 @@ $profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchar
 </head>
 <body>
 
-  
 <div class="container">
-<?php include 'templates/header.php'; ?>
+    <?php include 'templates/header.php'; ?>
+
+        <!-- Formulaire pour créer un post -->
+        <div class="new-post-form">
+        <h3>Poster quelque chose</h3>
+        <form method="POST" enctype="multipart/form-data" action="add-post">
+            <textarea name="content" placeholder="Écrivez quelque chose..." required></textarea>
+            <div class="file-upload-container">
+                <label for="post_image" class="upload-label">📷 </label>
+                <input type="file" id="post_image" name="post_image" accept="image/*" class="file-input">
+            </div>
+            <button type="submit">Publier</button>
+        </form>
+        </div>
+
     <h2>Publications récentes</h2>
+
+
+
+    <!-- Affichage des publications -->
     <?php foreach ($posts as $post): ?>
         <?php
         // Récupérer les informations de l'utilisateur qui a fait le post
@@ -50,27 +60,22 @@ $profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchar
 
             <!-- Like et commentaire -->
             <div class="post-actions">
-            <!-- Affichage du nombre de likes au-dessus du bouton Like -->
-            <div class="like-container">
-            <div class="like-count">
-                  (<?php echo Like::countLikes($post['id']); ?>)
-            </div>
-            
-            <form method="POST" action="like">
-                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-                <button type="submit" class="like-btn">👍</button>
-            </form>
-            </div>
-            
-            <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 </button>
-        </div>
+                <div class="like-container">
+                    <div class="like-count">(<?php echo Like::countLikes($post['id']); ?>)</div>
+                    <form method="POST" action="like">
+                        <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                        <button type="submit" class="like-btn">👍</button>
+                    </form>
+                </div>
 
+                <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 </button>
+            </div>
 
             <!-- Formulaire de commentaire -->
             <form method="POST" action="comment" class="comment-form" id="comment-form-<?php echo $post['id']; ?>" style="display:none;">
                 <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                 <textarea name="comment_content" placeholder="Écrire un commentaire..." required></textarea>
-                <button type="submit" name="comment_post">Comment</button>
+                <button type="submit" name="comment_post">Commenter</button>
             </form>
 
             <div class="comments">
@@ -92,12 +97,8 @@ $profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchar
         </div>
     <?php endforeach; ?>
 
-
-<?php include 'templates/footer.php'; ?>
+    <?php include 'templates/footer.php'; ?>
 </div>
-
-
-
 
 <script src="../js/profil.js"></script>
 </body>

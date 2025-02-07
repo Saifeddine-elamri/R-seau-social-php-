@@ -2,6 +2,7 @@
 require_once __DIR__ . '/controllers/PostController.php';
 require_once __DIR__ . '/controllers/LoginController.php';
 require_once __DIR__ . '/controllers/UserController.php';
+require_once __DIR__ . '/controllers/ProfilController.php';
 
 // Récupérer l'URL demandée sans paramètres GET
 $request = strtok($_SERVER['REQUEST_URI'], '?');
@@ -11,6 +12,7 @@ $routes = [
     '/' => ['controller' => 'UserController', 'method' => 'profile'],
     '/profil' => ['controller' => 'UserController', 'method' => 'profile'],
     '/posts' => ['controller' => 'PostController', 'method' => 'index'],
+    '/add-post' => ['controller' => 'PostController', 'method' => 'addPost'],
     '/friends' => ['controller' => 'FriendController', 'method' => 'index'],
     '/contact' => ['controller' => 'MessageController', 'method' => 'index'],
     '/users' => ['controller' => 'UserController', 'method' => 'showAllUsers'],
@@ -22,12 +24,16 @@ $routes = [
     '/register' => ['controller' => 'AuthController', 'method' => 'register'],
     '/delete-friend' => ['controller' => 'FriendController', 'method' => 'removeFriend'],
     '/cancel-request' => ['controller' => 'UserController', 'method' => 'cancelFriendRequest'],
-    '/accept-request' => ['controller' => 'FriendController', 'method' => 'acceptFriendRequest'],
-    '/delete-request' => ['controller' => 'FriendController', 'method' => 'deleteFriendRequest'],
+    '/accept-request' => ['controller' => 'FriendController', 'method' => 'acceptRequest'],
+    '/delete-request' => ['controller' => 'FriendController', 'method' => 'rejectRequest'],
     '/send' => ['controller' => 'MessageController', 'method' => 'sendMessage'],
     '/messages' => ['controller' => 'MessageController', 'method' => 'index'],
     '/like' => ['controller' => 'LikeController', 'method' => 'likePost'],
     '/comment' => ['controller' => 'CommentController', 'method' => 'addComment'],
+    '/profil-info' => ['controller' => 'ProfilController', 'method' => 'showProfileInfo'],
+    '/delete-image' => ['controller' => 'ProfilController', 'method' => 'deleteProfileImage'],
+    '/update-image' => ['controller' => 'ProfilController', 'method' => 'updateProfileImage']
+
 ];
 
 // Vérifier si la route existe
