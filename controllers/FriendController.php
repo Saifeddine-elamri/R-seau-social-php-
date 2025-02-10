@@ -4,104 +4,139 @@ require_once __DIR__ . '/../models/Friend.php';
 
 class FriendController {
 
-
-    // Afficher la liste des amis
+    /**
+     * Affiche la liste des amis de l'utilisateur connecté
+     */
     public function index() {
+        // Vérifier si l'utilisateur est connecté
         if (!isLoggedIn()) {
             header("Location: login");
             exit();
         }
 
+        // Récupérer l'ID de l'utilisateur connecté
         $user_id = $_SESSION['user_id'];
+
+        // Récupérer les amis de l'utilisateur
         $friends = Friend::getFriends($user_id);
 
+        // Afficher la vue des amis
         require_once __DIR__ . '/../views/friends.php';
     }
 
-    // Supprimer un ami
+    /**
+     * Supprime un ami de la liste d'amis
+     */
     public function removeFriend() {
+        // Vérifier si l'utilisateur est connecté et si l'ID de l'ami est fourni
         if (!isLoggedIn() || empty($_POST['friend_id'])) {
+            // Rediriger si l'utilisateur n'est pas connecté ou si l'ami n'est pas spécifié
             header("Location: friends");
             exit();
         }
 
+        // Récupérer l'ID de l'utilisateur et de l'ami
         $user_id = $_SESSION['user_id'];
         $friend_id = $_POST['friend_id'];
 
+        // Supprimer l'ami
         Friend::removeFriend($user_id, $friend_id);
 
+        // Rediriger vers la page des amis après suppression
         header("Location: friends");
         exit();
     }
 
-    
-        // Afficher les demandes d'amis
-        public function showRequests() {
-            // Vérifier si l'utilisateur est connecté
-            if (!isLoggedIn()) {
-                header("Location: login.php");
-                exit();
-            }
-    
-            $user_id = $_SESSION['user_id'];
-    
-            // Récupérer les demandes en attente
-            $requests = Friend::getPendingRequests($user_id);
-    
-            // Afficher la vue des demandes d'amis
-            require_once __DIR__ . '/../views/friend-requests.php';
+    /**
+     * Affiche les demandes d'amis en attente
+     */
+    public function showRequests() {
+        // Vérifier si l'utilisateur est connecté
+        if (!isLoggedIn()) {
+            header("Location: login.php");
+            exit();
         }
-    
-        // Accepter une demande d'ami
-        public function acceptRequest() {
-            if (!isLoggedIn()) {
-                header("Location: login.php");
-                exit();
-            }
-    
-            $user_id = $_SESSION['user_id'];
-            $friend_id = $_POST['friend_id'];
-    
-            // Accepter la demande
-            $result = Friend::acceptFriendRequest($user_id, $friend_id);
-    
-            if ($result) {
-                // Rediriger vers la page des demandes d'amis après avoir accepté
-                header("Location: /requests");
-            } else {
-                // Gérer l'erreur (par exemple, la demande n'existe pas ou elle est déjà acceptée)
-                echo "Error accepting friend request.";
-            }
+
+        // Récupérer l'ID de l'utilisateur
+        $user_id = $_SESSION['user_id'];
+
+        // Récupérer les demandes d'amis en attente
+        $requests = Friend::getPendingRequests($user_id);
+
+        // Afficher la vue des demandes d'amis
+        require_once __DIR__ . '/../views/friend-requests.php';
+    }
+
+    /**
+     * Accepte une demande d'ami
+     */
+    public function acceptRequest() {
+        // Vérifier si l'utilisateur est connecté
+        if (!isLoggedIn()) {
+            header("Location: login.php");
+            exit();
         }
-    
-        // Rejeter une demande d'ami
-        public function rejectRequest() {
-            if (!isLoggedIn()) {
-                header("Location: login");
-                exit();
-            }
-    
-            $user_id = $_SESSION['user_id'];
-            $friend_id = $_POST['friend_id'];
-    
-            // Rejeter la demande
-            $result = Friend::rejectFriendRequest($user_id, $friend_id);
-    
-            if ($result) {
-                // Rediriger vers la page des demandes d'amis après avoir rejeté
-                header("Location: /requests");
-            } else {
-                // Gérer l'erreur (par exemple, la demande n'existe pas)
-                echo "Error rejecting friend request.";
-            }
+
+        // Vérifier si l'ID de l'ami est fourni dans le formulaire
+        if (empty($_POST['friend_id'])) {
+            // Si l'ID de l'ami est absent, rediriger l'utilisateur
+            header("Location: /requests");
+            exit();
         }
-    
-    
 
+        // Récupérer l'ID de l'utilisateur et de l'ami
+        $user_id = $_SESSION['user_id'];
+        $friend_id = $_POST['friend_id'];
 
+        // Accepter la demande d'ami
+        $result = Friend::acceptFriendRequest($user_id, $friend_id);
 
+        // Vérifier si la demande a été acceptée avec succès
+        if ($result) {
+            // Rediriger vers la page des demandes d'amis après l'acceptation
+            header("Location: /requests");
+            exit();
+        } else {
+            // Afficher une erreur si l'acceptation a échoué (par exemple, demande non trouvée ou déjà acceptée)
+            echo "Erreur lors de l'acceptation de la demande d'ami.";
+            exit();
+        }
+    }
 
+    /**
+     * Rejette une demande d'ami
+     */
+    public function rejectRequest() {
+        // Vérifier si l'utilisateur est connecté
+        if (!isLoggedIn()) {
+            header("Location: login");
+            exit();
+        }
 
+        // Vérifier si l'ID de l'ami est fourni dans le formulaire
+        if (empty($_POST['friend_id'])) {
+            // Si l'ID de l'ami est absent, rediriger l'utilisateur
+            header("Location: /requests");
+            exit();
+        }
 
+        // Récupérer l'ID de l'utilisateur et de l'ami
+        $user_id = $_SESSION['user_id'];
+        $friend_id = $_POST['friend_id'];
+
+        // Rejeter la demande d'ami
+        $result = Friend::rejectFriendRequest($user_id, $friend_id);
+
+        // Vérifier si la demande a été rejetée avec succès
+        if ($result) {
+            // Rediriger vers la page des demandes d'amis après le rejet
+            header("Location: /requests");
+            exit();
+        } else {
+            // Afficher une erreur si le rejet a échoué (par exemple, demande non trouvée)
+            echo "Erreur lors du rejet de la demande d'ami.";
+            exit();
+        }
+    }
 }
 ?>

@@ -1,83 +1,83 @@
 /* Styles généraux de la page */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
+    font-family: Arial, sans-serif;  /* Définit la police de la page */
+    background-color: #f4f4f9;  /* Couleur de fond clair */
+    display: flex;  /* Utilisation de Flexbox pour le positionnement */
+    justify-content: center;  /* Centre horizontalement le contenu */
+    align-items: center;  /* Centre verticalement le contenu */
+    height: 100vh;  /* Hauteur de la page = 100% de la hauteur de la fenêtre */
+    margin: 0;  /* Supprime les marges par défaut du body */
 }
 
 /* Conteneur principal de l'inscription */
 .registration-container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
+    background-color: white;  /* Fond blanc pour le formulaire */
+    padding: 30px;  /* Espacement interne du conteneur */
+    border-radius: 10px;  /* Coins arrondis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);  /* Ombre douce autour du formulaire */
+    width: 100%;  /* Largeur à 100% de l'élément parent */
+    max-width: 400px;  /* Largeur maximale du formulaire */
+    text-align: center;  /* Centrer le texte à l'intérieur du conteneur */
 }
 
 /* Style pour le titre */
 h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #333;
+    font-size: 24px;  /* Taille de police du titre */
+    margin-bottom: 20px;  /* Espacement sous le titre */
+    color: #333;  /* Couleur du texte en gris foncé */
 }
 
 /* Style pour les champs du formulaire */
 .input-group {
-    margin-bottom: 20px;
+    margin-bottom: 20px;  /* Espacement sous chaque champ de formulaire */
 }
 
 .input-group input {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
+    width: 100%;  /* Les champs de saisie occupent toute la largeur du conteneur */
+    padding: 12px;  /* Espacement interne pour les champs */
+    font-size: 16px;  /* Taille de la police dans les champs */
+    border: 1px solid #ccc;  /* Bordure grise claire autour des champs */
+    border-radius: 5px;  /* Coins arrondis des champs */
+    box-sizing: border-box;  /* S'assure que le padding est inclus dans la largeur totale */
+    background-color: #f9f9f9;  /* Fond gris clair pour les champs */
+    transition: border-color 0.3s ease;  /* Transition douce pour le changement de couleur de bordure */
 }
 
 /* Effet de focus pour les champs */
 .input-group input:focus {
-    border-color: #3498db;
-    outline: none;
+    border-color: #3498db;  /* Couleur bleue de la bordure lorsque le champ est en focus */
+    outline: none;  /* Retire le contour par défaut du navigateur */
 }
 
 /* Style pour le bouton d'inscription */
 .button-group button {
-    width: 100%;
-    padding: 14px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    width: 100%;  /* Le bouton occupe toute la largeur du conteneur */
+    padding: 14px;  /* Espacement interne du bouton */
+    background-color: #3498db;  /* Fond bleu pour le bouton */
+    color: white;  /* Texte en blanc */
+    border: none;  /* Retire la bordure par défaut du bouton */
+    border-radius: 5px;  /* Coins arrondis du bouton */
+    font-size: 16px;  /* Taille de la police du texte du bouton */
+    cursor: pointer;  /* Modifie le curseur pour indiquer qu'il est cliquable */
+    transition: background-color 0.3s ease;  /* Transition douce pour l'effet de survol */
 }
 
 /* Effet de hover pour le bouton */
 .button-group button:hover {
-    background-color: #2980b9;
+    background-color: #2980b9;  /* Couleur plus foncée au survol du bouton */
 }
 
 /* Style pour le lien "Login" */
 p {
-    font-size: 14px;
-    margin-top: 20px;
+    font-size: 14px;  /* Taille de la police pour le texte sous le formulaire */
+    margin-top: 20px;  /* Espacement au-dessus du texte */
 }
 
 p a {
-    color: #3498db;
-    text-decoration: none;
+    color: #3498db;  /* Couleur bleue pour le lien */
+    text-decoration: none;  /* Retire la décoration de texte (souligné) */
 }
 
 p a:hover {
-    text-decoration: underline;
+    text-decoration: underline;  /* Ajoute un souligné lors du survol du lien */
 }

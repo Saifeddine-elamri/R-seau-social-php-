@@ -6,36 +6,49 @@ require_once __DIR__ . '/../models/Comment.php';
 
 class PostController {
 
-    // Afficher tous les posts
+    /**
+     * Affiche tous les posts
+     */
     public function index() {
+        // Récupérer tous les posts depuis le modèle
         $posts = Post::getAll();
+        // Afficher la vue des posts
         require_once __DIR__ . '/../views/posts.php';
     }
 
-    // Ajouter un nouveau post
+    /**
+     * Ajouter un nouveau post
+     */
     public function addPost() {
+        // Vérifier si la requête est de type POST et que le contenu est défini
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['content'])) {
+            // Démarrer la session et récupérer l'ID de l'utilisateur connecté
             session_start();
             $user_id = $_SESSION['user_id'];
-            $content = trim($_POST['content']);
-            $image = $_FILES['post_image']['name'] ?? null;
-            $video = $_FILES['post_video']['name'] ?? null;
+            $content = trim($_POST['content']); // Contenu du post
+            $image = $_FILES['post_image']['name'] ?? null; // Nom de l'image si elle existe
+            $video = $_FILES['post_video']['name'] ?? null; // Nom de la vidéo si elle existe
 
+            // Vérifier que le contenu du post n'est pas vide
             if (!empty($content)) {
                 try {
-                    // Ajouter le post
+                    // Ajouter le post dans la base de données via le modèle
                     Post::add($user_id, $content, $image, $video);
-                    header("Location: posts"); // Rediriger après ajout
+                    // Rediriger vers la page des posts après ajout réussi
+                    header("Location: posts");
                     exit();
                 } catch (Exception $e) {
-                    // Afficher l'erreur si le téléchargement ou la création du post échoue
+                    // En cas d'erreur lors de l'ajout du post ou du téléchargement de fichiers
                     $_SESSION['error_message'] = $e->getMessage();
-                    header("Location: add_post"); // Rediriger pour afficher l'erreur
+                    // Rediriger vers la page d'ajout du post avec le message d'erreur
+                    header("Location: add_post");
                     exit();
                 }
             } else {
+                // En cas de contenu vide
                 $_SESSION['error_message'] = 'Le contenu du post ne peut pas être vide.';
-                header("Location: add_post"); // Rediriger si le contenu est vide
+                // Rediriger vers la page d'ajout du post
+                header("Location: add_post");
                 exit();
             }
         }

@@ -1,47 +1,92 @@
 <?php
-// Vérifie si l'utilisateur est connecté
+// Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
-// Récupérer les informations de l'utilisateur connecté
+// Récupération des informations de l'utilisateur
 $userId = $_SESSION['user_id'];
-$user = User::getById($userId); // Récupère les infos de l'utilisateur à partir de la base de données
+$user = User::getById($userId);
 
-// Vérifier si l'utilisateur a une photo de profil
-$profileImage = !empty($user['profile_image']) ? '../uploads/' . htmlspecialchars($user['profile_image']) : '../uploads/default.png';
+// Définition de l'image de profil avec fallback
+$profileImage = !empty($user['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image']) : 'uploads/default.png';
 ?>
+
 <style>
-    /* Header */
+/* 🎨 Styles de base */
 header {
+    background: #007bff;
+    color: white;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: #007bff;
-    padding: 25px 35px;
     border-radius: 12px 12px 0 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 10;
+}
+
+/* Conteneur du header pour bien aligner les éléments */
+.header-container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* 🌍 Navigation principale */
+.nav-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-header a {
     color: white;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    transition: background 0.4s ease-in-out, box-shadow 0.3s ease;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-header:hover {
-    background: #0056b3;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+.nav-header a:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
 }
 
-header h1 {
-    margin: 0;
-    font-size: 26px;
-    font-weight: bold;
-    letter-spacing: 1px;
+/* 🚪 Bouton de déconnexion */
+.logout {
+    background: #dc3545 !important;
 }
 
-/* Conteneur de la photo de profil dans le header */
+.logout:hover {
+    background: #c82333 !important;
+}
+
+/* 📱 Menu Hamburger */
+.menu-toggle {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+/* 📷 Conteneur de la photo de profil */
 .header-profile {
     display: flex;
     align-items: center;
+    margin-right: 15px;
+    cursor: pointer;
     transition: transform 0.3s ease;
 }
 
@@ -49,174 +94,83 @@ header h1 {
     transform: scale(1.05);
 }
 
-/* Style de l'image de profil dans le header */
+/* 🖼️ Image de profil */
 .header-profile-pic {
-    width: 55px;
-    height: 55px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
-    border: 3px solid white;
+    border: 2px solid white;
     object-fit: cover;
-    background-color: #000;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .header-profile-pic:hover {
     transform: scale(1.1);
-    box-shadow: 0 0 10px rgba(0, 123, 255, 0.7);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
-/* Navigation Header */
-.nav-header {
-    display: flex;
-    gap: 18px;
-    font-size: 17px;
-    font-weight: 500;
-}
-
-.nav-header a {
-    color: white;
-    text-decoration: none;
-    padding: 12px 18px;
-    border-radius: 10px;
-    background: rgba(255, 255, 255, 0.2);
-    transition: background 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-
-.nav-header a:hover {
-    background: rgba(255, 255, 255, 0.4);
-    color: #007bff;
-    transform: scale(1.05);
-}
-
-/* Logout Button */
-.logout {
-    background: #dc3545 !important;
-}
-
-.logout:hover {
-    background: #c82333 !important;
-    transform: scale(1.05);
-}
-
-/* Tabs Navigation */
-.tabs-nav {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 30px;
-    padding: 15px;
-    background: #f8f9fa;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-}
-
-.tabs-nav a {
-    text-decoration: none;
-    color: #333;
-    font-size: 16px;
-    padding: 15px 20px;
-    margin: 10px;
-    background: #e9ecef;
-    border-radius: 8px;
-    transition: 0.3s ease, transform 0.3s ease;
-    font-weight: 500;
-}
-
-.tabs-nav a:hover {
-    background: #007bff;
-    color: white;
-    transform: translateY(-5px);
-}
-
-/* Conteneur de la photo de profil */
-.profile-container {
-    text-align: center;
-    margin-top: 35px;
-}
-
-/* Style de l'image de profil */
-.profile-pic {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid #007bff;
-    object-fit: cover;
-    background-color: #000;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-pic:hover {
-    transform: scale(1.15);
-    box-shadow: 0 10px 25px rgba(0, 123, 255, 0.4);
-}
-
-/* Bouton d'édition du profil */
-.profile-actions {
-    margin-top: 20px;
-}
-
-.profile-actions .button {
-    display: inline-block;
-    background-color: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: bold;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.profile-actions .button:hover {
-    background-color: #0056b3;
-    transform: translateY(-5px);
-}
-
-/* 📱 Responsive Design */
+/* 📱 Responsive - Affichage Mobile */
 @media screen and (max-width: 768px) {
-    header {
-        flex-direction: column;
-        text-align: center;
-        padding: 15px 25px;
+    .menu-toggle {
+        display: block;
     }
 
     .nav-header {
+        display: none;
         flex-direction: column;
-        gap: 12px;
-        margin-top: 20px;
-    }
-
-    .tabs-nav {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .tabs-nav a {
-        width: 85%;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        width: 100%;
+        background: #007bff;
         text-align: center;
+        padding: 15px 0;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     }
 
-    .profile-pic {
-        width: 130px;
-        height: 130px;
+    .nav-header a {
+        display: block;
+        padding: 12px;
+        font-size: 18px;
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-header.show {
+        display: flex;
+    }
+
+    .header-container {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 }
 </style>
-<header>
-    <div class="header-profile">
-        <!-- 🔗 Rendre l'image de profil cliquable -->
-        <a href="profil-info">
-            <img src="<?php echo $profileImage; ?>" alt="Image de Profil" class="header-profile-pic">
-        </a>
-    </div>
 
-    <nav class="nav-header">
-        <a href="posts">🏠 Accueil</a>
-        <a href="posts">📝 Mes Posts</a>
-        <a href="friends">👫 Amis</a>
-        <a href="contact">💬 Messages</a>
-        <a href="users">🌎 Tous les utilisateurs</a>
-        <a href="requests">🔔 Demandes d'amis</a>
-        <a href="logout" class="logout">🚪 Déconnexion</a>
-    </nav>
+<header>
+    <div class="header-container">
+        <!-- 📷 Image de profil cliquable -->
+        <div class="header-profile">
+            <a href="profil-info">
+                <img src="<?php echo $profileImage; ?>" alt="Image de Profil" class="header-profile-pic">
+            </a>
+        </div>
+
+        <!-- 🍔 Menu Hamburger -->
+        <button class="menu-toggle" aria-label="Ouvrir le menu">☰</button>
+
+        <!-- 📍 Navigation -->
+        <nav class="nav-header">
+            <a href="posts">🏠 Accueil</a>
+            <a href="posts">📝 Mes Posts</a>
+            <a href="friends">👫 Amis</a>
+            <a href="contact">💬 Messages</a>
+            <a href="users">🌎 Tous les utilisateurs</a>
+            <a href="requests">🔔 Demandes d'amis</a>
+            <a href="logout" class="logout">🚪 Déconnexion</a>
+        </nav>
+    </div>
 </header>
+
+<script src="views/static/js/header.js"></script>
+

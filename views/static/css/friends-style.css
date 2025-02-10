@@ -48,7 +48,6 @@ body {
 }
 
 .friend-card:hover {
-    transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
@@ -103,46 +102,55 @@ body {
     transform: scale(1.02);
 }
 
-/* Remove Button */
+/* Remove Button - Amélioré */
 .remove-button {
     background: #dc3545;
     color: white;
     border: none;
-    padding: 10px 20px;
-    font-size: 15px;
+    padding: 12px 22px;
+    font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
-    border-radius: 8px;
-    transition: background 0.3s ease, transform 0.3s ease;
+    border-radius: 10px;
+    transition: all 0.3s ease-in-out;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Ajout d'une icône avant le texte */
+.remove-button::before {
+    
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+/* Effet de hover */
 .remove-button:hover {
     background: #c82333;
-    transform: translateY(-3px);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(220, 53, 69, 0.4);
 }
 
-/* Back to Profile Button */
-.button {
-    background: #007bff;
-    color: white;
-    padding: 12px 20px;
-    border: none;
-    cursor: pointer;
-    font-size: 16px;
-    text-decoration: none;
-    display: inline-block;
-    border-radius: 8px;
-    margin-top: 25px;
-    transition: background 0.3s ease, transform 0.3s ease;
+/* Effet au clic */
+.remove-button:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
 }
 
-.button:hover {
-    background: #0056b3;
-    transform: translateY(-3px);
+/* Focus pour l'accessibilité */
+.remove-button:focus {
+    outline: 2px solid white;
+    outline-offset: 3px;
 }
+
+
 
 /* Responsive Design */
 @media (max-width: 768px) {
