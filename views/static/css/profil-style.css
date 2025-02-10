@@ -19,64 +19,111 @@ body {
 }
 
 
-/* Formulaire de publication */
-
-.post-form {
-    margin-bottom: 2rem;
-    margin-top:20px;
+/* Style général pour le formulaire de publication */
+.new-post-form {
+    margin: 2rem 0;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
 }
-.post-form h2 {
-    margin-bottom: 1rem;
+
+.new-post-form:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-.post-form textarea {
+.form-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Zone de texte pour le contenu */
+.post-content {
     width: 100%;
-    padding: 0.75rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 1rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
     font-size: 1rem;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     resize: vertical;
+    min-height: 150px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.post-form button {
-    padding: 0.75rem 1.5rem;
+.post-content:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+/* Conteneur pour les boutons de téléchargement */
+.file-upload-container {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style des icônes de téléchargement */
+.upload-label {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #666;
+    transition: color 0.3s ease, transform 0.2s ease;
+    background: none; /* Suppression de l'arrière-plan */
+    border: none; /* Suppression de la bordure */
+    padding: 0; /* Suppression du padding */
+}
+
+.upload-label:hover {
+    transform: scale(1.1); /* Légère augmentation de la taille au survol */
+}
+
+.upload-label:active {
+    transform: scale(1);
+}
+
+/* Masquer les inputs de fichier */
+.file-input {
+    display: none;
+}
+
+/* Affichage du nom du fichier */
+.file-name-display {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Bouton de soumission */
+.submit-button {
+    width: 100%;
+    padding: 1rem;
     background-color: #007bff;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
-.post-form button:hover {
+.submit-button:hover {
     background-color: #0056b3;
+    transform: translateY(-2px);
 }
 
-/* Liste des publications */
-.posts .post {
-    background-color: #f9f9f9;
-    padding: 1rem;
-    border-radius: 5px;
-    margin-bottom: 1rem;
+.submit-button:active {
+    transform: translateY(0);
 }
-
-.posts .post strong {
-    display: block;
-    margin-bottom: 0.5rem;
-    color: #007bff;
-}
-
-.posts .post small {
-    color: #777;
-    font-size: 0.9rem;
-}
-
-.post {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 20px;
-}
-
 .comments {
     margin-top: 10px;
 }
@@ -270,24 +317,20 @@ form button:hover {
 
 .file-upload {
     position: relative;
-    display: inline-block;
     margin: 10px 0;
 }
 
 .file-upload-label {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     padding: 10px 15px;
-    background-color: #007bff;
     color: white;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
-.file-upload-label:hover {
-    background-color: #0056b3;
-}
+
 
 .file-upload-label i {
     margin-right: 8px;
@@ -385,7 +428,9 @@ form button:hover {
 .file-upload-container {
     margin-top: 10px;
     display: flex;
-    align-items: center;
+    gap: 10px; /* Espacement entre les icônes */
+    align-items: center; /* Alignement vertical au centre */
+    justify-content: flex-start; /* Alignement horizontal à gauche */
 }
 
 /* Cacher le champ de fichier original */
@@ -451,17 +496,13 @@ form button:hover {
 .upload-label {
     color: white;
     padding: 10px 15px;
-    background-color: #007bff;
     border-radius: 5px;
     cursor: pointer;
     font-size: 25px;
     transition: background-color 0.3s ease;
 }
 
-/* Changement de couleur au survol */
-.upload-label:hover {
-    background-color: #0056b3;
-}
+
 
 /* Affichage du nom du fichier téléchargé */
 #file-name-display {
@@ -515,4 +556,88 @@ form button:hover {
 /* Assurer que l'input de fichier est bien caché */
 .file-input {
     display: none;
+}
+
+/* Conteneur principal de la vidéo */
+.video-container {
+    position: relative;
+    width: 100%;
+    max-width: 700px; /* Augmente la taille max pour un meilleur affichage */
+    margin: 20px auto;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+/* Effet hover avec zoom et ombre améliorée */
+.video-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Vidéo 100% responsive */
+.video-container video {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+}
+
+/* Overlay avant lecture */
+.video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Effet au survol */
+.video-container:hover .video-overlay {
+    opacity: 1;
+}
+
+/* Bouton de lecture stylé */
+.video-play-button {
+    width: 90px;
+    height: 90px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, background 0.3s;
+}
+
+.video-play-button:hover {
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+}
+
+/* Icône Play */
+.video-play-button i {
+    font-size: 45px;
+    color: #e63946;
+}
+
+/* Effet responsive pour mobile */
+@media (max-width: 768px) {
+    .video-container {
+        max-width: 95%;
+    }
+    .video-play-button {
+        width: 70px;
+        height: 70px;
+    }
+    .video-play-button i {
+        font-size: 35px;
+    }
 }
