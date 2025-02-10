@@ -1,14 +1,20 @@
 <?php
 require_once __DIR__ . '/../models/Message.php';
+require_once __DIR__ . '/../models/User.php';
 
 class MessageController {
 
-
-    public function index() {
+    // Vérification de la connexion
+    private function checkLogin() {
         if (!isLoggedIn()) {
             header("Location: login");
             exit();
         }
+    }
+
+    // Afficher les messages et contacts
+    public function index() {
+        $this->checkLogin(); // Vérification de la connexion
 
         $user_id = $_SESSION['user_id'];
         $contacts = Message::getContacts($user_id);
@@ -22,41 +28,26 @@ class MessageController {
 
         include __DIR__ . '/../views/messages.php';
     }
+
+    // Envoyer un message
     public function sendMessage() {
-        if (!isLoggedIn()) {
-            header("Location: login");
-            exit();
-        }
+        $this->checkLogin(); // Vérification de la connexion
 
         $user_id = $_SESSION['user_id'];
         $receiver_id = $_POST['receiver_id'];
         $message = !empty($_POST['message']) ? trim($_POST['message']) : null;
-        $image_name = null;
 
-        // Gérer l'upload de l'image
-        if (!empty($_FILES['image']['name'])) {
-            $target_dir = __DIR__ . '/../uploads/';
-            $image_name = time() . "_" . basename($_FILES["image"]["name"]);
-            $target_file = $target_dir . $image_name;
-            
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            $allowed_types = ['jpg', 'jpeg', 'png', 'gif'];
+        // Appeler la méthode du modèle pour gérer l'upload d'image
+        $image_name = Message::handleImageUpload();
 
-            if (in_array($imageFileType, $allowed_types) && move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                // Image uploadée avec succès
-            } else {
-                $image_name = null;
-            }
+        // Si le message est valide, on l'envoie
+        if ($message) {
+            Message::sendMessage($user_id, $receiver_id, $message, $image_name);
         }
 
-        // Insérer le message
-        Message::sendMessage($user_id, $receiver_id, $message, $image_name);
-
-        // Redirection vers la conversation
+        // Redirection vers la conversation avec l'utilisateur
         header("Location: messages?contact_id=" . $receiver_id);
         exit();
     }
 }
-
-
 ?>

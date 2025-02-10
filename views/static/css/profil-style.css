@@ -406,3 +406,113 @@ form button:hover {
 
 
 
+.emoji-picker {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.emoji-picker.visible {
+    display: flex;
+    gap: 5px;
+}
+
+.emoji-option {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.like-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+/* Conteneur du formulaire de publication */
+.post-form {
+    margin-bottom: 2rem;
+    margin-top: 20px;
+}
+
+/* Zone de téléchargement de fichier (bouton + nom du fichier) */
+.file-upload-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column; /* Affiche le nom du fichier sous le bouton */
+    align-items: flex-start;
+}
+
+/* Style du label (bouton pour uploader le fichier) */
+.upload-label {
+    color: white;
+    padding: 10px 15px;
+    background-color: #007bff;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 25px;
+    transition: background-color 0.3s ease;
+}
+
+/* Changement de couleur au survol */
+.upload-label:hover {
+    background-color: #0056b3;
+}
+
+/* Affichage du nom du fichier téléchargé */
+#file-name-display {
+    margin-top: 10px;
+    font-size: 14px;
+    color: #555;
+    font-style: italic; /* Italique pour la différencier */
+    padding-left: 15px;
+    display: block; /* Assure qu'il s'affiche bien sous le bouton */
+}
+
+/* Styles globaux pour les champs de formulaire */
+form textarea {
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+form button {
+    margin-top: 5px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    background-color: #1877f2;
+    color: white;
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: #145dbf;
+}
+
+/* Pour afficher les publications */
+.posts .post {
+    background-color: #f9f9f9;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Affichage du nom de fichier avec le bouton de téléchargement */
+.file-upload-container {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+/* Assurer que l'input de fichier est bien caché */
+.file-input {
+    display: none;
+}

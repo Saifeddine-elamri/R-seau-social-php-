@@ -88,3 +88,31 @@ body {
     border-radius: 50%;
     margin-left: 5px;
 }
+
+.emoji-picker {
+    display: none;
+    position: absolute;
+    background: white;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.emoji-picker.visible {
+    display: flex;
+    gap: 5px;
+}
+
+.emoji-option {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.like-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

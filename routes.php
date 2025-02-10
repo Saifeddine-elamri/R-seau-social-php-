@@ -1,15 +1,7 @@
 <?php
-require_once __DIR__ . '/controllers/PostController.php';
-require_once __DIR__ . '/controllers/LoginController.php';
-require_once __DIR__ . '/controllers/UserController.php';
-require_once __DIR__ . '/controllers/ProfilController.php';
 
-// Récupérer l'URL demandée sans paramètres GET
-$request = strtok($_SERVER['REQUEST_URI'], '?');
-
-// Définir les routes et les contrôleurs associés
-$routes = [
-    '/' => ['controller' => 'UserController', 'method' => 'profile'],
+return [
+    '/' => ['controller' => 'UserController', 'method' => 'showAllUsers'],
     '/profil' => ['controller' => 'UserController', 'method' => 'profile'],
     '/posts' => ['controller' => 'PostController', 'method' => 'index'],
     '/add-post' => ['controller' => 'PostController', 'method' => 'addPost'],
@@ -32,44 +24,7 @@ $routes = [
     '/comment' => ['controller' => 'CommentController', 'method' => 'addComment'],
     '/profil-info' => ['controller' => 'ProfilController', 'method' => 'showProfileInfo'],
     '/delete-image' => ['controller' => 'ProfilController', 'method' => 'deleteProfileImage'],
-    '/update-image' => ['controller' => 'ProfilController', 'method' => 'updateProfileImage']
+    '/update-image' => ['controller' => 'ProfilController', 'method' => 'updateProfileImage'],
+    '/test' => ['controller' => 'testController', 'method' => 'testProfileImage']
 
 ];
-
-// Vérifier si la route existe
-if (array_key_exists($request, $routes)) {
-    $controllerName = $routes[$request]['controller'];
-    $method = $routes[$request]['method'];
-
-    $controllerPath = __DIR__ . "/controllers/$controllerName.php";
-
-    if (!file_exists($controllerPath)) {
-        http_response_code(500);
-        echo "Erreur 500 - Le fichier du contrôleur <strong>$controllerName.php</strong> est introuvable.";
-        exit();
-    }
-
-    require_once $controllerPath;
-
-    if (!class_exists($controllerName)) {
-        http_response_code(500);
-        echo "Erreur 500 - La classe <strong>$controllerName</strong> est introuvable dans le fichier.";
-        exit();
-    }
-
-    $controller = new $controllerName();
-
-    if (!method_exists($controller, $method)) {
-        http_response_code(500);
-        echo "Erreur 500 - La méthode <strong>$method</strong> n'existe pas dans le contrôleur <strong>$controllerName</strong>.";
-        exit();
-    }
-
-    $controller->$method();
-    exit();
-}
-
-// Si la route est inconnue, afficher une erreur 404
-http_response_code(404);
-echo "404 - Page non trouvée. Vérifiez l'URL.";
-?>

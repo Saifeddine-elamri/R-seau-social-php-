@@ -7,7 +7,7 @@ class UserController {
     public function showAllUsers() {
         // Vérification de l'utilisateur connecté
         if (!isLoggedIn()) {
-            header("Location: login.php");
+            header("Location: login");
             exit();
         }
 

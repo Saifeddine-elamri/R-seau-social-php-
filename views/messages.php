@@ -9,10 +9,25 @@
 <body>
 
 <div class="container">
-<?php include 'templates/header.php'; ?>
+    <!-- ----------------------------- -->
+    <!-- Inclusion de l'en-tête -->
+    <!-- ----------------------------- -->
+    <?php include 'templates/header.php'; ?>
+    <!-- ----------------------------- -->
+    <!-- Fin de l'en-tête -->
+    <!-- ----------------------------- -->
 
+    <!-- ----------------------------- -->
+    <!-- Titre principal de la page -->
+    <!-- ----------------------------- -->
     <h1>📨 Messages</h1>
+    <!-- ----------------------------- -->
+    <!-- Fin du titre principal -->
+    <!-- ----------------------------- -->
 
+    <!-- ----------------------------- -->
+    <!-- Section de sélection du contact -->
+    <!-- ----------------------------- -->
     <h2>👥 Sélectionner un contact</h2>
     <div class="contacts">
         <?php if (empty($contacts)): ?>
@@ -26,7 +41,13 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </div>
+    <!-- ----------------------------- -->
+    <!-- Fin de la section contacts -->
+    <!-- ----------------------------- -->
 
+    <!-- ----------------------------- -->
+    <!-- Section des messages (si un contact est sélectionné) -->
+    <!-- ----------------------------- -->
     <?php if ($selected_contact): ?>
         <h2>💬 Discussion avec 
             <?php 
@@ -42,28 +63,57 @@
             }
             ?>
         </h2>
-        
-        <div class="messages">
-            <?php foreach ($messages as $message): ?>
-                <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
-                    <img src="<?php echo !empty($message['sender_image']) ? 'uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
-                    <div class="message-content">
-                        <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
-                        <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
-                    </div>
-                </div>
-            <?php endforeach; ?>
-        </div>
 
+        <!-- ----------------------------- -->
+        <!-- Section des messages -->
+        <!-- ----------------------------- -->
+        <?php if (!empty($messages)): ?>
+            <div class="messages">
+                <?php foreach ($messages as $message): ?>
+                    <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
+                        <img src="<?php echo !empty($message['sender_image']) ? 'uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
+                        <div class="message-content">
+                            <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
+                            <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
+                            <?php if (!empty($message['image'])): ?>
+                                <div class="message-image">
+                                    <img src="uploads/<?php echo htmlspecialchars($message['image']); ?>" alt="Image" class="uploaded-image">
+                                </div>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+        <!-- ----------------------------- -->
+        <!-- Fin de la section des messages -->
+        <!-- ----------------------------- -->
+
+        <!-- ----------------------------- -->
+        <!-- Formulaire d'envoi de message -->
+        <!-- ----------------------------- -->
         <form method="POST" action="send" enctype="multipart/form-data">
             <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
             <textarea name="message" placeholder="Type a message..."></textarea>
+            <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
             <button type="submit"><span class="send-icon">➤</span></button>
         </form>
+        <!-- ----------------------------- -->
+        <!-- Fin du formulaire d'envoi -->
+        <!-- ----------------------------- -->
+
     <?php endif; ?>
+    <!-- ----------------------------- -->
+    <!-- Fin de la section des messages -->
+    <!-- ----------------------------- -->
 
+    <!-- ----------------------------- -->
+    <!-- Inclusion du pied de page -->
+    <!-- ----------------------------- -->
     <?php include 'templates/footer.php'; ?>
-
+    <!-- ----------------------------- -->
+    <!-- Fin du pied de page -->
+    <!-- ----------------------------- -->
 </div>
 
 </body>

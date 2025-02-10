@@ -5,11 +5,14 @@ require_once __DIR__ . '/../models/Like.php';
 require_once __DIR__ . '/../models/Comment.php';
 
 class PostController {
+
+    // Afficher tous les posts
     public function index() {
         $posts = Post::getAll();
         require_once __DIR__ . '/../views/posts.php';
     }
 
+    // Ajouter un nouveau post
     public function addPost() {
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['content'])) {
             session_start();
@@ -19,8 +22,20 @@ class PostController {
             $video = $_FILES['post_video']['name'] ?? null;
 
             if (!empty($content)) {
-                Post::add($user_id, $content, $image, $video);
-                header("Location: posts");
+                try {
+                    // Ajouter le post
+                    Post::add($user_id, $content, $image, $video);
+                    header("Location: posts"); // Rediriger après ajout
+                    exit();
+                } catch (Exception $e) {
+                    // Afficher l'erreur si le téléchargement ou la création du post échoue
+                    $_SESSION['error_message'] = $e->getMessage();
+                    header("Location: add_post"); // Rediriger pour afficher l'erreur
+                    exit();
+                }
+            } else {
+                $_SESSION['error_message'] = 'Le contenu du post ne peut pas être vide.';
+                header("Location: add_post"); // Rediriger si le contenu est vide
                 exit();
             }
         }

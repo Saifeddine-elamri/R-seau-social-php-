@@ -29,6 +29,7 @@ if (!isset($_SESSION['user_id'])) {
                 <label for="post_image" class="upload-label">📷 </label>
                 <input type="file" id="post_image" name="post_image" accept="image/*" class="file-input">
             </div>
+            <div id="file-name-display"></div>
             <button type="submit">Publier</button>
         </form>
         </div>
@@ -60,16 +61,25 @@ if (!isset($_SESSION['user_id'])) {
 
             <!-- Like et commentaire -->
             <div class="post-actions">
-                <div class="like-container">
-                    <div class="like-count">(<?php echo Like::countLikes($post['id']); ?>)</div>
-                    <form method="POST" action="like">
-                        <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-                        <button type="submit" class="like-btn">👍</button>
-                    </form>
-                </div>
-
-                <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 </button>
+            <div class="like-container">
+                <div class="like-count">(<?php echo Like::countLikes($post['id']); ?>)</div>
+                <form method="POST" action="like">
+                    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                    <input type="hidden" name="emoji" class="selected-emoji" value="👍">
+                    <button type="button" class="like-btn">👍</button>
+                    <div class="emoji-picker">
+                        <button type="submit" class="emoji-option" data-emoji="👍">👍</button>
+                        <button type="submit" class="emoji-option" data-emoji="❤️">❤️</button>
+                        <button type="submit" class="emoji-option" data-emoji="😂">😂</button>
+                        <button type="submit" class="emoji-option" data-emoji="😮">😮</button>
+                        <button type="submit" class="emoji-option" data-emoji="😢">😢</button>
+                        <button type="submit" class="emoji-option" data-emoji="😡">😡</button>
+                    </div>
+                </form>
             </div>
+            <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬</button>
+        </div>
+
 
             <!-- Formulaire de commentaire -->
             <form method="POST" action="comment" class="comment-form" id="comment-form-<?php echo $post['id']; ?>" style="display:none;">
@@ -100,6 +110,6 @@ if (!isset($_SESSION['user_id'])) {
     <?php include 'templates/footer.php'; ?>
 </div>
 
-<script src="../js/profil.js"></script>
+<script src="views/static/js/profil.js"></script>
 </body>
 </html>
