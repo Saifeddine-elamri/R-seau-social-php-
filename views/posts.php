@@ -26,9 +26,13 @@ if (!isset($_SESSION['user_id'])) {
         <form method="POST" enctype="multipart/form-data" action="add-post">
             <textarea name="content" placeholder="Écrivez quelque chose..." required></textarea>
             <div class="file-upload-container">
-                <label for="post_image" class="upload-label">📷 </label>
-                <input type="file" id="post_image" name="post_image" accept="image/*" class="file-input">
+            <label for="post_image" class="upload-label">📷</label>
+            <input type="file" id="post_image" name="post_image" accept="image/*" class="file-input">
+
+            <label for="post_video" class="upload-label">📹</label>
+            <input type="file" id="post_video" name="post_video" accept="video/*" class="file-input">
             </div>
+
             <div id="file-name-display"></div>
             <button type="submit">Publier</button>
         </form>
@@ -39,25 +43,37 @@ if (!isset($_SESSION['user_id'])) {
 
 
     <!-- Affichage des publications -->
-    <?php foreach ($posts as $post): ?>
-        <?php
-        // Récupérer les informations de l'utilisateur qui a fait le post
-        $postUser = User::getById($post['user_id']);
-        $postUserProfileImage = !empty($postUser['profile_image']) ? '../uploads/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
-        ?>
+<!-- Affichage des publications -->
+        <?php foreach ($posts as $post): ?>
+            <?php
+            // Récupérer les informations de l'utilisateur qui a fait le post
+            $postUser = User::getById($post['user_id']);
+            $postUserProfileImage = !empty($postUser['profile_image']) ? '../uploads/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
+            ?>
 
-        <div class="post">
-            <!-- Affichage de l'image de profil de l'utilisateur qui a posté -->
-            <div class="post-user-info">
-                <img src="<?php echo $postUserProfileImage; ?>" alt="Image de Profil de l'auteur" class="post-user-profile-pic">
-                <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
-            </div>
-            <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
-            <small><?php echo $post['created_at']; ?></small>
+            <div class="post">
+                <!-- Affichage de l'image de profil de l'utilisateur qui a posté -->
+                <div class="post-user-info">
+                    <img src="<?php echo $postUserProfileImage; ?>" alt="Image de Profil de l'auteur" class="post-user-profile-pic">
+                    <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
+                </div>
+                <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
+                <small><?php echo $post['created_at']; ?></small>
 
-            <?php if (!empty($post['image'])): ?>
-                <img src="../uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Image du post" class="post-image">
-            <?php endif; ?>
+                <!-- Affichage de l'image du post -->
+                <?php if (!empty($post['image'])): ?>
+                    <img src="../uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Image du post" class="post-image">
+                <?php endif; ?>
+
+                <!-- Affichage de la vidéo du post -->
+                <!-- Affichage de la vidéo du post -->
+                <?php if (!empty($post['video'])): ?>
+                    <video width="320" height="240" controls>
+                        <source src="../uploads/videos/<?php echo htmlspecialchars($post['video']); ?>" type="video/mp4">
+                        Votre navigateur ne supporte pas la lecture de vidéos.
+                    </video>
+                <?php endif; ?>
+
 
             <!-- Like et commentaire -->
             <div class="post-actions">

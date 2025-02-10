@@ -41,7 +41,7 @@ class PostController {
                     // En cas d'erreur lors de l'ajout du post ou du téléchargement de fichiers
                     $_SESSION['error_message'] = $e->getMessage();
                     // Rediriger vers la page d'ajout du post avec le message d'erreur
-                    header("Location: add_post");
+                    header("Location: add-post");
                     exit();
                 }
             } else {

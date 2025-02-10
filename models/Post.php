@@ -14,50 +14,65 @@ class Post {
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Ajouter un nouveau post
-    // Cette méthode permet d'ajouter un nouveau post avec du texte, une image (optionnelle) et une vidéo (optionnelle).
     public static function add($user_id, $content, $image = null, $video = null) {
-        // Traiter l'upload de fichier (image ou vidéo)
-        $uploadedFileData = self::handleFileUpload('post_image');
-        
-        // Si un fichier image a été téléchargé, on utilise son nom, sinon on utilise l'image fournie en argument
-        $fileName = $uploadedFileData['fileName'] ?? $image;
-        
-        // Créer le post avec ou sans fichier (image ou vidéo)
-        return self::createPost($user_id, $content, $fileName, $video);
+        // Traiter l'upload de l'image
+        $uploadedImageData = self::handleFileUpload('post_image');
+        $uploadedVideoData = self::handleFileUpload('post_video');
+    
+        // Vérifier si l'upload de l'image a réussi
+        $imageData = isset($uploadedImageData['uniqueName']) ? $uploadedImageData['uniqueName'] : $image;
+    
+        // Vérifier si l'upload de la vidéo a réussi
+        $videoData = isset($uploadedVideoData['uniqueName']) ? $uploadedVideoData['uniqueName'] : $video;
+    
+        // Créer le post avec les fichiers uploadés (ou existants)
+        return self::createPost($user_id, $content, $imageData, $videoData);
     }
+    
 
-    // Gérer l'upload d'un fichier (image ou vidéo)
-    // Cette méthode est utilisée pour gérer l'upload d'une image via un formulaire.
     private static function handleFileUpload($inputName) {
-        // Vérifier si un fichier a été téléchargé et s'il n'y a pas d'erreurs
         if (isset($_FILES[$inputName]) && $_FILES[$inputName]['error'] == 0) {
-            $uploadedFile = $_FILES[$inputName];  // Récupérer les informations sur le fichier téléchargé
-            $uploadDir = 'uploads/';  // Répertoire où les fichiers seront stockés
-            $fileName = basename($uploadedFile['name']);  // Extraire le nom du fichier
-            $filePath = $uploadDir . $fileName;  // Créer le chemin complet du fichier
-
-            // Types MIME valides pour les images (jpg, png, gif)
-            $validMimeTypes = ['image/jpeg', 'image/png', 'image/gif'];
-
-            // Vérification que le type MIME du fichier téléchargé est valide
-            if (in_array($uploadedFile['type'], $validMimeTypes)) {
-                // Déplacer le fichier téléchargé vers le répertoire de destination
-                if (move_uploaded_file($uploadedFile['tmp_name'], $filePath)) {
-                    return ['fileName' => $fileName];  // Retourner le nom du fichier si l'upload est réussi
-                } else {
-                    // Si le déplacement du fichier échoue, une exception est lancée
-                    throw new Exception("Erreur lors du téléchargement de l'image.");
-                }
+            $uploadedFile = $_FILES[$inputName];  
+            $fileTmpName = $uploadedFile['tmp_name'];
+            $fileType = mime_content_type($fileTmpName);
+            $fileExtension = strtolower(pathinfo($uploadedFile['name'], PATHINFO_EXTENSION));
+    
+            // Définir les types MIME autorisés
+            $validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            $validVideoTypes = ['video/mp4', 'video/webm', 'video/ogg'];
+    
+            // Déterminer si c'est une image ou une vidéo
+            if (in_array($fileType, $validImageTypes)) {
+                $uploadDir = 'uploads/images/';
+            } elseif (in_array($fileType, $validVideoTypes)) {
+                $uploadDir = 'uploads/videos/';
             } else {
-                // Si le type MIME n'est pas valide, une exception est lancée
                 throw new Exception("Type de fichier non valide.");
             }
+    
+            // Créer le dossier s'il n'existe pas
+            if (!is_dir($uploadDir)) {
+                mkdir($uploadDir, 0777, true);
+            }
+    
+            // Générer un nom unique pour éviter les conflits
+            $uniqueFileName = time() . '_' . bin2hex(random_bytes(5)) . '.' . $fileExtension;
+            $filePath = $uploadDir . $uniqueFileName;
+    
+            // Déplacer le fichier téléchargé vers le répertoire approprié
+            if (move_uploaded_file($fileTmpName, $filePath)) {
+                return [
+                    'originalName' => $uploadedFile['name'],  // Nom d'origine
+                    'uniqueName' => $uniqueFileName,  // Nom unique généré
+                    'filePath' => $filePath  // Chemin complet
+                ];
+            } else {
+                throw new Exception("Erreur lors du téléchargement du fichier.");
+            }
         }
-        
-        // Si aucun fichier n'est téléchargé, retourner un tableau vide
         return [];
     }
+    
 
     // Créer un nouveau post dans la base de données
     // Cette méthode insère un nouveau post dans la table `posts` de la base de données.
