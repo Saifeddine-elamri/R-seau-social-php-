@@ -46,9 +46,8 @@ if (!isset($_SESSION['user_id'])) {
             <div id="file-name-display" class="file-name-display"></div>
 
             <!-- Bouton de soumission avec une icône d'envoi -->
-            <button type="submit" class="submit-button" title="Publier">
-                📨
-            </button>
+            <button type="submit"><span class="send-icon">➤</span></button>
+
         </div>
     </form>
 </div>
