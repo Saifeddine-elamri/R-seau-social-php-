@@ -16,6 +16,55 @@ body {
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+/* Style pour le textarea */
+.post-content {
+    width: 100%; /* Largeur à 100% */
+    height: 120px; /* Hauteur légèrement augmentée pour plus d'espace */
+    padding: 14px 16px; /* Plus d'espace interne pour un confort accru */
+    font-size: 16px; /* Taille du texte plus grande pour une meilleure lisibilité */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Police moderne */
+    border: 2px solid #ccc; /* Bordure subtile mais présente */
+    border-radius: 12px; /* Coins arrondis pour un effet plus doux */
+    background-color: #fafafa; /* Fond légèrement plus clair */
+    color: #333; /* Couleur du texte standard */
+    box-sizing: border-box; /* Assure que le padding est pris en compte dans les dimensions */
+    resize: none; /* Empêche le redimensionnement manuel */
+    outline: none; /* Supprime le contour par défaut */
+    transition: all 0.3s ease; /* Transition fluide pour les changements */
+}
+
+/* Effet au focus */
+.post-content:focus {
+    border-color: #66afe9; /* Bordure bleue agréable lors du focus */
+    background-color: #ffffff; /* Fond blanc pour un contraste plus net */
+    box-shadow: 0 0 12px rgba(102, 175, 233, 0.5); /* Ombre légère autour du champ */
+}
+
+/* Effet de survol */
+.post-content:hover {
+    border-color: #1e90ff; /* Bordure bleue vif au survol */
+    background-color: #f0f8ff; /* Fond très légèrement bleu pour le survol */
+}
+
+/* Amélioration du placeholder */
+.post-content::placeholder {
+    color: #888; /* Couleur de texte du placeholder plus douce */
+    font-style: italic; /* Texte en italique pour le placeholder */
+    transition: color 0.3s ease; /* Transition pour la couleur du placeholder */
+}
+
+/* Changement de couleur du placeholder lorsque le champ est focus */
+.post-content:focus::placeholder {
+    color: #aaa; /* Placeholder devient plus léger quand on clique */
+}
+
+/* Effet de "bordure interne" au focus */
+.post-content:focus {
+    border-width: 2px;
+    border-color: #1e90ff;
+    padding: 12px 14px; /* Réduction du padding lors du focus pour un effet visuel */
+}
+
 
 /* Post Card */
 .post-card {

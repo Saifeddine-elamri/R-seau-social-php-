@@ -23,10 +23,9 @@ if (!isset($_SESSION['user_id'])) {
 
 <!-- Formulaire pour créer un post -->
 <div class="new-post-form">
-    <h3 class="form-title">Partagez votre pensée</h3>
     <form method="POST" enctype="multipart/form-data" action="add-post" class="post-form">
         <!-- Zone de texte pour le contenu du post -->
-        <textarea name="content" placeholder="Exprimez-vous..." required class="post-content"></textarea>
+        <textarea name="content" placeholder="Quoi de neuf..." required class="post-content"></textarea>
 
         <!-- Conteneur pour les boutons de téléchargement de fichiers -->
         <div class="file-upload-container">
@@ -38,7 +37,7 @@ if (!isset($_SESSION['user_id'])) {
 
             <!-- Icône pour la vidéo -->
             <label for="post_video" class="upload-label" title="Ajouter une vidéo">
-                📹
+                📹 
             </label>
             <input type="file" id="post_video" name="post_video" accept="video/*" class="file-input">
 
@@ -57,7 +56,7 @@ if (!isset($_SESSION['user_id'])) {
 
 
         <!-- Affichage des publications -->
-        <h1>Publications</h1>
+        <h2></h2>
         <?php foreach ($posts as $post): ?>
             <?php
             // Récupérer les informations de l'utilisateur qui a fait le post

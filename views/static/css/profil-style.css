@@ -22,8 +22,32 @@ body {
 }
 
 
-h1 {
- margin-top: 90px;   
+/* Style pour le textarea */
+.post-content {
+    width: 100%; /* Pour que le textarea prenne toute la largeur disponible */
+    height: 100px; /* Réduit la hauteur */
+    padding: 10px; /* Espace interne autour du texte */
+    font-size: 14px; /* Taille du texte */
+    border: 2px solid #ccc; /* Bordure légère et subtile */
+    border-radius: 8px; /* Coins arrondis pour un effet plus doux */
+    background-color: #f9f9f9; /* Fond gris clair */
+    color: #333; /* Couleur du texte */
+    box-sizing: border-box; /* Inclut les padding et bordure dans les dimensions */
+    resize: none; /* Empêche le redimensionnement */
+    transition: all 0.3s ease; /* Effet de transition pour rendre l'interaction plus fluide */
+}
+
+/* Effet au survol ou lors de la sélection */
+.post-content:focus {
+    border-color: #66afe9; /* Changement de couleur de bordure quand il est en focus */
+    background-color: #fff; /* Fond blanc lors du focus */
+    box-shadow: 0 0 8px rgba(102, 175, 233, 0.6); /* Ombre pour mettre en valeur */
+    outline: none; /* Supprime le contour par défaut */
+}
+
+
+h2 {
+ margin-top: 100px;   
 }
 
 
@@ -31,15 +55,9 @@ h1 {
 .new-post-form {
     margin: 2rem 0;
     padding: 2rem;
-    background-color: #ffffff;
     border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: box-shadow 0.3s ease;
 }
 
-.new-post-form:hover {
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-}
 
 .form-title {
     margin-bottom: 1.5rem;
