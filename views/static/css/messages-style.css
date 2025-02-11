@@ -314,10 +314,11 @@ form {
     margin-top: 20px;
     justify-content: space-between;
     align-items: center;
+    gap:20px;
 }
 
 textarea {
-    flex: 1;
+    width : 90%;
     padding: 14px;
     border-radius: 18px;
     border: 1px solid #ccc;
@@ -372,6 +373,31 @@ button:active {
 .custom-file-upload:hover {
     background-color: #0056b3;
     transform: scale(1.05);
+}
+
+/* Masquer les inputs de fichier */
+.file-input {
+    display: none;
+}
+
+/* Style des icônes de téléchargement */
+.upload-label {
+    cursor: pointer;
+    font-size: 1.8rem;
+    color: #666;
+    transition: color 0.3s ease, transform 0.2s ease;
+    background: none; /* Suppression de l'arrière-plan */
+    border: none; /* Suppression de la bordure */
+    padding: 0; /* Suppression du padding */
+}
+
+/* Affichage du nom du fichier */
+.file-name-display {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-style: italic;
 }
 
 #file-name {

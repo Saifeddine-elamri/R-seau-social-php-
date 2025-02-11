@@ -95,8 +95,16 @@
         <form method="POST" action="send" enctype="multipart/form-data">
             <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
             <textarea name="message" placeholder="Type a message..."></textarea>
-            <input type="file" name="image" accept="image/jpeg, image/png, image/gif">
+            <div class="file-upload-container">
+            <label for="image" class="upload-label" title="Ajouter une image">
+                📷
+            </label>
+            <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/gif" class="file-input">
+            <!-- Affichage du nom du fichier sélectionné -->
+            </div>
             <button type="submit"><span class="send-icon">➤</span></button>
+            <div id="file-name-display" class="file-name-display"></div>
+
         </form>
         <!-- ----------------------------- -->
         <!-- Fin du formulaire d'envoi -->
@@ -115,6 +123,7 @@
     <!-- Fin du pied de page -->
     <!-- ----------------------------- -->
 </div>
+<script src="views/static/js/message.js"></script>
 
 </body>
 </html>
