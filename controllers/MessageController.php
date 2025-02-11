@@ -9,7 +9,7 @@ class MessageController {
      * Redirige vers la page de connexion si non connecté
      */
     private function checkLogin() {
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login");
             exit();
         }

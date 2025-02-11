@@ -9,7 +9,7 @@ class FriendController {
      */
     public function index() {
         // Vérifier si l'utilisateur est connecté
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login");
             exit();
         }
@@ -29,7 +29,7 @@ class FriendController {
      */
     public function removeFriend() {
         // Vérifier si l'utilisateur est connecté et si l'ID de l'ami est fourni
-        if (!isLoggedIn() || empty($_POST['friend_id'])) {
+        if (!isset($_SESSION['user_id']) || empty($_POST['friend_id'])) {
             // Rediriger si l'utilisateur n'est pas connecté ou si l'ami n'est pas spécifié
             header("Location: friends");
             exit();
@@ -52,7 +52,7 @@ class FriendController {
      */
     public function showRequests() {
         // Vérifier si l'utilisateur est connecté
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login.php");
             exit();
         }
@@ -72,7 +72,7 @@ class FriendController {
      */
     public function acceptRequest() {
         // Vérifier si l'utilisateur est connecté
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login.php");
             exit();
         }

@@ -9,7 +9,7 @@ class UserController {
      */
     public function showAllUsers() {
         // Vérification de l'utilisateur connecté
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login");
             exit();
         }
