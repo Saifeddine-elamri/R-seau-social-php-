@@ -38,6 +38,9 @@ return [
     '/profil-info' => ['controller' => 'ProfilController', 'method' => 'showProfileInfo'], // Afficher les informations du profil
     '/delete-image' => ['controller' => 'ProfilController', 'method' => 'deleteProfileImage'], // Supprimer l'image de profil
     '/update-image' => ['controller' => 'ProfilController', 'method' => 'updateProfileImage'], // Mettre à jour l'image de profil
+    '/update-profile' => ['controller' => 'ProfilController', 'method' => 'updateProfileInfo'], // Mettre à jour l'image de profil
+
+
 
     // Route de test (optionnelle)
     '/test' => ['controller' => 'TestController', 'method' => 'testProfileImage'], // Tester l'image de profil (si nécessaire)

@@ -30,7 +30,7 @@
             <!-- Parcours chaque demande d'ami dans la liste -->
             <?php foreach ($requests as $request): 
                 // Récupère les informations de l'utilisateur associé à la demande d'ami
-                $user = getUserById($request['user_id']); 
+                $user = User::getById($request['user_id']); 
                 
                 // Vérifie si l'utilisateur a une photo de profil, sinon on utilise une image par défaut
                 $profile_picture = !empty($user['profile_image']) ? '../uploads/profil/' . $user['profile_image'] : 'uploads/default_profile.png';

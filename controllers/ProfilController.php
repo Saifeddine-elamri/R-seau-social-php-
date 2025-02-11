@@ -41,6 +41,42 @@ class ProfilController
         exit();
     }
 
+
+        /**
+     * Met à jour les informations personnelles de l'utilisateur
+     */
+    public function updateProfileInfo()
+    {
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            // Vérifier si l'utilisateur est connecté
+            $user_id = $_SESSION['user_id'];
+
+            // Récupérer et sécuriser les données du formulaire
+            $first_name = trim(htmlspecialchars($_POST['first_name'] ?? ''));
+            $last_name = trim(htmlspecialchars($_POST['last_name'] ?? ''));
+            $birth_date = trim($_POST['birth_date'] ?? '');
+            $phone = trim(htmlspecialchars($_POST['phone'] ?? ''));
+
+            // Vérification des champs obligatoires
+            if (empty($first_name) || empty($last_name)) {
+                $_SESSION['message'] = "Le prénom et le nom ne peuvent pas être vides.";
+                header("Location: profil-info");
+                exit();
+            }
+
+            // Mettre à jour les informations dans la base de données via le modèle
+            if (User::updateProfileInfo($user_id, $first_name, $last_name, $birth_date, $phone)) {
+                $_SESSION['message'] = "Informations mises à jour avec succès.";
+            } else {
+                $_SESSION['message'] = "Erreur lors de la mise à jour.";
+            }
+
+            // Rediriger vers la page du profil
+            header("Location: profil-info");
+            exit();
+        }
+    }
+
     /**
      * Met à jour l'image de profil de l'utilisateur
      */

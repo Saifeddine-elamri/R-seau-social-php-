@@ -156,5 +156,42 @@ class User {
         $stmt = $pdo->prepare("UPDATE users SET profile_image = ? WHERE id = ?");
         return $stmt->execute([$fileName, $userId]);
     }
+
+
+    /**
+     * Met à jour les informations personnelles de l'utilisateur
+     */
+    public static function updateProfileInfo($user_id, $first_name, $last_name, $birth_date, $phone)
+    {
+        global $pdo;
+        $stmt = $pdo->prepare("
+            UPDATE users SET 
+                first_name = ?, 
+                last_name = ?, 
+                birth_date = ?, 
+                phone_number = ? 
+            WHERE id = ?
+        ");
+
+        return $stmt->execute([$first_name, $last_name, $birth_date, $phone, $user_id]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>

@@ -36,7 +36,7 @@ class UserController {
      */
     public function addFriend() {
         // Vérification de l'utilisateur connecté
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login.php");
             exit();
         }
@@ -66,7 +66,7 @@ class UserController {
      */
     public function cancelFriendRequest() {
         // Vérification de l'utilisateur connecté
-        if (!isLoggedIn()) {
+        if (!isset($_SESSION['user_id'])) {
             header("Location: login.php");
             exit();
         }

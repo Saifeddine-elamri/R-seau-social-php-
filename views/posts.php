@@ -80,7 +80,12 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                 <div class="post-user-info">
                     <img src="<?php echo $postUserProfileImage; ?>" alt="Image de Profil de l'auteur" class="post-user-profile-pic">
                     <div class="post-user-name">
-                    <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
+                    <?php if (!empty($postUser['first_name']) && !empty($postUser['last_name'])): ?>
+                        <strong><?php echo htmlspecialchars($postUser['first_name'] . ' ' . $postUser['last_name']); ?></strong>
+                    <?php else: ?>
+                        <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
+                    <?php endif; ?>
+
                     <small><?php echo $post['created_at']; ?></small>
                     </div>
                 </div>
@@ -132,21 +137,28 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
             </form>
 
             <div class="comments">
-                <?php
-                    $comments = Comment::getCommentsByPostId($post['id']);
-                ?>
-                <?php foreach ($comments as $comment): 
-                    $commentUser = User::getById($comment['user_id']);
-                    $commentProfileImage = !empty($commentUser['profile_image']) ? '../uploads/profil/' . htmlspecialchars($commentUser['profile_image']) : '../uploads/default.png';
-                ?>
-                    <div class="comment">
-                        <img src="<?php echo $commentProfileImage; ?>" alt="Image de Profil Commentaire" class="comment-profile-pic">
-                        <strong><?php echo htmlspecialchars($commentUser['username']); ?></strong>
-                        <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
+            <?php
+                $comments = Comment::getCommentsByPostId($post['id']);
+            ?>
+            <?php foreach ($comments as $comment): 
+                $commentUser = User::getById($comment['user_id']);
+                $commentProfileImage = !empty($commentUser['profile_image']) ? '../uploads/profil/' . htmlspecialchars($commentUser['profile_image']) : '../uploads/default.png';
+            ?>
+                <div class="comment">
+                    <img src="<?php echo $commentProfileImage; ?>" alt="Image de Profil Commentaire" class="comment-profile-pic">
+                    <div class="comment-content">
+                        <?php if (!empty($commentUser['first_name']) && !empty($commentUser['last_name'])): ?>
+                            <strong><?php echo htmlspecialchars($commentUser['first_name'] . ' ' . $commentUser['last_name']); ?></strong>
+                        <?php else: ?>
+                            <strong><?php echo htmlspecialchars($commentUser['username']); ?></strong>
+                        <?php endif; ?>                        
                         <small><?php echo date("d M Y, H:i", strtotime($comment['created_at'])); ?></small>
+                        <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
                     </div>
-                <?php endforeach; ?>
-            </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+
         </div>
     <?php endforeach; ?>
 
