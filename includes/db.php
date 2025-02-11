@@ -8,7 +8,9 @@ $password = 'saif';
 
 try {
     // Création de la connexion PDO avec gestion des erreurs et encodage UTF-8
-    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password);
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $username, $password ,[
+        PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8mb4'"
+    ]);
 
     // Définition du mode d'erreur de PDO à exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

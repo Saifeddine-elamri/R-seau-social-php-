@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 
 // Vérifier si une photo de profil est déjà définie
 $hasProfileImage = !empty($user['profile_image']);
-$profileImage = $hasProfileImage ? '../uploads/' . htmlspecialchars($user['profile_image']) : null;
+$profileImage = $hasProfileImage ? '../uploads/profil/' . htmlspecialchars($user['profile_image']) : null;
 ?>
 
 <!DOCTYPE html>

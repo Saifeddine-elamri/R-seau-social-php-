@@ -11,13 +11,13 @@
 <div class="container">
     <?php include 'templates/header.php'; ?>
 
-    <h1>👥 All Users</h1>
+    <h1>👥 Utilisateurs</h1>
 
     <div class="users-list">
         <?php foreach ($users as $user): ?>
             <div class="user-card">
                 <!-- Image du profil avec sécurité sur le chemin -->
-                <img src="<?php echo !empty($user['profile_image']) ? '../uploads/' . htmlspecialchars($user['profile_image']) : '../uploads/default.png'; ?>" 
+                <img src="<?php echo !empty($user['profile_image']) ? '../uploads/profil/' . htmlspecialchars($user['profile_image']) : '../uploads/default.png'; ?>" 
                      alt="Profile Picture" class="profile-pic">
 
                 <div class="user-info">

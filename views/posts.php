@@ -62,17 +62,19 @@ if (!isset($_SESSION['user_id'])) {
             <?php
             // Récupérer les informations de l'utilisateur qui a fait le post
             $postUser = User::getById($post['user_id']);
-            $postUserProfileImage = !empty($postUser['profile_image']) ? '../uploads/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
+            $postUserProfileImage = !empty($postUser['profile_image']) ? '../uploads/profil/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
             ?>
 
             <div class="post">
                 <!-- Affichage de l'image de profil de l'utilisateur qui a posté -->
                 <div class="post-user-info">
                     <img src="<?php echo $postUserProfileImage; ?>" alt="Image de Profil de l'auteur" class="post-user-profile-pic">
+                    <div class="post-user-name">
                     <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
+                    <small><?php echo $post['created_at']; ?></small>
+                    </div>
                 </div>
                 <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
-                <small><?php echo $post['created_at']; ?></small>
 
                 <!-- Affichage de l'image du post -->
                 <?php if (!empty($post['image'])): ?>
@@ -89,7 +91,7 @@ if (!isset($_SESSION['user_id'])) {
                     </div>
 
                     <!-- Vidéo -->
-                    <video controls>
+                    <video class="video-gauche" controls>
                         <source src="../uploads/videos/<?php echo htmlspecialchars($post['video']); ?>" type="video/mp4">
                         Votre navigateur ne supporte pas la lecture de vidéos.
                     </video>
@@ -105,18 +107,10 @@ if (!isset($_SESSION['user_id'])) {
                 <form method="POST" action="like">
                     <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                     <input type="hidden" name="emoji" class="selected-emoji" value="👍">
-                    <button type="button" class="like-btn">👍</button>
-                    <div class="emoji-picker">
-                        <button type="submit" class="emoji-option" data-emoji="👍">👍</button>
-                        <button type="submit" class="emoji-option" data-emoji="❤️">❤️</button>
-                        <button type="submit" class="emoji-option" data-emoji="😂">😂</button>
-                        <button type="submit" class="emoji-option" data-emoji="😮">😮</button>
-                        <button type="submit" class="emoji-option" data-emoji="😢">😢</button>
-                        <button type="submit" class="emoji-option" data-emoji="😡">😡</button>
-                    </div>
+                    <button type="button" class="like-btn">👍 J'aime</button>
                 </form>
             </div>
-            <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬</button>
+            <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 Commenter</button>
         </div>
 
 
@@ -133,7 +127,7 @@ if (!isset($_SESSION['user_id'])) {
                 ?>
                 <?php foreach ($comments as $comment): 
                     $commentUser = User::getById($comment['user_id']);
-                    $commentProfileImage = !empty($commentUser['profile_image']) ? '../uploads/' . htmlspecialchars($commentUser['profile_image']) : '../uploads/default.png';
+                    $commentProfileImage = !empty($commentUser['profile_image']) ? '../uploads/profil/' . htmlspecialchars($commentUser['profile_image']) : '../uploads/default.png';
                 ?>
                     <div class="comment">
                         <img src="<?php echo $commentProfileImage; ?>" alt="Image de Profil Commentaire" class="comment-profile-pic">

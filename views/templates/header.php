@@ -10,7 +10,7 @@ $userId = $_SESSION['user_id'];
 $user = User::getById($userId);
 
 // Définition de l'image de profil avec fallback
-$profileImage = !empty($user['profile_image']) ? 'uploads/' . htmlspecialchars($user['profile_image']) : 'uploads/default.png';
+$profileImage = !empty($user['profile_image']) ? 'uploads/profil/' . htmlspecialchars($user['profile_image']) : 'uploads/default.png';
 ?>
 
 <style>

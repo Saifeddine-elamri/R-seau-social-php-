@@ -8,8 +8,7 @@ body {
 
 /* Container */
 .container {
-    width: 90%;
-    max-width: 1500px;
+    width: 95%;
     margin: 30px auto;
     background: white;
     padding: 20px;
@@ -20,7 +19,6 @@ body {
 
 
 .container:hover {
-    transform: scale(1.02);
     box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
@@ -46,6 +44,18 @@ h2 {
     font-weight: 600;
 }
 
+
+.no-contacts {
+    background: #fff3cd;
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: #856404;
+    font-weight: bold;
+    border-left: 6px solid #ffeb3b;
+    transition: transform 0.3s ease;
+
+}
 /* Message Cards */
 .message-card {
     background: #ffffff;
@@ -511,3 +521,105 @@ button:active {
         margin-right: 8px;
     }
 }    
+
+
+
+    /* Style du bouton pour ouvrir/fermer la liste des emojis */
+    .emoji-toggle-btn {
+        background: none;
+        border: none;
+        font-size: 22px;
+        cursor: pointer;
+        margin-top: 10px;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .emoji-toggle-btn:hover {
+        transform: scale(1.2);
+    }
+
+    /* Conteneur des emojis */
+    .emoji-container {
+        display: none;
+        position: absolute;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        padding: 5px;
+        display: flex;
+        flex-wrap: wrap; /* Permet aux éléments de revenir à la ligne */
+        gap: 0px;
+        margin-left: 50px;
+        z-index: 1000;
+        animation: fadeIn 0.3s ease-out; /* Animation d'apparition */
+    }
+
+    /* Animation d'apparition de la liste des emojis */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Style des boutons emoji */
+    .emoji-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .emoji-btn:hover {
+        transform: scale(1.5);
+    }
+
+    /* Stylisation du champ de texte et du bouton envoyer */
+    textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+        resize: none;
+        transition: border-color 0.2s ease;
+    }
+
+    textarea:focus {
+        border-color: #3b82f6;
+    }
+
+    button[type="submit"] {
+        background-color: #3b82f6;
+        color: #fff;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #2563eb;
+    }
+ 
+
+    .emoji-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px; /* Espace entre les boutons */
+        margin-bottom: 20px; /* Espacement entre les groupes */
+    }
+    .emoji-btn {
+        font-size: 2rem;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    

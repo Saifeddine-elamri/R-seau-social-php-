@@ -8,8 +8,7 @@ body {
 
 /* Container */
 .container {
-    width: 90%;
-    max-width: 1500px;
+    width: 95%;
     margin: 30px auto;
     background: white;
     padding: 20px;
@@ -20,7 +19,7 @@ body {
 
 
 .container:hover {
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
 }
 
 /* Friends List */

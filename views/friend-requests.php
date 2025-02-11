@@ -17,12 +17,12 @@
     <?php include 'templates/header.php'; ?>
 
     <!-- Titre principal de la page -->
-    <h1>Friend Requests</h1>
+    <h1>Demandes d'amis</h1>
 
     <!-- Vérifie si la liste des demandes d'amis est vide -->
     <?php if (empty($requests)): ?>
         <!-- Affiche un message si aucune demande d'ami n'est présente -->
-        <p class="message warning">No pending friend requests.</p>
+        <p class="message warning">Aucune demande d'amis en attente.</p>
     <?php else: ?>
         <!-- Si des demandes sont présentes, affiche-les dans une liste -->
         <div class="requests-list">
@@ -32,7 +32,7 @@
                 $user = getUserById($request['user_id']); 
                 
                 // Vérifie si l'utilisateur a une photo de profil, sinon on utilise une image par défaut
-                $profile_picture = !empty($user['profile_image']) ? '../uploads/' . $user['profile_image'] : 'uploads/default_profile.png';
+                $profile_picture = !empty($user['profile_image']) ? '../uploads/profil/' . $user['profile_image'] : 'uploads/default_profile.png';
             ?>
                 <!-- Affichage de la demande d'ami -->
                 <div class="friend-request">

@@ -15,20 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 
-document.addEventListener("DOMContentLoaded", function() {
-    document.querySelectorAll(".like-btn").forEach(button => {
-        button.addEventListener("click", function() {
-            this.nextElementSibling.classList.toggle("visible");
-        });
-    });
 
-    document.querySelectorAll(".emoji-option").forEach(emoji => {
-        emoji.addEventListener("click", function() {
-            let form = this.closest("form");
-            form.querySelector(".selected-emoji").value = this.dataset.emoji;
-        });
-    });
-});
 
 
 // Fonction pour afficher les noms des fichiers sans écraser

@@ -12,6 +12,8 @@ class PostController {
     public function index() {
         // Récupérer tous les posts depuis le modèle
         $posts = Post::getAll();
+
+        
         // Afficher la vue des posts
         require_once __DIR__ . '/../views/posts.php';
     }

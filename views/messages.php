@@ -35,7 +35,7 @@
         <?php else: ?>
             <?php foreach ($contacts as $contact): ?>
                 <a href="?contact_id=<?php echo $contact['id']; ?>" class="contact-card">
-                    <img src="<?php echo !empty($contact['profile_image']) ? 'uploads/' . $contact['profile_image'] : 'uploads/default.png'; ?>" class="contact-pic">
+                    <img src="<?php echo !empty($contact['profile_image']) ? 'uploads/profil/' . $contact['profile_image'] : 'uploads/default.png'; ?>" class="contact-pic">
                     <span><?php echo htmlspecialchars($contact['username']); ?></span>
                 </a>
             <?php endforeach; ?>
@@ -71,7 +71,7 @@
             <div class="messages">
                 <?php foreach ($messages as $message): ?>
                     <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
-                        <img src="<?php echo !empty($message['sender_image']) ? 'uploads/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
+                        <img src="<?php echo !empty($message['sender_image']) ? 'uploads/profil/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
                         <div class="message-content">
                             <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
                             <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
@@ -92,20 +92,83 @@
         <!-- ----------------------------- -->
         <!-- Formulaire d'envoi de message -->
         <!-- ----------------------------- -->
-        <form method="POST" action="send" enctype="multipart/form-data">
-            <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
-            <textarea name="message" placeholder="Type a message..."></textarea>
-            <div class="file-upload-container">
-            <label for="image" class="upload-label" title="Ajouter une image">
-                📷
-            </label>
-            <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/gif" class="file-input">
-            <!-- Affichage du nom du fichier sélectionné -->
-            </div>
-            <button type="submit"><span class="send-icon">➤</span></button>
-            <div id="file-name-display" class="file-name-display"></div>
+        <!-- ----------------------------- -->
+<!-- ----------------------------- -->
+<!-- ----------------------------- -->
+<form method="POST" action="send" enctype="multipart/form-data" class="form-container">
+    <input type="hidden" name="receiver_id" value="<?php echo $selected_contact; ?>">
+    <textarea name="message" placeholder="Type a message..."></textarea>
 
-        </form>
+    <!-- Bouton pour afficher/cacher la liste des emojis -->
+    <button type="button" class="emoji-toggle-btn" onclick="toggleEmojis(this)">😊</button>
+
+    <!-- Section pour les emojis qui sera affichée uniquement quand le bouton est cliqué -->
+    <div class="emoji-container" id="emoji-container" style="display: none;">
+        <button type="button" class="emoji-btn" onclick="addEmoji('😊')">😊</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('❤️')">❤️</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('👍')">👍</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😂')">😂</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🎉')">🎉</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😍')">😍</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😎')">😎</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥺')">🥺</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('💯')">💯</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('💪')">💪</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😄')">😄</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥳')">🥳</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🤩')">🤩</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🎶')">🎶</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🌟')">🌟</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😅')">😅</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥰')">🥰</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('💖')">💖</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🤗')">🤗</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🤔')">🤔</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😉')">😉</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('😜')">😜</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('💃')">💃</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🕺')">🕺</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥂')">🥂</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍕')">🍕</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍔')">🍔</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🌮')">🌮</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍣')">🍣</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍩')">🍩</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥪')">🥪</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('☕')">☕</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍷')">🍷</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍺')">🍺</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍻')">🍻</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥤')">🥤</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍇')">🍇</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍉')">🍉</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍓')">🍓</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍊')">🍊</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍌')">🍌</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍍')">🍍</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍎')">🍎</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍏')">🍏</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍒')">🍒</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🥝')">🥝</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍑')">🍑</button>
+        <button type="button" class="emoji-btn" onclick="addEmoji('🍒')">🍒</button>
+
+    </div>
+
+    <div class="file-upload-container">
+        <label for="image" class="upload-label" title="Ajouter une image">
+            📷
+        </label>
+        <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/gif" class="file-input">
+        <!-- Affichage du nom du fichier sélectionné -->
+    </div>
+
+    <button type="submit"><span class="send-icon">➤</span></button>
+    <div id="file-name-display" class="file-name-display"></div>
+</form>
+
+
+
         <!-- ----------------------------- -->
         <!-- Fin du formulaire d'envoi -->
         <!-- ----------------------------- -->
