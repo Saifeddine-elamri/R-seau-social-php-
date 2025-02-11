@@ -4,6 +4,8 @@ if (!isset($_SESSION['user_id'])) {
     header("Location: login");
     exit();
 }
+$User = User::getById($_SESSION['user_id']);
+$UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . htmlspecialchars($User['profile_image']) : '../uploads/default.png';
 
 ?>
 
@@ -25,9 +27,18 @@ if (!isset($_SESSION['user_id'])) {
 <div class="new-post-form">
     <form method="POST" enctype="multipart/form-data" action="add-post" class="post-form">
         <!-- Zone de texte pour le contenu du post -->
-        <textarea name="content" placeholder="Quoi de neuf..." required class="post-content"></textarea>
+        <div class="post-header">
+            <!-- Image de profil à côté du formulaire -->
+            <a href="profil-info">
 
-        <!-- Conteneur pour les boutons de téléchargement de fichiers -->
+            <img src="<?php echo $UserProfileImage; ?>" alt="Image de Profil" class="user-profile-picture">
+
+            </a>
+
+            <!-- Zone de texte pour le contenu du post -->
+            <textarea name="content" placeholder="Quoi de neuf..." required class="post-content"></textarea>
+        </div> <!-- Conteneur pour les boutons de téléchargement de fichiers -->
+
         <div class="file-upload-container">
             <!-- Icône pour l'image -->
             <label for="post_image" class="upload-label" title="Ajouter une image">

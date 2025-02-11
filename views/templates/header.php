@@ -101,13 +101,9 @@ header {
     border-radius: 50%;
     border: 2px solid white;
     object-fit: cover;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.header-profile-pic:hover {
-    transform: scale(1.1);
-    box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
-}
+
 
 /* 📱 Responsive - Affichage Mobile */
 @media screen and (max-width: 768px) {
@@ -151,9 +147,7 @@ header {
     <div class="header-container">
         <!-- 📷 Image de profil cliquable -->
         <div class="header-profile">
-            <a href="profil-info">
-                <img src="<?php echo $profileImage; ?>" alt="Image de Profil" class="header-profile-pic">
-            </a>
+                <img src="uploads/logo.jpg" alt="Image de Profil" class="header-profile-pic">
         </div>
 
         <!-- 🍔 Menu Hamburger -->

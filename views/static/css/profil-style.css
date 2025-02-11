@@ -24,8 +24,8 @@ body {
 
 /* Style pour le textarea */
 .post-content {
-    width: 100%; /* Pour que le textarea prenne toute la largeur disponible */
-    height: 100px; /* Réduit la hauteur */
+    width: 60%; /* Pour que le textarea prenne toute la largeur disponible */
+    height: 70px; /* Hauteur réduite */
     padding: 10px; /* Espace interne autour du texte */
     font-size: 14px; /* Taille du texte */
     border: 2px solid #ccc; /* Bordure légère et subtile */
@@ -43,6 +43,32 @@ body {
     background-color: #fff; /* Fond blanc lors du focus */
     box-shadow: 0 0 8px rgba(102, 175, 233, 0.6); /* Ombre pour mettre en valeur */
     outline: none; /* Supprime le contour par défaut */
+}
+
+
+/* Conteneur pour l'image de profil et le champ de texte */
+.post-header {
+    display: flex;
+    align-items: center; /* Aligner l'image et le texte au top */
+    justify-content: center; /* Centrer horizontalement */
+
+    margin-bottom: 15px;
+}
+
+.post-header a :hover{
+
+    background: rgba(255, 255, 255, 0.4);
+    transform: scale(1.05);
+}
+
+
+/* Style pour l'image de profil */
+.user-profile-picture {
+    width: 70px; /* Taille de l'image de profil */
+    height: 70px;
+    object-fit: cover;
+    border-radius: 50%; /* Rendre l'image circulaire */
+    margin-right: 10px; /* Espacement entre l'image et le champ de texte */
 }
 
 
@@ -67,24 +93,6 @@ h2 {
     font-weight: 600;
 }
 
-/* Zone de texte pour le contenu */
-.post-content {
-    width: 70%;
-    padding: 1rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 8px;
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    resize: vertical;
-    min-height: 150px;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.post-content:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
-    outline: none;
-}
 
 /* Conteneur pour les boutons de téléchargement */
 .file-upload-container {
