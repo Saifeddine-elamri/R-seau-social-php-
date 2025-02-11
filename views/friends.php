@@ -50,7 +50,8 @@
     <?php endif; ?>
 
     <!-- Inclusion du pied de page (footer.php) -->
-    <?php include 'templates/footer.php'; ?>
+<?php include 'templates/footer.php'; ?>
+    
 
 </div>
 

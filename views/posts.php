@@ -14,7 +14,6 @@ if (!isset($_SESSION['user_id'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Profil</title>
     <link rel="stylesheet" type="text/css" href="views/static/css/profil-style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
 </head>
 <body>
@@ -43,22 +42,23 @@ if (!isset($_SESSION['user_id'])) {
             </label>
             <input type="file" id="post_video" name="post_video" accept="video/*" class="file-input">
 
+            <!-- Affichage du nom du fichier sélectionné -->
+            <div id="file-name-display" class="file-name-display"></div>
+
+            <!-- Bouton de soumission avec une icône d'envoi -->
+            <button type="submit" class="submit-button" title="Publier">
+                📨
+            </button>
         </div>
-
-        <!-- Affichage du nom du fichier sélectionné -->
-        <div id="file-name-display" class="file-name-display"></div>
-
-        <!-- Bouton de soumission -->
-        <button type="submit" class="submit-button">Publier</button>
     </form>
 </div>
 
-    <h2>Publications récentes</h2>
 
 
 
-    <!-- Affichage des publications -->
-<!-- Affichage des publications -->
+
+        <!-- Affichage des publications -->
+        <h1>Publications</h1>
         <?php foreach ($posts as $post): ?>
             <?php
             // Récupérer les informations de l'utilisateur qui a fait le post
@@ -77,7 +77,7 @@ if (!isset($_SESSION['user_id'])) {
 
                 <!-- Affichage de l'image du post -->
                 <?php if (!empty($post['image'])): ?>
-                    <img src="../uploads/<?php echo htmlspecialchars($post['image']); ?>" alt="Image du post" class="post-image">
+                    <img src="../uploads/images/<?php echo htmlspecialchars($post['image']); ?>" alt="Image du post" class="post-image">
                 <?php endif; ?>
 
                 <?php if (!empty($post['video'])): ?>

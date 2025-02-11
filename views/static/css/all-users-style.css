@@ -13,32 +13,26 @@
     --transition: all 0.3s ease-in-out;
 }
 
+/* Global */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: var(--background-color);
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    text-align: center;
-    color: var(--text-color);
-    line-height: 1.6;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 /* Container */
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 30px auto;
-    background: var(--white);
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: var(--shadow);
-    transition: var(--transition);
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
+
 
 .container:hover {
     box-shadow: var(--shadow-hover);
@@ -242,17 +236,7 @@ h1 {
     outline-offset: 2px;
 }
 
-/* Animation for Page Load */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+
 
 .container {
     animation: fadeIn 0.8s ease-out;

@@ -48,7 +48,7 @@ header {
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 8px;
-    background: rgba(255, 255, 255, 0.2);
+
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
@@ -132,7 +132,7 @@ header {
         display: block;
         padding: 12px;
         font-size: 18px;
-        transition: background 0.3s ease, transform 0.3s ease;
+        background: none;
     }
 
     .nav-header.show {
@@ -162,7 +162,6 @@ header {
         <!-- 📍 Navigation -->
         <nav class="nav-header">
             <a href="posts">🏠 Accueil</a>
-            <a href="posts">📝 Mes Posts</a>
             <a href="friends">👫 Amis</a>
             <a href="contact">💬 Messages</a>
             <a href="users">🌎 Tous les utilisateurs</a>

@@ -1,25 +1,23 @@
 /* Global */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7fc;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    text-align: center;
-    color: #333;
-    transition: background-color 0.3s ease-in-out;
 }
 
 /* Container */
 .container {
     width: 90%;
-    max-width: 1200px;
+    max-width: 1500px;
     margin: 30px auto;
-    background: #ffffff;
-    padding: 35px;
-    border-radius: 20px;
-    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
+
 
 .container:hover {
     transform: scale(1.02);
@@ -35,20 +33,8 @@ h1 {
     letter-spacing: 1px;
     text-transform: uppercase;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.1);
-    animation: slide-in 1s ease-out;
 }
 
-/* Animation d'entrée pour les titres */
-@keyframes slide-in {
-    0% {
-        transform: translateX(-100%);
-        opacity: 0;
-    }
-    100% {
-        transform: translateX(0);
-        opacity: 1;
-    }
-}
 
 h2 {
     font-size: 2rem;
@@ -71,18 +57,9 @@ h2 {
     border-left: 6px solid #ddd;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     opacity: 0;
-    animation: fade-in 0.8s forwards;
 }
 
-/* Animation de fade-in pour les cartes de message */
-@keyframes fade-in {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
+
 
 .message-card:hover {
     transform: translateY(-5px);
@@ -171,6 +148,7 @@ h2 {
 .contacts {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 16px;
     margin-bottom: 25px;
 }
@@ -324,21 +302,7 @@ h2 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* Animation d'éléments entrants */
-@keyframes slide-in {
-    0% {
-        opacity: 0;
-        transform: translateX(-30px);
-    }
-    100% {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
 
-.message {
-    animation: slide-in 0.6s ease-out;
-}
 
 /* ----------------------------- */
 /* Fin des styles des messages   */
@@ -453,3 +417,71 @@ button:active {
     font-size: 7px;
     color: #333;
 }
+
+
+
+/* Messages Responsive */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.6rem;
+    }
+
+    .message-card {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .messages {
+        max-height: 400px;
+        gap: 10px;
+    }
+
+    .message-content {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+
+    .message-pic {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+
+    textarea {
+        height: 50px;
+        font-size: 14px;
+    }
+
+    button {
+        width: 45px;
+        height: 45px;
+        font-size: 18px;
+    }
+}
+
+/* Liste des contacts Responsive */
+@media (max-width: 600px) {
+    .contacts {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-card {
+        justify-content: center;
+    }
+
+    .contact-pic {
+        width: 45px;
+        height: 45px;
+        margin-right: 8px;
+    }
+}    

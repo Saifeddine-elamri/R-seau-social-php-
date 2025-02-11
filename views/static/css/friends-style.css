@@ -1,25 +1,23 @@
 /* Global */
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f7f9fc;
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
-    text-align: center;
-    color: #333;
-    line-height: 1.6;
 }
 
 /* Container */
 .container {
     width: 90%;
-    max-width: 1300px;
-    margin: 40px auto;
-    background: #fff;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+    max-width: 1500px;
+    margin: 30px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
+
 
 .container:hover {
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
@@ -179,7 +177,7 @@ body {
     }
 
     .friends-list {
-        justify-content: flex-start;
+        justify-content: center;
     }
 }
 
