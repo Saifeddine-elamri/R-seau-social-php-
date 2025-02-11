@@ -17,7 +17,8 @@
     <?php include 'templates/header.php'; ?>
 
     <!-- Titre principal de la page -->
-    <h1>Demandes d'amis</h1>
+    <h1>👥 Demandes d'amis ( <?php echo count($requests); ?> )</h1>
+
 
     <!-- Vérifie si la liste des demandes d'amis est vide -->
     <?php if (empty($requests)): ?>
@@ -71,6 +72,7 @@
     <?php include 'templates/footer.php'; ?>
 
 </div>
+<script src="views/static/js/friend-requests.js"></script>
 
 </body>
 </html>

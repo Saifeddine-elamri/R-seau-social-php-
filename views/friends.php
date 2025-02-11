@@ -17,7 +17,8 @@
     <?php include 'templates/header.php'; ?>
 
     <!-- Titre principal de la page -->
-    <h1>👥 Amis</h1>
+    <h1>👥 Amis ( <?php echo count($friends); ?> )</h1>
+
 
     <!-- Vérifie si la liste des amis est vide -->
     <?php if (empty($friends)): ?>

@@ -118,40 +118,7 @@
         <button type="button" class="emoji-btn" onclick="addEmoji('🥳')">🥳</button>
         <button type="button" class="emoji-btn" onclick="addEmoji('🤩')">🤩</button>
         <button type="button" class="emoji-btn" onclick="addEmoji('🎶')">🎶</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🌟')">🌟</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('😅')">😅</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🥰')">🥰</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('💖')">💖</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🤗')">🤗</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🤔')">🤔</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('😉')">😉</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('😜')">😜</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('💃')">💃</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🕺')">🕺</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🥂')">🥂</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍕')">🍕</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍔')">🍔</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🌮')">🌮</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍣')">🍣</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍩')">🍩</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🥪')">🥪</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('☕')">☕</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍷')">🍷</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍺')">🍺</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍻')">🍻</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🥤')">🥤</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍇')">🍇</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍉')">🍉</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍓')">🍓</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍊')">🍊</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍌')">🍌</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍍')">🍍</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍎')">🍎</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍏')">🍏</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍒')">🍒</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🥝')">🥝</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍑')">🍑</button>
-        <button type="button" class="emoji-btn" onclick="addEmoji('🍒')">🍒</button>
+ 
 
     </div>
 

@@ -11,7 +11,8 @@
 <div class="container">
     <?php include 'templates/header.php'; ?>
 
-    <h1>👥 Utilisateurs</h1>
+    <h1>👥 Utilisateurs ( <?php echo count($users); ?> )</h1>
+
 
     <div class="users-list">
         <?php foreach ($users as $user): ?>
