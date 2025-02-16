@@ -116,9 +116,7 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
 
 
             <!-- Like et commentaire -->
-            <div class="post-actions">
-            <div class="like-container">
-                <?php 
+            <?php 
                 // Supposons que $post['id'] et $user_id sont définis
                 $selectedEmoji = Like::getEmojiTypeByPostId($post['id'], $_SESSION['user_id']);
                 $selectedEmoji = $selectedEmoji ?: '👍'; // Utiliser '👍' comme emoji par défaut si aucun n'est trouvé
@@ -147,7 +145,51 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                         break;
                 }
                 ?>
-                <div class="like-count">(<?php echo Like::countLikes($post['id']); ?>)</div>
+                <?php
+                // Récupérer les deux emojis les plus populaires
+                $topEmojis = Like::getTopEmojisByPostId($post['id']);
+                ?>
+
+            <div class="like-count">
+
+                <?php if ($topEmojis): ?>
+                    <br>
+                    <?php foreach ($topEmojis as $emoji): ?>
+                        <?php
+                            // Récupérer le texte associé à l'emoji
+                            $emojiText = '';
+                            switch ($emoji['emoji_type']) {
+                                case '👍':
+                                    $emojiText = 'J\'aime';
+                                    break;
+                                case '❤️':
+                                    $emojiText = 'J\'adore';
+                                    break;
+                                case '😂':
+                                    $emojiText = 'Haha';
+                                    break;
+                                case '😮':
+                                    $emojiText = 'Waouh';
+                                    break;
+                                case '😢':
+                                    $emojiText = 'Solidaire';
+                                    break;
+                                case '😡':
+                                    $emojiText = 'Grrr';
+                                    break;
+                                default:
+                                    $emojiText = 'Autre';
+                                    break;
+                            }
+                        ?>
+                        <span><?php echo $emoji['emoji_type']; ?>  </span>
+                    <?php endforeach; ?>
+                    <?php echo Like::countLikes($post['id']); ?>
+                <?php endif; ?>
+            </div>
+            <div class="post-actions">
+            <div class="like-container">
+               
                 <form method="POST" action="like" class="like-form">
                 <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
                 <!-- Utiliser une variable PHP pour afficher l'emoji sélectionné -->
@@ -169,11 +211,9 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                     <span class="emoji" data-emoji="😡" data-text="Grrr">😡</span>
                 </div>
             </form>
-
-
+            <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 Commenter</button>
 
             </div>
-            <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 Commenter</button>
         </div>
 
 

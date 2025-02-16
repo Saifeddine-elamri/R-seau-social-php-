@@ -65,6 +65,21 @@ class Like {
         return $like ? $like['emoji_type'] : null;
     }
     
+    public static function getTopEmojisByPostId($post_id) {
+        global $pdo;
+        
+        // Sélectionner les emojis les plus utilisés pour ce post
+        $stmt = $pdo->prepare("
+            SELECT emoji_type, COUNT(*) AS emoji_count
+            FROM likes
+            WHERE post_id = ?
+            GROUP BY emoji_type
+            ORDER BY emoji_count DESC
+            LIMIT 2
+        ");
+        $stmt->execute([$post_id]);
+        return $stmt->fetchAll();
+    }
     
 
 
