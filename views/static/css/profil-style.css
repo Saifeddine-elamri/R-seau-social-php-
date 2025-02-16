@@ -281,6 +281,16 @@ form button:hover {
 }
 
 /* Bouton Like */
+.like-btn-custom {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 5px 10px;
+    color: #1877f2;
+    font-weight: bold;
+    transition: 0.3s;
+}
 .like-btn {
     background: none;
     border: none;
@@ -290,6 +300,12 @@ form button:hover {
     color: #1877f2;
     font-weight: bold;
     transition: 0.3s;
+}
+
+
+.like-btn-custom:hover {
+    background: rgba(24, 119, 242, 0.1);
+    border-radius: 20px;
 }
 
 .like-btn:hover {
@@ -403,6 +419,60 @@ form button:hover {
 .like-btn:hover, .comment-toggle:hover {
     background: rgba(24, 119, 242, 0.1);
     border-radius: 20px;
+}
+.like-btn-custom:hover, .comment-toggle:hover {
+    background: rgba(24, 119, 242, 0.1);
+    border-radius: 20px;
+}
+
+.like-form {
+    position: relative;
+    display: inline-block;
+}
+
+.like-btn {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.like-btn-custom {
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    background-color: #f0f0f0;
+}
+
+.emoji-picker {
+    display: none;
+    position: absolute;
+    bottom: 40px;
+    left: 0;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 25px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+    padding: 5px 10px;
+    white-space: nowrap;
+}
+
+.emoji {
+    font-size: 24px;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.emoji:hover {
+    transform: scale(1.3);
+}
+
+/* Afficher les emojis au survol du bouton */
+.like-form:hover .emoji-picker {
+    display: block;
 }
 
 

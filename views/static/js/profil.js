@@ -60,3 +60,22 @@ document.getElementById('post_video').addEventListener('change', function() {
     var fileNameDisplay = document.getElementById('file-name-display');
     handleFileSelect(this, fileNameDisplay, 'video');
 });
+
+document.querySelectorAll('.emoji').forEach(emoji => {
+    emoji.addEventListener('click', function() {
+
+        const form = this.closest('form');
+
+        // Mettre à jour l'input caché avec l'emoji sélectionné dans ce formulaire
+        form.querySelector('.selected-emoji').value = this.dataset.emoji;
+
+        // Mettre à jour le texte du bouton dans ce formulaire
+        form.querySelector('.like-btn').innerHTML = `${this.dataset.emoji} ${this.dataset.text}`;
+            // Récupérer l'emoji et le texte à partir des attributs de l'élément cliqué
+
+        form.submit();
+
+
+        // Soumettre automatiquement le formulaire
+    });
+});

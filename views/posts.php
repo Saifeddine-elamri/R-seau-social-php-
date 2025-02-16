@@ -118,12 +118,60 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
             <!-- Like et commentaire -->
             <div class="post-actions">
             <div class="like-container">
+                <?php 
+                // Supposons que $post['id'] et $user_id sont définis
+                $selectedEmoji = Like::getEmojiTypeByPostId($post['id'], $_SESSION['user_id']);
+                $selectedEmoji = $selectedEmoji ?: '👍'; // Utiliser '👍' comme emoji par défaut si aucun n'est trouvé
+                // Définir le texte associé à l'emoji directement dans la vue
+                switch ($selectedEmoji) {
+                    case '👍':
+                        $selectedText = "J'aime";
+                        break;
+                    case '❤️':
+                        $selectedText = "J'adore";
+                        break;
+                    case '😂':
+                        $selectedText = "Haha";
+                        break;
+                    case '😮':
+                        $selectedText = "Waouh";
+                        break;
+                    case '😢':
+                        $selectedText = "Solidaire";
+                        break;
+                    case '😡':
+                        $selectedText = "Grrr";
+                        break;
+                    default:
+                        $selectedText = "J'aime";
+                        break;
+                }
+                ?>
                 <div class="like-count">(<?php echo Like::countLikes($post['id']); ?>)</div>
-                <form method="POST" action="like">
-                    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-                    <input type="hidden" name="emoji" class="selected-emoji" value="👍">
-                    <button type="button" class="like-btn">👍 J'aime</button>
-                </form>
+                <form method="POST" action="like" class="like-form">
+                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                <!-- Utiliser une variable PHP pour afficher l'emoji sélectionné -->
+                <input type="hidden" name="emoji" class="selected-emoji" value="<?php echo isset($selectedEmoji) ? $selectedEmoji : '👍'; ?>">
+                <!-- Afficher l'emoji sélectionné ou "J'aime" par défaut -->
+                <button type="submit" class="<?php echo $selectedEmoji !== '👍' ? 'like-btn-custom' : 'like-btn'; ?>">
+                
+                    <?php echo isset($selectedEmoji) ? $selectedEmoji : '👍'; ?> 
+                    <?php echo isset($selectedText) ? $selectedText : 'J\'aime'; ?>
+                </button>
+
+                <!-- Conteneur des emojis -->
+                <div class="emoji-picker">
+                    <span class="emoji" data-emoji="👍" data-text="J'aime">👍</span>
+                    <span class="emoji" data-emoji="❤️" data-text="J'adore">❤️</span>
+                    <span class="emoji" data-emoji="😂" data-text="Haha">😂</span>
+                    <span class="emoji" data-emoji="😮" data-text="Waouh">😮</span>
+                    <span class="emoji" data-emoji="😢" data-text="Solidaire">😢</span>
+                    <span class="emoji" data-emoji="😡" data-text="Grrr">😡</span>
+                </div>
+            </form>
+
+
+
             </div>
             <button class="comment-toggle" data-post-id="<?php echo $post['id']; ?>">💬 Commenter</button>
         </div>

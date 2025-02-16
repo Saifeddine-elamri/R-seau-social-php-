@@ -13,25 +13,30 @@ class LikeController {
     public function likePost() {
         // Démarrer la session pour accéder aux données de session de l'utilisateur
         session_start();
-
-        // Vérification que la requête est bien de type POST et que l'ID du post est fourni
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'])) {
-            
-            // Récupérer l'ID du post et l'ID de l'utilisateur depuis la session
+    
+        // Vérification que la requête est bien de type POST, que l'ID du post est fourni et que l'emoji est sélectionné
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['post_id'], $_POST['emoji'])) {
+    
+            // Récupérer l'ID du post, l'ID de l'utilisateur et l'emoji sélectionné depuis le formulaire
             $post_id = $_POST['post_id'];
             $user_id = $_SESSION['user_id'];
-
-            // Appeler la méthode toggleLike pour ajouter ou retirer le like
-            Like::toggleLike($post_id, $user_id);
-
+            $emoji_type = $_POST['emoji']; // Emoji sélectionné
+            $selectedEmoji = $_POST['emoji'];  // Emoji sélectionné
+            $selectedText = $_POST['text']; 
+    
+            // Stocker l'emoji et le texte dans la session pour qu'ils soient accessibles dans la vue
+            // Appeler la méthode toggleLike pour ajouter ou retirer le like avec l'emoji
+            Like::toggleLike($post_id, $user_id, $emoji_type);
+    
             // Après l'action, rediriger l'utilisateur vers la liste des posts
             header("Location: /posts"); // Assurez-vous que l'URL de redirection est correcte (ajouter le slash avant 'posts' si nécessaire)
             exit(); // Arrêter l'exécution du script pour éviter tout comportement inattendu après la redirection
         } else {
-            // Si la requête n'est pas valide (ex: méthode GET ou post_id manquant), rediriger vers la page d'accueil ou posts
+            // Si la requête n'est pas valide (ex: méthode GET ou post_id ou emoji manquants), rediriger vers la page des posts
             header("Location: /posts");
             exit();
         }
     }
+    
 }
 ?>
