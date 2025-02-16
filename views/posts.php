@@ -240,9 +240,10 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                         <?php else: ?>
                             <strong><?php echo htmlspecialchars($commentUser['username']); ?></strong>
                         <?php endif; ?>                        
-                        <small><?php echo date("d M Y, H:i", strtotime($comment['created_at'])); ?></small>
                         <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
                     </div>
+                    <small class="comment-date"><?php echo date("d M Y, H:i", strtotime($comment['created_at'])); ?></small>
+
                 </div>
             <?php endforeach; ?>
         </div>

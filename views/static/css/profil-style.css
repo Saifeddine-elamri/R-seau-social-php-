@@ -171,7 +171,6 @@ h2 {
     font-weight: 400; /* Ajoute un poids de police modéré */
     line-height: 1.6; /* Améliore la lisibilité */
     color: #333; /* Couleur plus douce pour le confort visuel */
-    padding: 15px;
     margin-left: 0;
     text-align: justify; /* Justifie le texte pour un rendu plus propre */
 }
@@ -235,6 +234,15 @@ h2 {
     color: #444;
     text-align: left;
 }
+
+.comment-date {
+    font-size: 12px;        /* Taille de texte plus petite */
+    color: gray;            /* Couleur gris */
+    text-align: left;       /* Aligner à gauche */
+    display: block; 
+    margin-left: 20px;;
+}
+
 
 form textarea {
     width: 60%;
