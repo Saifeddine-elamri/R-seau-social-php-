@@ -22,8 +22,8 @@ return [
 
     // Routes de connexion et d'inscription
     '/logout' => ['controller' => 'AuthController', 'method' => 'logout'], // Se déconnecter
-    '/login' => ['controller' => 'LoginController', 'method' => 'showLoginForm'], // Afficher le formulaire de connexion
-    '/login_check' => ['controller' => 'LoginController', 'method' => 'login'], // Vérifier les identifiants et connecter l'utilisateur
+    '/login' => ['controller' => 'AuthController', 'method' => 'showLoginForm'], // Afficher le formulaire de connexion
+    '/login_check' => ['controller' => 'AuthController', 'method' => 'login'], // Vérifier les identifiants et connecter l'utilisateur
     '/register' => ['controller' => 'AuthController', 'method' => 'register'], // Inscription d'un utilisateur
 
     // Routes relatives aux messages
@@ -40,8 +40,4 @@ return [
     '/update-image' => ['controller' => 'ProfilController', 'method' => 'updateProfileImage'], // Mettre à jour l'image de profil
     '/update-profile' => ['controller' => 'ProfilController', 'method' => 'updateProfileInfo'], // Mettre à jour l'image de profil
 
-
-
-    // Route de test (optionnelle)
-    '/test' => ['controller' => 'TestController', 'method' => 'testProfileImage'], // Tester l'image de profil (si nécessaire)
 ];
