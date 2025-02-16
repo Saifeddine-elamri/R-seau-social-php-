@@ -21,8 +21,7 @@ class LikeController {
             $post_id = $_POST['post_id'];
             $user_id = $_SESSION['user_id'];
             $emoji_type = $_POST['emoji']; // Emoji sélectionné
-            $selectedEmoji = $_POST['emoji'];  // Emoji sélectionné
-            $selectedText = $_POST['text']; 
+
     
             // Stocker l'emoji et le texte dans la session pour qu'ils soient accessibles dans la vue
             // Appeler la méthode toggleLike pour ajouter ou retirer le like avec l'emoji
