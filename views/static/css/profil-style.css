@@ -8,18 +8,12 @@ body {
 
 /* Container */
 .container {
-    width: 95%;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    background: #f5f5f5;
     text-align: center;
 }
 
-.container:hover {
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-}
+
 
 
 /* Style pour le textarea */
@@ -158,11 +152,12 @@ h2 {
 
 /* Conteneur du post */
 .post {
+    width:45%;
     background: white;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-    margin-bottom: 15px;
+    margin: 15px auto;
 }
 
 /* Conteneur du post */
@@ -399,12 +394,14 @@ form button:hover {
 
 
 .post-image {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
+    width: calc(100% + 30px);  /* 100% + le padding du parent */
+    margin: 10px -15px;             /* Annule le padding du parent */
     border-radius: 10px;
     display: block;
+    object-fit: cover;
 }
+
+
 
 .file-upload {
     position: relative;
@@ -452,7 +449,7 @@ form button:hover {
     border: none;
     cursor: pointer;
     font-size: 16px;
-    padding: 5px 10px;
+    padding: 10px 15px;
     color: #1877f2;
     font-weight: bold;
     transition: 0.3s;
@@ -527,7 +524,7 @@ form button:hover {
 }
 
 .comment-form textarea {
-    width: 80%;
+    width: 100%;
     border-radius: 10px;
     padding: 5px;
     border: 1px solid #ccc;
@@ -722,11 +719,13 @@ form button:hover {
 
 /* Vidéo 100% responsive */
 .video-container video {
-    width: 100%;
-    height: auto;
+    width: 100%;    /* Prend 100% de la largeur du conteneur */
+    height: auto;   /* Conserve le ratio de la vidéo */
     display: block;
     border-radius: 12px;
+    object-fit: cover; /* Ajuste la vidéo pour remplir le conteneur */
 }
+
 
 /* Overlay avant lecture */
 .video-overlay {

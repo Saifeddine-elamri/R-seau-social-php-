@@ -27,7 +27,6 @@ header {
     justify-content: space-between;
     align-items: center;
     border-radius: 12px 12px 0 0;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 10;
 }

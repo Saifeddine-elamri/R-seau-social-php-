@@ -8,19 +8,13 @@ body {
 
 /* Container */
 .container {
-    width: 95%;
-    margin: 30px auto;
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    background: #f5f5f5;
     text-align: center;
 }
 
 
-.container:hover {
-    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
-}
+
 
 /* Headers */
 h1 {

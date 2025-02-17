@@ -19,7 +19,7 @@ function timeAgo($timestamp) {
     $years        = round($seconds / 31553280);     // value 31553280 is 365.25 days * 24 hours * 60 minutes * 60 sec
 
     if ($seconds <= 60) {
-        return "s";
+        return "Il y a quelques secondes";
     } else if ($minutes <= 60) {
         return ($minutes == 1) ? "1 m" : "$minutes m";
     } else if ($hours <= 24) {
