@@ -73,9 +73,12 @@ h2 {
 
 /* Style général pour le formulaire de publication */
 .new-post-form {
-    margin: 2rem 0;
+    width: 44%;
+    margin: 2rem auto;
     padding: 2rem;
     border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -642,11 +645,11 @@ form button:hover {
 
 /* Style du label (bouton pour uploader le fichier) */
 .upload-label {
-    color: white;
+    color: #555;
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 25px;
+    font-size: 18px;
     transition: background-color 0.3s ease;
 }
 

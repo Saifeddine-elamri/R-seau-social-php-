@@ -70,13 +70,13 @@ function timeAgo($timestamp) {
         <div class="file-upload-container">
             <!-- Icône pour l'image -->
             <label for="post_image" class="upload-label" title="Ajouter une image">
-                📷
+                📷 Photo
             </label>
             <input type="file" id="post_image" name="post_image" accept="image/*" class="file-input">
 
             <!-- Icône pour la vidéo -->
             <label for="post_video" class="upload-label" title="Ajouter une vidéo">
-                📹 
+                📹 Vidéo
             </label>
             <input type="file" id="post_video" name="post_video" accept="video/*" class="file-input">
 
