@@ -1,8 +1,9 @@
 <?php
 // Récupération des informations sur les likes et commentaires du post
-$selectedEmoji = Like::getEmojiTypeByPostId($post['id'], $_SESSION['user_id']) ?: '👍';
+$likeCount=Like::countLikes($post['id']);
 $commentCount = Comment::countCommentsByPostId($post['id']);
 $topEmojis = Like::getTopEmojisByPostId($post['id']);
+$selectedEmoji = Like::getUserEmojiForPost($post['id'], $_SESSION['user_id']) ?: '👍';
 
 // Définir le texte associé à l'emoji sélectionné
 switch ($selectedEmoji) {
@@ -24,7 +25,7 @@ switch ($selectedEmoji) {
             <?php foreach ($topEmojis as $emoji): ?>
                 <span><?php echo $emoji['emoji_type']; ?></span>
             <?php endforeach; ?>
-            <?php echo Like::countLikes($post['id']); ?>
+            <?php echo $likeCount; ?>
         <?php endif; ?>
     </div>
     <!-- Comptage des commentaires -->

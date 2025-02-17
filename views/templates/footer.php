@@ -33,9 +33,9 @@ footer nav a:hover {
 </style>
 
 <footer>
-    <p>&copy; 2025 Mon Site - Tous droits réservés.</p>
+    <p> 2025 Reseau </p>
     <nav>
-        <a href="privacy-policy.php">Politique de confidentialité</a> | 
-        <a href="terms-of-service.php">Conditions d'utilisation</a>
+        <a href="privacy-policy">Politique de confidentialité</a> | 
+        <a href="terms-of-service">Conditions d'utilisation</a>
     </nav>
 </footer>

@@ -35,4 +35,18 @@ function timeAgo($timestamp) {
 
     return "Il y a quelques secondes";
 }
+
+
+
+/**
+ * Fonction pour envoyer une erreur avec un code et un message.
+ *
+ * @param int $statusCode Code de statut HTTP.
+ * @param string $message Message d'erreur à afficher.
+ */
+function sendError($statusCode, $message) {
+    http_response_code($statusCode);
+    echo "<h1>Erreur $statusCode</h1><p>$message</p>";
+    exit();
+}
 ?>

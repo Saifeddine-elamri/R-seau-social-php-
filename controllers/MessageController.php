@@ -37,7 +37,7 @@ class MessageController {
         }
 
         // Inclure la vue des messages (contacts et messages)
-        include __DIR__ . '/../views/messages.php';
+        include __DIR__ . '/../views/messages/messages.php';
     }
 
     /**

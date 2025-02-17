@@ -1,17 +1,15 @@
+<!-- Formulaire de commentaire -->
+<form method="POST" action="comment" class="comment-form" id="comment-form-<?php echo $post['id']; ?>" style="display:none;">
+    <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+    <textarea name="comment_content" placeholder="Écrivez un commentaire..." required></textarea>
+    <button type="submit" name="comment_post">➤</button>
+</form>
+
 <?php
+// Récupérer tous les commentaires pour le post
 $comments = Comment::getCommentsByPostId($post['id']);
-foreach ($comments as $comment): 
-    $commentUser = User::getById($comment['user_id']);
-    $commentProfileImage = !empty($commentUser['profile_image']) 
-        ? '../uploads/profil/' . htmlspecialchars($commentUser['profile_image']) 
-        : '../uploads/default.png';
+foreach ($comments as $comment):
+    // Inclure le fichier comment-item.php pour chaque commentaire
+    include 'comment-item.php';
+endforeach;
 ?>
-    <div class="comment">
-        <img src="<?php echo $commentProfileImage; ?>" alt="Image de Profil Commentaire" class="comment-profile-pic">
-        <div class="comment-content">
-            <strong><?php echo htmlspecialchars($commentUser['first_name'] . ' ' . $commentUser['last_name']); ?></strong>
-            <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
-        </div>
-        <small class="comment-date"><?php echo timeAgo($comment['created_at']); ?></small>
-    </div>
-<?php endforeach; ?>

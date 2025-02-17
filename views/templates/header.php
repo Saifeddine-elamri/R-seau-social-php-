@@ -107,7 +107,16 @@ header {
 }
 
 
+.logout {
+    text-decoration: none;
+    color: inherit;
+    display: inline-block;
+}
 
+.nav-text {
+    display: block;
+    line-height: 2.5; /* Ajustez cette valeur pour obtenir l'espacement souhaité */
+}
 /* 📱 Responsive - Affichage Mobile */
 @media screen and (max-width: 768px) {
     .menu-toggle {
@@ -158,20 +167,24 @@ header {
 
         <!-- 📍 Navigation -->
         <nav class="nav-header">
-            <a href="posts">🏠 Accueil</a>
-            <a href="friends">👫 Amis</a>
-            <a href="contact">💬 Messages
-            <?php if ($newMessagesCount > 0): ?>
+        <a href="posts">
+            🏠
+            <span class="nav-text">Accueil</span>
+        </a>
+            <a href="friends">👫 <nav class="nav-text">Amis</nav></a>
+            <a href="contact">💬 <span class="nav-text">Messagerie             
+                <?php if ($newMessagesCount > 0): ?>
                 <span class="message-count">(<?= htmlspecialchars($newMessagesCount); ?>)</span>
-            <?php endif; ?>
+            <?php endif; ?></span>
             </a>
-            <a href="users">🌎 Tous les utilisateurs</a>
-            <a href="requests">🔔 Demandes d'amis
-            <?php if (Friend::countPendingRequests($_SESSION['user_id']) > 0): ?>
+            <a href="users">🌎 <span class="nav-text"> Utilisateurs </span></a>
+            <a href="requests">🔔 <span class="nav-text"> Demandes d'amis             
+                <?php if (Friend::countPendingRequests($_SESSION['user_id']) > 0): ?>
                     <span class="unread-count">(<?php echo Friend::countPendingRequests($_SESSION['user_id']); ?>)</span>
-                <?php endif; ?>
+                <?php endif; ?></span>
+
             </a>
-            <a href="logout" class="logout">🚪 Déconnexion</a>
+            <a href="logout" class="logout">🚪 <span class="nav-text">Déconnexion</span></a>
         </nav>
     </div>
 </header>

@@ -5,7 +5,8 @@ class Post {
     // Récupérer tous les posts
     // Cette méthode récupère tous les posts depuis la base de données, triés par date de création, du plus récent au plus ancien.
     public static function getAll() {
-        global $pdo;  // Accède à la variable globale $pdo pour interagir avec la base de données
+        // Accède à la variable globale $pdo pour interagir avec la base de données
+        global $pdo;  
         
         // Exécuter une requête pour récupérer tous les posts
         $stmt = $pdo->query("SELECT * FROM posts ORDER BY created_at DESC");

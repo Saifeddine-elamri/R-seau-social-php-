@@ -32,7 +32,11 @@ return [
 
     // Routes de posts et interactions
     '/like' => ['controller' => 'LikeController', 'method' => 'likePost'], // Aimer un post
+    '/like-comment' => ['controller' => 'LikeController', 'method' => 'likeComment'], // Aimer un commentaire
     '/comment' => ['controller' => 'CommentController', 'method' => 'addComment'], // Ajouter un commentaire
+    '/reply' => ['controller' => 'CommentController', 'method' => 'addReply'], // Ajouter un commentaire
+
+
 
     // Routes relatives au profil
     '/profil-info' => ['controller' => 'ProfilController', 'method' => 'showProfileInfo'], // Afficher les informations du profil

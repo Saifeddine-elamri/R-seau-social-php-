@@ -38,14 +38,25 @@ class Comment {
         // Retourner les résultats sous forme de tableau associatif
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
-        public static function countCommentsByPostId($postId) {
-            // Utilisation de la base de données pour compter les commentaires
-            // Exemple : SELECT COUNT(*) FROM comments WHERE post_id = :postId
-            global $pdo;
-            $stmt = $pdo->prepare("SELECT COUNT(*) FROM comments WHERE post_id = ?");
-            $stmt->execute([$postId]);
-            return $stmt->fetchColumn();
-        }
+
+    public static function countCommentsByPostId($postId) {
+        // Utilisation de la base de données pour compter les commentaires
+        // Exemple : SELECT COUNT(*) FROM comments WHERE post_id = :postId
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT COUNT(*) FROM comments WHERE post_id = ?");
+        $stmt->execute([$postId]);
+        return $stmt->fetchColumn();
+    }
+
+    public static function countLikesByCommentId($commentId) {
+        global $pdo;
+        $query = "SELECT COUNT(*) FROM comment_likes WHERE comment_id = :comment_id";
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':comment_id', $commentId);
+        $stmt->execute();
+        return $stmt->fetchColumn();
+    }
+    
     
     
 

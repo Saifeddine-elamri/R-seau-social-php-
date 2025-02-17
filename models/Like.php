@@ -53,7 +53,7 @@ class Like {
         return (int) $stmt->fetch()['like_count'];
     }
     
-    public static function getEmojiTypeByPostId(int $post_id, int $user_id) {
+    public static function getUserEmojiForPost(int $post_id, int $user_id) {
         global $pdo;
 
         // Récupérer l'emoji associé au post et à l'utilisateur

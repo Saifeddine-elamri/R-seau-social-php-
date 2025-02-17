@@ -2,6 +2,7 @@
 
 // Inclusion du modèle Like pour pouvoir utiliser la fonction liée aux likes
 require_once __DIR__ . '/../models/Like.php';
+require_once __DIR__ . '/../models/LikeComment.php';
 
 class LikeController {
 
@@ -36,6 +37,54 @@ class LikeController {
             exit();
         }
     }
+
+
+    /**
+     * Gère l'action de liker un commentaire ou de supprimer un like sur un commentaire.
+     * Cette méthode est appelée lorsque l'utilisateur interagit avec le bouton "J'aime" d'un commentaire.
+     * Elle bascule l'état du like (ajoute ou retire le like) selon l'état actuel de celui-ci.
+     */
+    public function likeComment() {
+        session_start(); // Démarrer la session pour accéder aux données de session
+
+        // Vérifier que la requête est de type POST, et que l'ID du commentaire et de l'emoji sont fournis
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_id'], $_POST['emoji'])) {
+
+            // Récupérer les informations nécessaires : ID du commentaire, ID de l'utilisateur, emoji sélectionné
+            $comment_id = $_POST['comment_id'];
+            $user_id = $_SESSION['user_id'];
+            $emoji_type = $_POST['emoji']; // Emoji sélectionné
+
+            // Appeler la méthode toggleLike pour ajouter ou retirer le like sur le commentaire
+            LikeComment::toggleLike($comment_id, $user_id, $emoji_type);
+
+            // Après l'action, rediriger l'utilisateur vers la page du post auquel le commentaire appartient
+            header("Location: /post/$comment_id");  // Assurez-vous de rediriger vers le bon endroit
+            exit(); // Arrêter l'exécution du script après la redirection
+        } else {
+            // Si la requête n'est pas valide, rediriger vers la page du post
+            header("Location: /posts");
+            exit();
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
 }
 ?>

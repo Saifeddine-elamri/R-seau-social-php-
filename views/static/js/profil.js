@@ -10,12 +10,12 @@ document.addEventListener("DOMContentLoaded", function() {
             } else {
                 commentForm.style.display = "flex";
             }
+            const commentsSection = document.getElementById('comments-' + postId);            
+            // Bascule la classe 'hidden'
+            commentsSection.classList.toggle('hidden');
         });
     });
 });
-
-
-
 
 
 // Fonction pour afficher les noms des fichiers sans écraser
@@ -88,12 +88,3 @@ document.querySelectorAll('.emoji').forEach(emoji => {
     });
 });
 
-document.querySelectorAll('.comment-toggle').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const postId = this.getAttribute('data-post-id');
-        const commentsSection = document.getElementById('comments-' + postId);
-        
-        // Bascule la classe 'hidden'
-        commentsSection.classList.toggle('hidden');
-    });
-});

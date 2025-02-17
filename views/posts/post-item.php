@@ -41,6 +41,7 @@ $postUserProfileImage = !empty($postUser['profile_image'])
         </video>
     <?php endif; ?>
 
+    
     <!-- Comptage et actions (Likes & Commentaires) -->
     <?php include 'views/posts/post-interactions.php'; ?>
 
