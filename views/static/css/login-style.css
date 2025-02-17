@@ -122,3 +122,11 @@ body {
     }
 }
 
+a {
+    color: #3498db;  /* Couleur bleue pour le lien */
+    text-decoration: none;  /* Retire la décoration de texte (souligné) */
+}
+
+a:hover {
+    text-decoration: underline;  /* Ajoute un souligné lors du survol du lien */
+}

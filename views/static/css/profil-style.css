@@ -19,11 +19,11 @@ body {
 /* Style pour le textarea */
 .post-content {
     width: 60%; /* Pour que le textarea prenne toute la largeur disponible */
-    height: 70px; /* Hauteur réduite */
+    height: 40px; /* Hauteur réduite */
     padding: 10px; /* Espace interne autour du texte */
     font-size: 14px; /* Taille du texte */
     border: 2px solid #ccc; /* Bordure légère et subtile */
-    border-radius: 8px; /* Coins arrondis pour un effet plus doux */
+    border-radius: 15px; /* Coins arrondis pour un effet plus doux */
     background-color: #f9f9f9; /* Fond gris clair */
     color: #333; /* Couleur du texte */
     box-sizing: border-box; /* Inclut les padding et bordure dans les dimensions */
@@ -45,7 +45,7 @@ body {
     display: flex;
     align-items: center; /* Aligner l'image et le texte au top */
     justify-content: center; /* Centrer horizontalement */
-
+    gap:12px;
     margin-bottom: 15px;
 }
 
@@ -93,6 +93,7 @@ h2 {
 
 /* Conteneur pour les boutons de téléchargement */
 .file-upload-container {
+    margin-top: 10px;
     display: flex;
     gap: 1.5rem;
     margin-bottom: 1.5rem;

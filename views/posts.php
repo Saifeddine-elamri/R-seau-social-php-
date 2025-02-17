@@ -66,18 +66,20 @@ function timeAgo($timestamp) {
             <!-- Zone de texte pour le contenu du post -->
             <textarea name="content" placeholder="Quoi de neuf..." required class="post-content"></textarea>
         </div> <!-- Conteneur pour les boutons de téléchargement de fichiers -->
+        <hr class="post-separator">
 
         <div class="file-upload-container">
+
+            <!-- Icône pour la vidéo -->
+            <label for="post_video" class="upload-label" title="Ajouter une vidéo">
+                📹 Vidéo
+            </label>
             <!-- Icône pour l'image -->
             <label for="post_image" class="upload-label" title="Ajouter une image">
                 📷 Photo
             </label>
             <input type="file" id="post_image" name="post_image" accept="image/*" class="file-input">
 
-            <!-- Icône pour la vidéo -->
-            <label for="post_video" class="upload-label" title="Ajouter une vidéo">
-                📹 Vidéo
-            </label>
             <input type="file" id="post_video" name="post_video" accept="video/*" class="file-input">
 
             <!-- Affichage du nom du fichier sélectionné -->

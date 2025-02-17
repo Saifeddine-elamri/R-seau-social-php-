@@ -20,12 +20,7 @@ body {
     text-align: center;  /* Centrer le texte à l'intérieur du conteneur */
 }
 
-/* Style pour le titre */
-h1 {
-    font-size: 24px;  /* Taille de police du titre */
-    margin-bottom: 20px;  /* Espacement sous le titre */
-    color: #333;  /* Couleur du texte en gris foncé */
-}
+
 
 /* Style pour les champs du formulaire */
 .input-group {
@@ -33,38 +28,39 @@ h1 {
 }
 
 .input-group input {
-    width: 100%;  /* Les champs de saisie occupent toute la largeur du conteneur */
-    padding: 12px;  /* Espacement interne pour les champs */
-    font-size: 16px;  /* Taille de la police dans les champs */
-    border: 1px solid #ccc;  /* Bordure grise claire autour des champs */
-    border-radius: 5px;  /* Coins arrondis des champs */
-    box-sizing: border-box;  /* S'assure que le padding est inclus dans la largeur totale */
-    background-color: #f9f9f9;  /* Fond gris clair pour les champs */
-    transition: border-color 0.3s ease;  /* Transition douce pour le changement de couleur de bordure */
+    width: 90%;
+    padding: 0.75rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
 }
 
 /* Effet de focus pour les champs */
 .input-group input:focus {
-    border-color: #3498db;  /* Couleur bleue de la bordure lorsque le champ est en focus */
+    border-color: #007bff;
     outline: none;  /* Retire le contour par défaut du navigateur */
 }
 
 /* Style pour le bouton d'inscription */
 .button-group button {
-    width: 100%;  /* Le bouton occupe toute la largeur du conteneur */
-    padding: 14px;  /* Espacement interne du bouton */
-    background-color: #3498db;  /* Fond bleu pour le bouton */
-    color: white;  /* Texte en blanc */
-    border: none;  /* Retire la bordure par défaut du bouton */
-    border-radius: 5px;  /* Coins arrondis du bouton */
-    font-size: 16px;  /* Taille de la police du texte du bouton */
-    cursor: pointer;  /* Modifie le curseur pour indiquer qu'il est cliquable */
-    transition: background-color 0.3s ease;  /* Transition douce pour l'effet de survol */
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
 
 /* Effet de hover pour le bouton */
 .button-group button:hover {
-    background-color: #2980b9;  /* Couleur plus foncée au survol du bouton */
+    background-color: #0056b3;
+    transform: scale(1.02);
 }
 
 /* Style pour le lien "Login" */
