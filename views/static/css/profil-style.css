@@ -189,10 +189,21 @@ h2 {
     background-color: #000; /* Cercle noir si pas d'image */
 }
 
+.post-create
+{
+    color: #555;
+    font-size:14px;
+
+}
+
 /* Commentaires */
 .comments {
     margin-top: 15px;
 }
+.hidden {
+    display: none;
+}
+
 
 .comment {
     display: flex;
@@ -279,14 +290,37 @@ form button:hover {
     align-items: center;
     justify-content: center;
 }
+
+/* count container */
+.count-container {
+    display:flex;
+    gap:80px;
+}
+
 /* Nombre de likes */
 .like-count {
     font-size: 16px;
     color: #555;
     font-weight: bold;
     margin-bottom: 5px;
-    text-align: left;
 }
+
+/* Nombre de likes */
+.commentaire-count {
+    font-size: 16px;
+    color: #555;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-top: 20px;
+}
+
+
+.post-separator {
+    border: 0;
+    border-top: 1px solid #ccc;  /* Gris clair pour la ligne */
+    margin: 0px 0;  /* Ajouter un peu d'espace avant et après la ligne */
+}
+
 
 /* Bouton Like */
 .like-btn-custom {

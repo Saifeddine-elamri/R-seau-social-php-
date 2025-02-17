@@ -38,5 +38,17 @@ class Comment {
         // Retourner les résultats sous forme de tableau associatif
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+        public static function countCommentsByPostId($postId) {
+            // Utilisation de la base de données pour compter les commentaires
+            // Exemple : SELECT COUNT(*) FROM comments WHERE post_id = :postId
+            global $pdo;
+            $stmt = $pdo->prepare("SELECT COUNT(*) FROM comments WHERE post_id = ?");
+            $stmt->execute([$postId]);
+            return $stmt->fetchColumn();
+        }
+    
+    
+
+
 }
 ?>

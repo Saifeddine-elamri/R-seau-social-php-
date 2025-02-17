@@ -6,8 +6,36 @@ if (!isset($_SESSION['user_id'])) {
 }
 $User = User::getById($_SESSION['user_id']);
 $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . htmlspecialchars($User['profile_image']) : '../uploads/default.png';
+// Fonction pour calculer le temps relatif
+function timeAgo($timestamp) {
+    $currentTime = time();
+    $timeDifference = $currentTime - strtotime($timestamp);
+    $seconds = $timeDifference;
+    $minutes      = round($seconds / 60);           // value 60 is seconds
+    $hours        = round($seconds / 3600);         // value 3600 is 60 minutes * 60 sec
+    $days         = round($seconds / 86400);        // value 86400 is 24 hours * 60 minutes * 60 sec
+    $weeks        = round($seconds / 604800);       // value 604800 is 7 days * 24 hours * 60 minutes * 60 sec
+    $months       = round($seconds / 2629440);      // value 2629440 is ((365+365+365+365)/4/12) days * 24 hours * 60 minutes * 60 sec
+    $years        = round($seconds / 31553280);     // value 31553280 is 365.25 days * 24 hours * 60 minutes * 60 sec
 
+    if ($seconds <= 60) {
+        return "s";
+    } else if ($minutes <= 60) {
+        return ($minutes == 1) ? "1 m" : "$minutes m";
+    } else if ($hours <= 24) {
+        return ($hours == 1) ? "1 h" : "$hours h";
+    } else if ($days <= 7) {
+        return ($days == 1) ? "Hier" : "$days j";
+    } else if ($weeks <= 4.3) { // 4.3 == 30/7
+        return ($weeks == 1) ? "1 semaine" : "$weeks sem";
+    } else if ($months <= 12) {
+        return ($months == 1) ? "1 mois" : "$months mois";
+    } else {
+        return ($years == 1) ? "1 an" : "$years ans";
+    }
+}
 ?>
+
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -67,12 +95,13 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
 
 
         <!-- Affichage des publications -->
-        <h2></h2>
         <?php foreach ($posts as $post): ?>
             <?php
             // Récupérer les informations de l'utilisateur qui a fait le post
             $postUser = User::getById($post['user_id']);
             $postUserProfileImage = !empty($postUser['profile_image']) ? '../uploads/profil/' . htmlspecialchars($postUser['profile_image']) : '../uploads/default.png';
+            $commentCount = Comment::countCommentsByPostId($post['id']);
+
             ?>
 
             <div class="post">
@@ -86,7 +115,7 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                         <strong><?php echo htmlspecialchars($postUser['username']); ?></strong>
                     <?php endif; ?>
 
-                    <small><?php echo $post['created_at']; ?></small>
+                    <span class="post-create"><?php echo timeAgo($post['created_at']); ?></span>
                     </div>
                 </div>
                 <p><?php echo nl2br(htmlspecialchars($post['content'])); ?></p>
@@ -147,7 +176,7 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
 
                 $topEmojis = Like::getTopEmojisByPostId($post['id']);
                 ?>
-
+            <div class="count-container">
             <div class="like-count">
 
                 <?php if ($topEmojis): ?>
@@ -158,6 +187,15 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                     <?php echo Like::countLikes($post['id']); ?>
                 <?php endif; ?>
             </div>
+            <div class="commentaire-count">
+
+            <?php if ($commentCount>0): ?>
+                <span><?php echo $commentCount; ?> commentaires</span>
+            <?php endif; ?>
+            </div>
+            </div>
+            <!-- Ajout d'un trait avant les actions -->
+            <hr class="post-separator">
             <div class="post-actions">
             <div class="like-container">
                
@@ -189,11 +227,11 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
             <!-- Formulaire de commentaire -->
             <form method="POST" action="comment" class="comment-form" id="comment-form-<?php echo $post['id']; ?>" style="display:none;">
                 <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
-                <textarea name="comment_content" placeholder="Écrire un commentaire..." required></textarea>
-                <button type="submit" name="comment_post">Commenter</button>
+                <textarea name="comment_content" placeholder="Écrivez un commentaire..." required></textarea>
+                <button type="submit" name="comment_post">➤</button>
             </form>
 
-            <div class="comments">
+            <div class="comments hidden" id="comments-<?php echo $post['id']; ?>">
             <?php
                 $comments = Comment::getCommentsByPostId($post['id']);
             ?>
@@ -211,7 +249,7 @@ $UserProfileImage = !empty($User['profile_image']) ? '../uploads/profil/' . html
                         <?php endif; ?>                        
                         <p><?php echo nl2br(htmlspecialchars($comment['content'])); ?></p>
                     </div>
-                    <small class="comment-date"><?php echo date("d M Y, H:i", strtotime($comment['created_at'])); ?></small>
+                    <small class="comment-date"><?php echo timeAgo($comment['created_at']); ?></small>
 
                 </div>
             <?php endforeach; ?>

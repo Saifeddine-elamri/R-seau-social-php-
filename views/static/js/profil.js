@@ -79,3 +79,13 @@ document.querySelectorAll('.emoji').forEach(emoji => {
         // Soumettre automatiquement le formulaire
     });
 });
+
+document.querySelectorAll('.comment-toggle').forEach(function(button) {
+    button.addEventListener('click', function() {
+        const postId = this.getAttribute('data-post-id');
+        const commentsSection = document.getElementById('comments-' + postId);
+        
+        // Bascule la classe 'hidden'
+        commentsSection.classList.toggle('hidden');
+    });
+});
