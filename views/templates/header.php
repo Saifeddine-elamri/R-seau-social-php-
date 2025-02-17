@@ -1,9 +1,13 @@
 <?php
+require_once __DIR__ . '/../../models/Message.php';
+require_once __DIR__ . '/../../models/Friend.php';
+
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
+$newMessagesCount = Message::getUnreadCount($_SESSION['user_id']);
 
 // Récupération des informations de l'utilisateur
 $userId = $_SESSION['user_id'];
@@ -157,9 +161,17 @@ header {
         <nav class="nav-header">
             <a href="posts">🏠 Accueil</a>
             <a href="friends">👫 Amis</a>
-            <a href="contact">💬 Messages</a>
+            <a href="contact">💬 Messages
+            <?php if ($newMessagesCount > 0): ?>
+                <span class="message-count">(<?= htmlspecialchars($newMessagesCount); ?>)</span>
+            <?php endif; ?>
+            </a>
             <a href="users">🌎 Tous les utilisateurs</a>
-            <a href="requests">🔔 Demandes d'amis</a>
+            <a href="requests">🔔 Demandes d'amis
+            <?php if (Friend::countPendingRequests($_SESSION['user_id']) > 0): ?>
+                    <span class="unread-count">(<?php echo Friend::countPendingRequests($_SESSION['user_id']); ?>)</span>
+                <?php endif; ?>
+            </a>
             <a href="logout" class="logout">🚪 Déconnexion</a>
         </nav>
     </div>

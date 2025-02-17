@@ -91,5 +91,40 @@ class Message {
         // Retourne null si l'upload échoue ou si le fichier a un format invalide
         return null;
     }
+  
+    public static function getUnreadCount($userId) {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT COUNT(*) AS unread_count FROM messages WHERE receiver_id = ? AND is_read = 0");
+        $stmt->execute([$userId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['unread_count'];
+    }
+
+    public static function countUnreadMessages($contactId, $userId) {
+        global $pdo;    
+        $stmt = $pdo->prepare("
+            SELECT COUNT(*) as unread_count 
+            FROM messages 
+            WHERE sender_id = ? 
+              AND receiver_id = ? 
+              AND is_read = 0
+        ");
+        $stmt->execute([$contactId, $userId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result['unread_count'] ?? 0;
+    }
+    
+    
+    public static function markAsRead($contactId, $userId) {
+        global $pdo;
+        
+        // Mettre à jour tous les messages reçus de ce contact comme lus
+        $stmt = $pdo->prepare("UPDATE messages SET is_read = 1 WHERE sender_id = ? AND receiver_id = ? AND is_read = 0");
+        $stmt->execute([$contactId, $userId]);
+    }
+    
+    
+    
 }
 ?>

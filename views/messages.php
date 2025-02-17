@@ -36,7 +36,13 @@
             <?php foreach ($contacts as $contact): ?>
                 <a href="?contact_id=<?php echo $contact['id']; ?>" class="contact-card">
                     <img src="<?php echo !empty($contact['profile_image']) ? 'uploads/profil/' . $contact['profile_image'] : 'uploads/default.png'; ?>" class="contact-pic">
-                    <span><?php echo htmlspecialchars($contact['username']); ?></span>
+                    <span>
+                    <?php echo htmlspecialchars($contact['username']); ?>
+                    <?php if (Message::countUnreadMessages($contact['id'], $user_id) > 0): ?>
+                        <span class="unread-badge">(<?php echo Message::countUnreadMessages($contact['id'], $user_id); ?>)</span>
+                    <?php endif; ?>
+                
+                    </span>
                 </a>
             <?php endforeach; ?>
         <?php endif; ?>
@@ -70,6 +76,7 @@
         <?php if (!empty($messages)): ?>
             <div class="messages">
                 <?php foreach ($messages as $message): ?>
+                <?php Message::markAsRead($selected_contact, $userId); ?>
                     <div class="message <?php echo $message['sender_id'] == $user_id ? 'sent' : 'received'; ?>">
                         <img src="<?php echo !empty($message['sender_image']) ? 'uploads/profil/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
                         <div class="message-content">

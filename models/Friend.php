@@ -100,5 +100,23 @@ class Friend {
         return $stmt ? true : false;  // Retourne true si la suppression a réussi, sinon false.
     }
 
+
+    public static function countPendingRequests($userId) {
+        global $pdo;   
+        // Requête pour compter les demandes d'amis avec le statut "pending" où l'utilisateur est le destinataire
+        $stmt = $pdo->prepare("
+            SELECT COUNT(*) as request_count 
+            FROM friends 
+            WHERE friend_id = ? 
+            AND status = 'pending'
+        ");
+        $stmt->execute([$userId]);
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        
+        return $result['request_count'] ?? 0; // Retourner le nombre de requêtes en attente
+    }
+    
+    
+
 }
 ?>
