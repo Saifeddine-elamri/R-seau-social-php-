@@ -69,9 +69,17 @@ document.querySelectorAll('.emoji').forEach(emoji => {
         // Mettre à jour l'input caché avec l'emoji sélectionné dans ce formulaire
         form.querySelector('.selected-emoji').value = this.dataset.emoji;
 
-        // Mettre à jour le texte du bouton dans ce formulaire
-        form.querySelector('.like-btn').innerHTML = `${this.dataset.emoji} ${this.dataset.text}`;
-            // Récupérer l'emoji et le texte à partir des attributs de l'élément cliqué
+            // Mettre à jour le texte du bouton dans ce formulaire
+        const likeButton = form.querySelector('.like-btn');
+        const likeButtonCustom = form.querySelector('.like-btn-custom');
+
+        if (likeButton) {
+                likeButton.innerHTML = `${this.dataset.emoji} ${this.dataset.text}`;
+        }
+        if (likeButtonCustom) {
+            likeButtonCustom.innerHTML = `${this.dataset.emoji} ${this.dataset.text}`;
+    }
+        // Récupérer l'emoji et le texte à partir des attributs de l'élément cliqué
 
         form.submit();
 

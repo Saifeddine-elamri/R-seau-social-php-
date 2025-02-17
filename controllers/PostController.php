@@ -15,7 +15,7 @@ class PostController {
 
         
         // Afficher la vue des posts
-        require_once __DIR__ . '/../views/posts.php';
+        require_once __DIR__ . '/../views/posts/index.php';
     }
 
     /**
