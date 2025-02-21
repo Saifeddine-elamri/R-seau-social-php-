@@ -2,6 +2,7 @@
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Friend.php';
 require_once __DIR__ . '/../core/View.php'; 
+require_once __DIR__ . '/../core/Redirect.php'; 
 
 class FriendController {
 
@@ -11,7 +12,7 @@ class FriendController {
     public function index() {
         // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user_id'])) {
-            header("Location: login");
+            Redirect::to("Location: login");
             exit();
         }
 
@@ -46,7 +47,7 @@ class FriendController {
         Friend::removeFriend($user_id, $friend_id);
 
         // Rediriger vers la page des amis après suppression
-        header("Location: friends");
+        Redirect::to("Location: friends");
         exit();
     }
 
@@ -78,14 +79,14 @@ class FriendController {
     public function acceptRequest() {
         // Vérifier si l'utilisateur est connecté
         if (!isset($_SESSION['user_id'])) {
-            header("Location: login.php");
+            Redirect::to("Location: login.php");
             exit();
         }
 
         // Vérifier si l'ID de l'ami est fourni dans le formulaire
         if (empty($_POST['friend_id'])) {
             // Si l'ID de l'ami est absent, rediriger l'utilisateur
-            header("Location: /requests");
+            Redirect::to("Location: /requests");
             exit();
         }
 
@@ -99,7 +100,7 @@ class FriendController {
         // Vérifier si la demande a été acceptée avec succès
         if ($result) {
             // Rediriger vers la page des demandes d'amis après l'acceptation
-            header("Location: /requests");
+            Redirect::to("Location: /requests");
             exit();
         } else {
             // Afficher une erreur si l'acceptation a échoué (par exemple, demande non trouvée ou déjà acceptée)
