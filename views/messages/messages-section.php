@@ -24,12 +24,12 @@
                     <img src="<?php echo !empty($message['sender_image']) ? 'uploads/profil/' . $message['sender_image'] : '../uploads/default.png'; ?>" class="message-pic">
                     <div class="message-content">
                         <p><?php echo nl2br(htmlspecialchars($message['message'])); ?></p>
-                        <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
                         <?php if (!empty($message['image'])): ?>
                             <div class="message-image">
                                 <img src="uploads/<?php echo htmlspecialchars($message['image']); ?>" alt="Image" class="uploaded-image">
                             </div>
                         <?php endif; ?>
+                        <small><?php echo date('F j, Y, g:i a', strtotime($message['created_at'])); ?></small>
                     </div>
                 </div>
             <?php endforeach; ?>

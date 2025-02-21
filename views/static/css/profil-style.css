@@ -19,7 +19,7 @@ body {
 /* Style pour le textarea */
 .post-content {
     width: 60%; /* Pour que le textarea prenne toute la largeur disponible */
-    height: 40px; /* Hauteur réduite */
+    height: 45px; /* Hauteur réduite */
     padding: 10px; /* Espace interne autour du texte */
     font-size: 14px; /* Taille du texte */
     border: 2px solid #ccc; /* Bordure légère et subtile */

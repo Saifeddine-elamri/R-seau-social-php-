@@ -1,0 +1,82 @@
+/* Style général pour le formulaire de publication */
+.new-post-form {
+    width: 44%;
+    margin: 2rem auto;
+    padding: 2rem;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-title {
+    margin-bottom: 1.5rem;
+    font-size: 1.75rem;
+    color: #333;
+    text-align: center;
+    font-weight: 600;
+}
+
+
+/* Conteneur pour les boutons de téléchargement */
+.file-upload-container {
+    margin-top: 10px;
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style des icônes de téléchargement */
+.upload-label {
+    cursor: pointer;
+    font-size: 1.5rem;
+    color: #666;
+    transition: color 0.3s ease, transform 0.2s ease;
+    background: none; /* Suppression de l'arrière-plan */
+    border: none; /* Suppression de la bordure */
+    padding: 0; /* Suppression du padding */
+}
+
+.upload-label:hover {
+    transform: scale(1.1); /* Légère augmentation de la taille au survol */
+}
+
+.upload-label:active {
+    transform: scale(1);
+}
+
+/* Masquer les inputs de fichier */
+.file-input {
+    display: none;
+}
+
+/* Affichage du nom du fichier */
+.file-name-display {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    font-style: italic;
+}
+
+/* Bouton de soumission */
+.submit-button {
+    padding: 1rem;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.submit-button:hover {
+    transform: translateY(-2px);
+}
+
+.submit-button:active {
+    transform: translateY(0);
+}

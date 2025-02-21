@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Friend.php';
+require_once __DIR__ . '/../core/View.php'; 
 
 class FriendController {
 
@@ -21,7 +22,9 @@ class FriendController {
         $friends = Friend::getFriends($user_id);
 
         // Afficher la vue des amis
-        require_once __DIR__ . '/../views/friends.php';
+        View::render('friends', ['user_id' => $user_id ,
+                                 'friends' => $friends]);
+
     }
 
     /**
@@ -64,7 +67,9 @@ class FriendController {
         $requests = Friend::getPendingRequests($user_id);
 
         // Afficher la vue des demandes d'amis
-        require_once __DIR__ . '/../views/friend-requests.php';
+        View::render('friend-requests', ['user_id' => $user_id ,
+                                         'requests' => $requests]);
+                                            
     }
 
     /**

@@ -3,6 +3,7 @@ require_once __DIR__ . '/../models/Post.php';
 require_once __DIR__ . '/../models/User.php';
 require_once __DIR__ . '/../models/Like.php';
 require_once __DIR__ . '/../models/Comment.php';
+require_once __DIR__ . '/../core/View.php'; 
 
 class PostController {
 
@@ -15,7 +16,7 @@ class PostController {
 
         
         // Afficher la vue des posts
-        require_once __DIR__ . '/../views/posts/index.php';
+        View::render('posts/index', ['posts' => $posts]);
     }
 
     /**

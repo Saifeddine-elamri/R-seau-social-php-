@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../core/View.php'; 
 
 class ProfilController
 {
@@ -16,7 +17,8 @@ class ProfilController
         $user = User::getById($user_id);
 
         // Afficher la vue avec les informations du profil
-        require_once __DIR__ . '/../views/profilInfo.php';
+        View::render('profilInfo', ['user' => $user]);
+
     }
 
     /**

@@ -8,6 +8,7 @@ return [
     '/add-post' => ['controller' => 'PostController', 'method' => 'addPost'], // Ajouter un nouveau post
     '/friends' => ['controller' => 'FriendController', 'method' => 'index'], // Liste des amis
     '/contact' => ['controller' => 'MessageController', 'method' => 'index'], // Messages (contact)
+    
 
     // Routes relatives aux utilisateurs
     '/users' => ['controller' => 'UserController', 'method' => 'showAllUsers'], // Liste des utilisateurs

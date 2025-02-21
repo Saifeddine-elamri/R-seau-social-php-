@@ -1,27 +1,23 @@
 <?php
 require_once __DIR__ . '/../models/Message.php';
 require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../core/View.php'; 
+// Inclusion des fonctions utilitaires
+require_once __DIR__ . '/../includes/utils.php';
+
 
 class MessageController {
 
-    /**
-     * Vérifie si l'utilisateur est connecté
-     * Redirige vers la page de connexion si non connecté
-     */
-    private function checkLogin() {
-        if (!isset($_SESSION['user_id'])) {
-            header("Location: login");
-            exit();
-        }
-    }
+
 
     /**
      * Affiche la liste des contacts et des messages
      */
     public function index() {
-        $this->checkLogin(); // Vérification de la connexion
-
+        // Vérification de l'authentification sinon redirection
+        isAuthenticated();
         // Récupérer l'ID de l'utilisateur connecté
+        
         $user_id = $_SESSION['user_id'];
 
         // Récupérer la liste des contacts de l'utilisateur
@@ -37,14 +33,20 @@ class MessageController {
         }
 
         // Inclure la vue des messages (contacts et messages)
-        include __DIR__ . '/../views/messages/messages.php';
+        View::render('messages/messages', ['messages' => $messages ,
+                                            'contacts' => $contacts ,
+                                            'user_id' => $user_id ,
+                                             'selected_contact'  =>  $selected_contact
+                                        
+                                        ]);
+
     }
 
     /**
      * Envoie un message à un contact
      */
     public function sendMessage() {
-        $this->checkLogin(); // Vérification de la connexion
+        isAuthenticated();
 
         // Récupérer l'ID de l'utilisateur connecté et l'ID du destinataire
         $user_id = $_SESSION['user_id'];
