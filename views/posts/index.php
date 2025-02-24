@@ -17,6 +17,8 @@ $UserProfileImage = getUserProfileImage($User);
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fils d'actualités</title>
     <link rel="stylesheet" type="text/css" href="views/static/css/profil-style.css">
+    <link rel="stylesheet" type="text/css" href="views/static/css/posts/comment-item.css">
+
     <!-- Ajout de la favicon -->
     <link rel="icon" type="image/jpg" href="uploads/logo.jpg">
 </head>
@@ -42,5 +44,7 @@ $UserProfileImage = getUserProfileImage($User);
 </div>
 
 <script src="views/static/js/profil.js"></script>
+<script src="views/static/js/posts/comment-item.js"></script>
+
 </body>
 </html>

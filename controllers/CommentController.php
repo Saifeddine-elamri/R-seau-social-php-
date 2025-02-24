@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Comment.php';
 require_once __DIR__ . '/../models/CommentReply.php';
+require_once __DIR__ . '/../core/Redirect.php'; 
 
 class CommentController {
 
@@ -48,11 +49,11 @@ class CommentController {
         }
 
         // Vérifier si le formulaire est soumis en méthode POST et si les paramètres nécessaires sont présents
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_id'], $_POST['reply_content'])) {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['parent_comment_id'], $_POST['reply_content'])) {
             
             // Récupérer les données du formulaire et les nettoyer
             $userId = $_SESSION['user_id'];  // ID de l'utilisateur connecté
-            $commentId = intval($_POST['comment_id']);  // ID du commentaire auquel on répond (s'assurer que c'est un entier)
+            $commentId = intval($_POST['parent_comment_id']);  // ID du commentaire auquel on répond (s'assurer que c'est un entier)
             $content = trim($_POST['reply_content']);  // Contenu de la réponse (enlever les espaces superflus)
 
             // Valider que le contenu de la réponse n'est pas vide
@@ -65,16 +66,10 @@ class CommentController {
             }
 
             // Rediriger l'utilisateur vers la page précédente après avoir ajouté la réponse
-            header("Location: " . $_SERVER['HTTP_REFERER']);
+            header("Location: /posts");
             exit();
         }
     }
-
-
-
-
-
-
 
 
 }

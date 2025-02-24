@@ -6,6 +6,7 @@ require_once __DIR__ . '/../models/Comment.php';
 require_once __DIR__ . '/../core/View.php'; 
 require_once __DIR__ . '/../core/Session.php'; 
 require_once __DIR__ . '/../core/Redirect.php'; 
+require_once __DIR__ . '/../models/CommentReply.php';
 
 class PostController {
 
