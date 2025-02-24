@@ -30,6 +30,7 @@ return [
     // Routes relatives aux messages
     '/send' => ['controller' => 'MessageController', 'method' => 'sendMessage'], // Envoyer un message
     '/messages' => ['controller' => 'MessageController', 'method' => 'index'], // Afficher les messages
+    '/react-message' => ['controller' => 'MessageController', 'method' => 'reactToMessage'], // Afficher les messages
 
     // Routes de posts et interactions
     '/like' => ['controller' => 'LikeController', 'method' => 'likePost'], // Aimer un post

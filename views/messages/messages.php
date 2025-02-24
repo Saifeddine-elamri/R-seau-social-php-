@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messages</title>
     <link rel="stylesheet" href="views/static/css/messages-style.css">
+    <link rel="stylesheet" href="views/static/css/messages/messages-section.css">
+
 </head>
 <body>
 
@@ -19,6 +21,7 @@ include __DIR__ . '/../templates/footer.php';
 ?>
 </div>
 <script src="views/static/js/message.js"></script>
+<script src="views/static/js/messages/message-section.js"></script>
 
 </body>
 </html>

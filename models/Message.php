@@ -124,6 +124,53 @@ class Message {
         $stmt->execute([$contactId, $userId]);
     }
     
+
+    public static function addReaction($message_id, $user_id, $reaction) {
+        global $pdo ;
+    
+        // Vérifier si l'utilisateur a déjà réagi à ce message
+        $stmt = $pdo->prepare("SELECT * FROM message_reactions WHERE message_id = ? AND user_id = ?");
+        $stmt->execute([$message_id, $user_id]);
+    
+        if ($stmt->rowCount() > 0) {
+            // Mettre à jour la réaction existante
+            $stmt = $pdo->prepare("UPDATE message_reactions SET reaction = ? WHERE message_id = ? AND user_id = ?");
+            return $stmt->execute([$reaction, $message_id, $user_id]);
+        } else {
+            // Insérer une nouvelle réaction
+            $stmt = $pdo->prepare("INSERT INTO message_reactions (message_id, user_id, reaction) VALUES (?, ?, ?)");
+            return $stmt->execute([$message_id, $user_id, $reaction]);
+        }
+    }
+    
+    public static function exists($message_id) {
+        global $pdo;
+        $stmt = $pdo->prepare("SELECT id FROM messages WHERE id = ? LIMIT 1");
+        $stmt->execute([$message_id]);
+        return $stmt->rowCount() > 0;
+    }
+    
+
+    /**
+     * Récupère la réaction d'un message depuis la table message_reactions
+     * 
+     * @param int $message_id L'ID du message
+     * @return string|null La réaction du message ou null si aucune réaction
+     */
+    public static function getReactionForMessage($message_id) {
+        // Connexion à la base de données (assurez-vous d'utiliser votre méthode de connexion)
+        global $pdo;
+        // Requête SQL pour récupérer la réaction du message
+        $query = 'SELECT reaction FROM message_reactions WHERE message_id = :message_id LIMIT 1';
+        $stmt = $pdo->prepare($query);
+        $stmt->bindParam(':message_id', $message_id, PDO::PARAM_INT);
+        $stmt->execute();
+
+        // Récupérer la réaction
+        $reaction = $stmt->fetchColumn();
+        
+        return $reaction ?: null; // Retourne null si aucune réaction n'a été trouvée
+    }
     
     
 }

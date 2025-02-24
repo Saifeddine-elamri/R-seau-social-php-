@@ -32,6 +32,12 @@ class MessageController {
             $messages = Message::getMessages($user_id, $selected_contact);
         }
 
+        foreach ($messages as &$message) {
+            // Récupérer la réaction pour ce message à partir de la table message_reactions
+            $reaction = Message::getReactionForMessage($message['id']);
+            $message['reaction'] = $reaction;
+        }
+
         // Inclure la vue des messages (contacts et messages)
         View::render('messages/messages', ['messages' => $messages ,
                                             'contacts' => $contacts ,
@@ -79,5 +85,56 @@ class MessageController {
         header("Location: messages?contact_id=" . $receiver_id);
         exit();
     }
+
+/**
+     * Ajoute une réaction à un message via POST
+     */
+    public function reactToMessage() {
+        isAuthenticated();
+
+        // Vérifier si les données sont présentes
+        if (!isset($_POST['message_id']) || !isset($_POST['reaction'])) {
+            $_SESSION['error'] = "Données invalides.";
+            header("Location: messages");
+            exit();
+        }
+
+        // Récupération des données du formulaire
+        $message_id = intval($_POST['message_id']);
+        $reaction = htmlspecialchars($_POST['reaction']);
+        $user_id = $_SESSION['user_id'];
+
+        // Vérifier si le message existe
+        if (!Message::exists($message_id)) {
+            $_SESSION['error'] = "Message non trouvé.";
+            header("Location: messages");
+            exit();
+        }
+
+        // Ajouter ou mettre à jour la réaction
+        $result = Message::addReaction($message_id, $user_id, $reaction);
+
+        if ($result) {
+            $_SESSION['success'] = "Réaction ajoutée avec succès.";
+        } else {
+            $_SESSION['error'] = "Impossible d'ajouter la réaction.";
+        }
+
+        // Rediriger vers la conversation
+        header("Location: messages?contact_id=" . $_POST['contact_id']);
+        exit();
+    }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 ?>
