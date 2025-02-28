@@ -13,15 +13,16 @@
 <div class="container">
 <?php
 // Inclusion des fichiers nécessaires
-include __DIR__ . '/../templates/header.php'; 
+include __DIR__ . '/../templates/header.php';
 include 'contacts-section.php'; // Inclusion de la section contacts
 include 'messages-section.php'; // Inclusion de la section des messages
 include 'message-form.php'; // Inclusion du formulaire d'envoi
-include __DIR__ . '/../templates/footer.php'; 
+include __DIR__ . '/../templates/footer.php';
 ?>
 </div>
 <script src="views/static/js/message.js"></script>
 <script src="views/static/js/messages/message-section.js"></script>
+<script src="views/static/js/messages/message-form.js"></script>
 
 </body>
 </html>

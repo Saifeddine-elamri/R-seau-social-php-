@@ -1,0 +1,12 @@
+
+.upload-label {
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0 5px;
+    font-size: 20px;
+}
+.file-name-display {
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}

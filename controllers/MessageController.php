@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . '/../models/Message.php';
 require_once __DIR__ . '/../models/User.php';
-require_once __DIR__ . '/../core/View.php'; 
+require_once __DIR__ . '/../core/View.php';
 // Inclusion des fonctions utilitaires
 require_once __DIR__ . '/../includes/utils.php';
 
@@ -17,7 +17,7 @@ class MessageController {
         // Vérification de l'authentification sinon redirection
         isAuthenticated();
         // Récupérer l'ID de l'utilisateur connecté
-        
+
         $user_id = $_SESSION['user_id'];
 
         // Récupérer la liste des contacts de l'utilisateur
@@ -43,7 +43,7 @@ class MessageController {
                                             'contacts' => $contacts ,
                                             'user_id' => $user_id ,
                                              'selected_contact'  =>  $selected_contact
-                                        
+
                                         ]);
 
     }
@@ -63,10 +63,11 @@ class MessageController {
 
         // Appeler la méthode pour gérer l'upload d'image (si applicable)
         $image_name = Message::handleImageUpload();
+        $audio_name = Message::handleAudioUpload();  // Ajout de la gestion de l'audio
 
         // Si le message est valide, l'envoyer
         if ($message) {
-            $result = Message::sendMessage($user_id, $receiver_id, $message, $image_name);
+            $result = Message::sendMessage($user_id, $receiver_id, $message, $image_name,$audio_name);
 
             if ($result) {
                 // Si le message a été envoyé avec succès, rediriger vers la conversation

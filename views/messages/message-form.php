@@ -27,6 +27,11 @@
             📷
         </label>
         <input type="file" id="image" name="image" accept="image/jpeg, image/png, image/gif" class="file-input">
+
+        <!-- Bouton pour l'audio -->
+        <button type="button" id="recordBtn" class="upload-label" title="Enregistrer un audio">🎙️</button>
+        <button type="button" id="stopBtn" class="upload-label" title="Arrêter l'enregistrement" style="display: none;">⏹️</button>
+        <input type="hidden" id="audioInput" name="audio">
     </div>
 
     <button type="submit"><span class="send-icon">➤</span></button>
