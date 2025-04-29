@@ -45,17 +45,9 @@
                     </div>
 
                     <!-- Bouton pour afficher ou cacher les réactions -->
-                    <button class="react-btn">Ajouter une réaction</button>
 
                     <!-- Sélecteur d'emoji caché -->
-                    <div class="reaction-picker" id="reaction-picker-<?php echo $message['id']; ?>">
-                        <span class="reaction" data-emoji="👍" data-message-id="<?php echo $message['id']; ?>">👍</span>
-                        <span class="reaction" data-emoji="❤️" data-message-id="<?php echo $message['id']; ?>">❤️</span>
-                        <span class="reaction" data-emoji="😂" data-message-id="<?php echo $message['id']; ?>">😂</span>
-                        <span class="reaction" data-emoji="😮" data-message-id="<?php echo $message['id']; ?>">😮</span>
-                        <span class="reaction" data-emoji="😢" data-message-id="<?php echo $message['id']; ?>">😢</span>
-                        <span class="reaction" data-emoji="😡" data-message-id="<?php echo $message['id']; ?>">😡</span>
-                    </div>
+
 
                     <!-- Affichage de la réaction sélectionnée -->
                     <div id="reaction-display-<?php echo $message['id']; ?>">
@@ -65,15 +57,7 @@
                     </div>
 
                     <!-- Formulaire de réaction -->
-                    <form method="POST" action="react-message">
-                        <input type="hidden" name="message_id" value="<?php echo $message['id']; ?>">
-                        <button type="submit" name="reaction" value="👍" class="reaction-btn">👍</button>
-                        <button type="submit" name="reaction" value="❤️" class="reaction-btn">❤️</button>
-                        <button type="submit" name="reaction" value="😂" class="reaction-btn">😂</button>
-                        <button type="submit" name="reaction" value="😮" class="reaction-btn">😮</button>
-                        <button type="submit" name="reaction" value="😢" class="reaction-btn">😢</button>
-                        <button type="submit" name="reaction" value="😡" class="reaction-btn">😡</button>
-                    </form>
+
                 </div>
             <?php endforeach; ?>
         </div>

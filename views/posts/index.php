@@ -16,7 +16,7 @@ $UserProfileImage = getUserProfileImage($User);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fils d'actualités</title>
-    <link rel="stylesheet" type="text/css" href="views/static/css/profil-style.css">
+    <link rel="stylesheet" type="text/css" href="views/static/css/global-posts-style.css">
     <link rel="stylesheet" type="text/css" href="views/static/css/posts/comment-item.css">
 
     <!-- Ajout de la favicon -->
